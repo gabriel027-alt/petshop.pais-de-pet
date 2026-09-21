@@ -345,14 +345,74 @@ export default function PaisDePetBoutiquePortal() {
       </div>
 
       {/* ========================================================================= */}
-      {/* 1. CABEÇALHO BOUTIQUE COM SUMÁRIO SIMÉTRICO E ESPAÇAMENTOS GENEROSOS      */}
+      {/* 1. CABEÇALHO BOUTIQUE COM SUMÁRIO SIMÉTRICO E CENTRALIZAÇÃO MOBILE        */}
       {/* ========================================================================= */}
-      <header className="fixed top-0 inset-x-0 z-40 bg-[#FAF8F5]/92 backdrop-blur-xl border-b border-[#2C1820]/10 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 h-20 sm:h-24 flex items-center justify-between gap-6">
+      <header className="fixed top-0 inset-x-0 z-40 bg-[#FAF8F5]/94 backdrop-blur-xl border-b border-[#2C1820]/10 transition-all duration-300 pt-[env(safe-area-inset-top,0px)]">
+        
+        {/* BARRA SUPERIOR MOBILE & TABLET (< lg): RIGOROSAMENTE CENTRALIZADA E SEM SOBREPOSIÇÃO */}
+        <div className="lg:hidden max-w-7xl mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between relative overflow-visible">
+          
+          {/* Botão de Sumário / Menu (Esquerda) */}
+          <div className="flex items-center shrink-0 z-10">
+            <button
+              type="button"
+              onClick={() => setSideMenuOpen(!sideMenuOpen)}
+              className="p-2 sm:p-2.5 rounded-2xl bg-white text-[#2C1820] border border-[#2C1820]/15 hover:border-[#FF2E93] transition-all shadow-2xs active:scale-95 cursor-pointer touch-manipulation flex items-center gap-1.5"
+              aria-label="Abrir Menu de Navegação e Sumário"
+            >
+              {sideMenuOpen ? <BrandClose className="w-5 h-5 text-[#FF2E93]" /> : <BrandMenu className="w-5 h-5 text-[#2C1820]" />}
+              <span className="text-[11px] font-mono font-bold uppercase tracking-wider hidden sm:inline">Sumário</span>
+            </button>
+          </div>
+
+          {/* Logotipo da Clínica Perfeitamente Centralizado */}
+          <a
+            href="#"
+            className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 text-center group active:scale-98 transition-transform z-10 max-w-[58%] sm:max-w-[65%]"
+            aria-label="Pais de Pet - Página Inicial"
+          >
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full p-[1.5px] bg-gradient-to-tr from-[#FF2E93] via-[#FF6B00] to-[#84CC16] shadow-xs shrink-0">
+              <img
+                src="/foto-perfil-pais-de-pet.jpg"
+                alt="Pais de Pet"
+                className="w-full h-full object-cover rounded-full bg-white"
+              />
+            </div>
+            <div className="flex flex-col text-left min-w-0">
+              <span className="font-black text-base sm:text-lg text-[#2C1820] tracking-tight block leading-none truncate">
+                Pais de Pet
+              </span>
+              <span className="text-[9px] sm:text-[10px] font-mono tracking-wider text-[#FF6B00] uppercase font-bold block mt-0.5 truncate">
+                CRMV-MG 20572
+              </span>
+            </div>
+          </a>
+
+          {/* Botão de Ação Rápida WhatsApp (Direita) */}
+          <div className="flex items-center shrink-0 z-10">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 p-2 sm:px-4 sm:py-2.5 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-sm transition-all active:scale-95 group touch-manipulation shrink-0"
+              aria-label="Falar com a Dra. Natalia no WhatsApp"
+            >
+              <div className="w-5 h-5 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
+                <img src="/foto-perfil-pais-de-pet.jpg" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
+              </div>
+              <span className="hidden sm:inline">WhatsApp</span>
+              <BrandArrow className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
+
+        </div>
+
+        {/* BARRA SUPERIOR DESKTOP (>= lg): ASSINATURA + MENU COMPLETO + AÇÃO */}
+        <div className="hidden lg:flex max-w-7xl mx-auto px-8 xl:px-10 h-24 items-center justify-between gap-6">
           
           {/* Assinatura Oficial da Clínica */}
           <a href="#" className="flex items-center gap-3.5 group text-left shrink-0">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full p-[2px] bg-gradient-to-tr from-[#FF2E93] via-[#FF6B00] to-[#84CC16] shadow-xs group-hover:scale-105 transition-transform shrink-0">
+            <div className="w-14 h-14 rounded-full p-[2px] bg-gradient-to-tr from-[#FF2E93] via-[#FF6B00] to-[#84CC16] shadow-xs group-hover:scale-105 transition-transform shrink-0">
               <img
                 src="/foto-perfil-pais-de-pet.jpg"
                 alt="Pais de Pet"
@@ -360,7 +420,7 @@ export default function PaisDePetBoutiquePortal() {
               />
             </div>
             <div>
-              <span className="font-black text-xl sm:text-2xl text-[#2C1820] tracking-tight block leading-none">
+              <span className="font-black text-2xl text-[#2C1820] tracking-tight block leading-none">
                 Pais de Pet
               </span>
               <span className="text-[11px] font-mono tracking-widest text-[#FF6B00] uppercase font-bold block mt-1">
@@ -370,7 +430,7 @@ export default function PaisDePetBoutiquePortal() {
           </a>
 
           {/* Navegação Desktop Simétrica e Generosamente Espaçada */}
-          <nav className="hidden lg:flex items-center justify-center gap-2 xl:gap-4 text-xs font-bold uppercase tracking-wider text-[#2C1820]/80">
+          <nav className="flex items-center justify-center gap-2 xl:gap-4 text-xs font-bold uppercase tracking-wider text-[#2C1820]/80">
             <a href="#filosofia" className="px-3.5 py-2 rounded-full hover:bg-white hover:text-[#FF2E93] transition-all">
               O Refúgio
             </a>
@@ -394,21 +454,20 @@ export default function PaisDePetBoutiquePortal() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 sm:gap-3 px-5 sm:px-6 py-3 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95 group"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95 group"
             >
               <div className="w-6 h-6 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
                 <img src="/foto-perfil-pais-de-pet.jpg" alt="Dra. Natalia Possas" className="w-full h-full object-cover rounded-full" />
               </div>
-              <span className="hidden sm:inline">WhatsApp Dra. Natalia</span>
-              <span className="sm:hidden">WhatsApp</span>
+              <span>WhatsApp Dra. Natalia</span>
               <BrandArrow className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
 
             <button
               type="button"
               onClick={() => setSideMenuOpen(!sideMenuOpen)}
-              className="p-3 rounded-2xl bg-white text-[#2C1820] border border-[#2C1820]/15 hover:border-[#FF2E93] transition-all shadow-2xs"
-              aria-label="Abrir Menu de Navegação"
+              className="p-3 rounded-2xl bg-white text-[#2C1820] border border-[#2C1820]/15 hover:border-[#FF2E93] transition-all shadow-2xs cursor-pointer"
+              aria-label="Abrir Menu de Navegação e Sumário"
             >
               {sideMenuOpen ? <BrandClose className="w-5 h-5 text-[#FF2E93]" /> : <BrandMenu className="w-5 h-5 text-[#2C1820]" />}
             </button>
@@ -435,25 +494,26 @@ export default function PaisDePetBoutiquePortal() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed top-0 right-0 bottom-0 w-full sm:w-[440px] z-50 bg-[#FAF8F5] border-l border-[#2C1820]/10 p-8 sm:p-12 overflow-y-auto flex flex-col justify-between shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 w-full sm:w-[440px] z-50 bg-[#FAF8F5] border-l border-[#2C1820]/10 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.25rem,env(safe-area-inset-bottom))] px-6 sm:px-10 overflow-y-auto flex flex-col justify-between shadow-2xl"
             >
-              <div className="space-y-8">
-                <div className="flex items-center justify-between pb-6 border-b border-[#2C1820]/10">
+              <div className="space-y-6 sm:space-y-8">
+                <div className="flex items-center justify-between pb-5 border-b border-[#2C1820]/10">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full p-[1.5px] bg-gradient-to-tr from-[#FF2E93] to-[#84CC16]">
+                    <div className="w-10 h-10 rounded-full p-[1.5px] bg-gradient-to-tr from-[#FF2E93] to-[#84CC16] shrink-0">
                       <img src="/foto-perfil-pais-de-pet.jpg" alt="Pais de Pet" className="w-full h-full object-cover rounded-full" />
                     </div>
-                    <div>
-                      <span className="font-black text-lg text-[#2C1820] block leading-none">Pais de Pet</span>
-                      <span className="text-[10px] font-mono uppercase text-[#FF6B00] font-bold">Sagrada Família • BH</span>
+                    <div className="min-w-0">
+                      <span className="font-black text-lg text-[#2C1820] block leading-none truncate">Pais de Pet</span>
+                      <span className="text-[10px] font-mono uppercase text-[#FF6B00] font-bold block mt-0.5 truncate">Sagrada Família • BH</span>
                     </div>
                   </div>
                   <button
                     type="button"
                     onClick={() => setSideMenuOpen(false)}
-                    className="p-2 rounded-xl text-[#2C1820] hover:bg-white transition-colors"
+                    className="p-2.5 rounded-2xl bg-white border border-[#2C1820]/15 text-[#2C1820] hover:bg-[#FAF8F5] transition-colors active:scale-95 cursor-pointer touch-manipulation"
+                    aria-label="Fechar Sumário"
                   >
-                    <BrandClose className="w-6 h-6" />
+                    <BrandClose className="w-5 h-5 text-[#FF2E93]" />
                   </button>
                 </div>
 

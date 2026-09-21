@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export interface BrandIntroProps {
@@ -14,47 +14,7 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const closedRef = useRef(false);
 
-  useEffect(() => {
-    // Se o visitante já visualizou a intro nesta sessão, remove imediatamente
-    try {
-      const hasSeen = sessionStorage.getItem("paisdepet_intro_seen");
-      if (hasSeen === "true") {
-        setIsVisible(false);
-        return;
-      }
-    } catch {
-      // Ignora restrições locais de armazenamento
-    }
-
-    // Dispara reprodução ativa com fallback para mobile (evita pausa/tela estática)
-    const video = videoRef.current;
-    if (video) {
-      video.muted = true;
-      video.defaultMuted = true;
-      video.playsInline = true;
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch(() => {
-            // Em navegadores móveis com restrição de economia de bateria,
-            // o poster estático mantém o cachorro perfeitamente visível
-            setIsPlaying(true);
-          });
-      }
-    }
-
-    // Temporizador garantindo encerramento e transição em exatamente 8 segundos (8000ms)
-    const timer = setTimeout(() => {
-      handleClose();
-    }, 8000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     if (closedRef.current) return;
     closedRef.current = true;
     setIsVisible(false);
@@ -67,7 +27,7 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
     if (onComplete) {
       onComplete();
     }
-  };
+  }, [onComplete]);
 
   const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
     // Ao atingir exatamente 8 segundos (currentTime >= 8), encerra e transiciona suavemente
@@ -75,6 +35,64 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
       handleClose();
     }
   };
+
+  useEffect(() => {
+    // Se o visitante já visualizou a intro nesta sessão, remove imediatamente
+    try {
+      const hasSeen = sessionStorage.getItem("paisdepet_intro_seen");
+      if (hasSeen === "true") {
+        setIsVisible(false);
+        return;
+      }
+    } catch {
+      // Ignora restrições locais de armazenamento
+    }
+
+    // Configuração imperativa rigorosa de autoplay para WebKit (iOS Safari) e Blink (Chrome Mobile)
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.setAttribute("autoplay", "");
+
+      const triggerPlayback = () => {
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise
+            .then(() => {
+              setIsPlaying(true);
+            })
+            .catch(() => {
+              // Se o navegador móvel restringir reprodução automática sem interação física,
+              // qualquer primeiro toque sutil na tela destrava o vídeo imediatamente
+              const unlockOnTouch = () => {
+                video.play().then(() => setIsPlaying(true)).catch(() => {});
+              };
+              window.addEventListener("touchstart", unlockOnTouch, { once: true, passive: true });
+              window.addEventListener("pointerdown", unlockOnTouch, { once: true, passive: true });
+              window.addEventListener("click", unlockOnTouch, { once: true, passive: true });
+            });
+        }
+      };
+
+      // Dispara imediatamente e se conecta aos ciclos de prontidão da mídia
+      triggerPlayback();
+      video.addEventListener("loadedmetadata", triggerPlayback, { once: true });
+      video.addEventListener("canplay", triggerPlayback, { once: true });
+      video.addEventListener("loadeddata", triggerPlayback, { once: true });
+    }
+
+    // Temporizador garantindo encerramento e transição em exatamente 8 segundos (8000ms)
+    const timer = setTimeout(() => {
+      handleClose();
+    }, 8000);
+
+    return () => clearTimeout(timer);
+  }, [handleClose]);
 
   return (
     <AnimatePresence>
@@ -107,7 +125,9 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
               muted
               playsInline
               preload="auto"
+              disableRemotePlayback
               onPlay={() => setIsPlaying(true)}
+              onPlaying={() => setIsPlaying(true)}
               onTimeUpdate={handleTimeUpdate}
               onEnded={handleClose}
               className="absolute inset-0 w-full h-full object-cover object-center sm:object-contain bg-transparent transition-opacity duration-300"
