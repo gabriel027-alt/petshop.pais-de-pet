@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { clinicMetadata } from "@/data/clinicMetadata";
 import { faqData } from "@/data/faqData";
-import BrandIntro from "@/components/BrandIntro";
+
 
 // =============================================================================
 // ELEMENTOS VISUAIS PROPRIETÁRIOS DA MARCA (ZERO ÍCONES GENÉRICOS DE TERCEIROS)
@@ -295,52 +295,47 @@ export default function PaisDePetBoutiquePortal() {
     <div ref={containerRef} className="min-h-screen bg-[#FAF8F5] text-[#2C1820] font-sans selection:bg-[#84CC16] selection:text-[#2C1820] relative overflow-x-hidden">
       
       {/* ========================================================================= */}
-      {/* VÍDEO DE INTRODUÇÃO DA MARCA (8S COM AUTOPLAY E TRANSIÇÃO SUAVE)          */}
+      {/* SISTEMA DE PATINHAS E ORELHINHAS FLUTUANTES COM PARALAXE (DESKTOP & MOBILE) */}
       {/* ========================================================================= */}
-      <BrandIntro />
-
-      {/* ========================================================================= */}
-      {/* SISTEMA DE PATINHAS FLUTUANTES EM SVG COM PARALAXE E FADE NO SCROLL       */}
-      {/* ========================================================================= */}
-      <div className="fixed inset-y-0 left-2 sm:left-4 lg:left-8 z-10 pointer-events-none hidden md:flex flex-col justify-around py-32 select-none">
+      <div className="fixed inset-y-0 left-1 sm:left-4 lg:left-8 z-10 pointer-events-none flex flex-col justify-around py-20 sm:py-32 select-none">
         <motion.div
           style={{ y: pawLeft1Y, rotate: pawRotate1 }}
-          className="text-[#FF2E93] opacity-25"
+          className="text-[#FF2E93] opacity-20 sm:opacity-25"
         >
-          <BrandPaw className="w-10 h-10" />
+          <BrandPaw className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10" />
         </motion.div>
         <motion.div
           style={{ y: pawLeft2Y, rotate: pawRotate2 }}
-          className="text-[#84CC16] opacity-20"
+          className="text-[#84CC16] opacity-15 sm:opacity-20"
         >
-          <BrandCatEar className="w-11 h-11" />
+          <BrandCatEar className="w-7 h-7 sm:w-9 sm:h-9 lg:w-11 lg:h-11" />
         </motion.div>
         <motion.div
           style={{ y: pawLeft3Y, rotate: pawRotate1 }}
-          className="text-[#FF6B00] opacity-25"
+          className="text-[#FF6B00] opacity-20 sm:opacity-25"
         >
-          <BrandPaw className="w-9 h-9" />
+          <BrandPaw className="w-5 h-5 sm:w-7 sm:h-7 lg:w-9 lg:h-9" />
         </motion.div>
       </div>
 
-      <div className="fixed inset-y-0 right-2 sm:right-4 lg:right-8 z-10 pointer-events-none hidden md:flex flex-col justify-around py-36 select-none">
+      <div className="fixed inset-y-0 right-1 sm:right-4 lg:right-8 z-10 pointer-events-none flex flex-col justify-around py-24 sm:py-36 select-none">
         <motion.div
           style={{ y: pawRight1Y, rotate: pawRotate2 }}
-          className="text-[#84CC16] opacity-25"
+          className="text-[#84CC16] opacity-20 sm:opacity-25"
         >
-          <BrandCatEar className="w-11 h-11" />
+          <BrandCatEar className="w-7 h-7 sm:w-9 sm:h-9 lg:w-11 lg:h-11" />
         </motion.div>
         <motion.div
           style={{ y: pawRight2Y, rotate: pawRotate1 }}
-          className="text-[#FF2E93] opacity-20"
+          className="text-[#FF2E93] opacity-15 sm:opacity-20"
         >
-          <BrandPaw className="w-10 h-10" />
+          <BrandPaw className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10" />
         </motion.div>
         <motion.div
           style={{ y: pawRight3Y, rotate: pawRotate2 }}
-          className="text-[#FF6B00] opacity-25"
+          className="text-[#FF6B00] opacity-20 sm:opacity-25"
         >
-          <BrandPaw className="w-9 h-9" />
+          <BrandPaw className="w-5 h-5 sm:w-7 sm:h-7 lg:w-9 lg:h-9" />
         </motion.div>
       </div>
 
@@ -519,7 +514,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 2. HERO CINEMATOGRÁFICO COM VÍDEO EM AUTOPLAY E PREENCHIMENTO IMPONENTE   */}
       {/* ========================================================================= */}
-      <section className="relative min-h-[90vh] lg:min-h-screen w-full flex items-center pt-20 sm:pt-28 lg:pt-32 pb-8 sm:pb-16 px-3 sm:px-6 lg:px-12 overflow-hidden">
+      <section className="relative min-h-[92vh] lg:min-h-screen w-full flex items-center pt-24 sm:pt-28 lg:pt-32 pb-10 sm:pb-16 px-3.5 sm:px-6 lg:px-12 overflow-hidden">
         
         {/* VÍDEO EM LARGURA TOTAL COM CONTROLE E PROPORÇÃO SUAVE */}
         <motion.div
@@ -545,46 +540,40 @@ export default function PaisDePetBoutiquePortal() {
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="p-5 sm:p-10 lg:p-12 rounded-3xl sm:rounded-[2.5rem] bg-white/95 backdrop-blur-2xl border border-white/90 shadow-[0_20px_50px_rgba(44,24,32,0.08)] space-y-4 sm:space-y-6 text-left"
+            className="p-6 sm:p-10 lg:p-12 rounded-[2rem] sm:rounded-[2.5rem] bg-white/95 backdrop-blur-2xl border border-white/90 shadow-[0_20px_50px_rgba(44,24,32,0.08)] space-y-5 sm:space-y-6 text-left"
           >
             
-            {/* Responsabilidade Técnica & Localização */}
+            {/* Responsabilidade Técnica & Localização (Topo Limpo Sem Elementos Pulsantes) */}
             <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FAF8F5] border border-[#84CC16]/50">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#84CC16]/50 shadow-2xs">
                 <BrandCross className="w-3.5 h-3.5 text-[#84CC16] shrink-0" />
                 <span className="text-[11px] sm:text-xs font-mono font-bold text-[#2C1820] uppercase tracking-wider">
                   Sagrada Família • Rua Silvestre Ferraz, 27 • BH
                 </span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#84CC16]/10 border border-[#84CC16]/30">
-                <span className="w-2 h-2 rounded-full bg-[#84CC16] animate-pulse" />
-                <span className="text-[11px] sm:text-xs font-mono font-bold text-[#2C1820] uppercase tracking-wider">
-                  Aberto Hoje • Plantão WhatsApp
-                </span>
-              </div>
             </div>
 
-            {/* Título Principal Escultural */}
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-[56px] font-black tracking-tight text-[#2C1820] leading-[1.08]">
+            {/* Título Principal Escultural e Imponente no Mobile */}
+            <h1 className="text-[28px] xs:text-[32px] sm:text-4xl lg:text-5xl xl:text-[56px] font-black tracking-tight text-[#2C1820] leading-[1.12] sm:leading-[1.08]">
               A gente sabe o que passa no seu coração quando ele{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E93] via-[#FF6B00] to-[#84CC16]">
                 treme antes de entrar no veterinário.
               </span>
             </h1>
 
-            {/* Subtítulo Empático */}
-            <p className="text-sm sm:text-lg lg:text-xl text-[#2C1820]/90 font-normal leading-relaxed">
+            {/* Subtítulo Empático de Alto Padrão */}
+            <p className="text-base sm:text-lg lg:text-xl text-[#2C1820]/90 font-normal leading-relaxed">
               Aqui, nenhuma porta bate, nenhum cão late na orelha do seu gato, e nenhuma consulta dura 15 minutos. Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz. Sob o cuidado médico da{" "}
               <strong className="font-bold text-[#FF6B00]">Dra. Natalia Possas (CRMV-MG 20572)</strong>.
             </p>
 
             {/* Ações Oficiais com a Logo da Clínica */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 pt-1">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-7 py-3.5 sm:py-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-95 group text-center"
+                className="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-95 group text-center touch-manipulation"
               >
                 <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden p-[1.5px] bg-white shrink-0 shadow-2xs">
                   <img src="/foto-perfil-pais-de-pet.jpg" alt="Logo" className="w-full h-full object-cover rounded-full" />
@@ -595,62 +584,74 @@ export default function PaisDePetBoutiquePortal() {
 
               <a
                 href="#triagem"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:py-4 rounded-full bg-white hover:bg-[#FAF8F5] text-[#2C1820] font-black text-xs sm:text-sm uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#84CC16] transition-all text-center"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-white hover:bg-[#FAF8F5] text-[#2C1820] font-black text-xs sm:text-sm uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#84CC16] transition-all text-center touch-manipulation shadow-2xs"
               >
                 <BrandPaw className="w-4 h-4 text-[#84CC16]" />
                 <span>Iniciar Triagem Pré-Clínica</span>
               </a>
             </div>
 
-            {/* Pilares com Elementos Visuais Próprios e Preenchimento Rico */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 pt-4 sm:pt-5 border-t border-[#2C1820]/10 text-xs">
-              <div className="flex items-center gap-2.5 p-2 sm:p-0 rounded-xl bg-[#FAF8F5] sm:bg-transparent">
-                <span className="p-1.5 rounded-lg bg-[#84CC16]/15 text-[#84CC16] shrink-0">
-                  <BrandCheck className="w-4 h-4" />
+            {/* Pilares com Elementos Visuais Próprios de Cães e Gatos (Sempre Visíveis no Mobile) */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4 pt-5 sm:pt-6 border-t border-[#2C1820]/10 text-xs">
+              <div className="flex items-center gap-3 p-2.5 sm:p-0 rounded-2xl bg-[#FAF8F5] sm:bg-transparent">
+                <span className="p-2 rounded-xl bg-[#84CC16]/15 text-[#84CC16] shrink-0">
+                  <BrandPaw className="w-4 h-4" />
                 </span>
                 <div>
-                  <span className="font-bold text-[#2C1820] block">100% Toalhas Descartáveis</span>
-                  <span className="text-[11px] text-[#2C1820]/65 block sm:hidden md:block">Esterilizadas e individuais</span>
+                  <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">100% Toalhas Descartáveis</span>
+                  <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Esterilizadas e individuais</span>
                 </div>
               </div>
-              <div className="flex items-center gap-2.5 p-2 sm:p-0 rounded-xl bg-[#FAF8F5] sm:bg-transparent">
-                <span className="p-1.5 rounded-lg bg-[#FF2E93]/15 text-[#FF2E93] shrink-0">
+              <div className="flex items-center gap-3 p-2.5 sm:p-0 rounded-2xl bg-[#FAF8F5] sm:bg-transparent">
+                <span className="p-2 rounded-xl bg-[#FF2E93]/15 text-[#FF2E93] shrink-0">
                   <BrandCatEar className="w-4 h-4" />
                 </span>
                 <div>
-                  <span className="font-bold text-[#2C1820] block">Manejo Cat-Friendly</span>
-                  <span className="text-[11px] text-[#2C1820]/65 block sm:hidden md:block">Zero estresse e sem latidos</span>
+                  <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">Manejo Cat-Friendly</span>
+                  <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Zero estresse e sem latidos</span>
                 </div>
               </div>
-              <div className="flex items-center gap-2.5 p-2 sm:p-0 rounded-xl bg-[#FAF8F5] sm:bg-transparent">
-                <span className="p-1.5 rounded-lg bg-[#FF6B00]/15 text-[#FF6B00] shrink-0">
+              <div className="flex items-center gap-3 p-2.5 sm:p-0 rounded-2xl bg-[#FAF8F5] sm:bg-transparent">
+                <span className="p-2 rounded-xl bg-[#FF6B00]/15 text-[#FF6B00] shrink-0">
                   <BrandCross className="w-4 h-4" />
                 </span>
                 <div>
-                  <span className="font-bold text-[#2C1820] block">Credenciada Petlove</span>
-                  <span className="text-[11px] text-[#2C1820]/65 block sm:hidden md:block">Presencial & Domiciliar</span>
+                  <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">Credenciada Petlove</span>
+                  <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Presencial & Domiciliar</span>
                 </div>
               </div>
             </div>
 
           </motion.div>
 
-          {/* FAIXA COMPACTA DE PROVA SOCIAL E REPUTAÇÃO (PRIMEIRA DOBRA IMPONENTE) */}
-          <div className="mt-3 sm:mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
-            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs">
-              <span className="font-black text-base sm:text-xl text-[#FF2E93] block leading-tight">10+ Anos</span>
+          {/* FAIXA COMPACTA DE PROVA SOCIAL E REPUTAÇÃO COM ÍCONES VIVOS (PRIMEIRA DOBRA IMPONENTE) */}
+          <div className="mt-3.5 sm:mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs flex flex-col items-center justify-center">
+              <div className="flex items-center gap-1.5">
+                <BrandPaw className="w-3.5 h-3.5 text-[#FF2E93]" />
+                <span className="font-black text-lg sm:text-xl text-[#FF2E93] leading-tight">10+ Anos</span>
+              </div>
               <span className="text-[10px] sm:text-xs font-mono uppercase text-[#2C1820]/70 font-bold block mt-0.5">de Dedicação</span>
             </div>
-            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs">
-              <span className="font-black text-base sm:text-xl text-[#FF6B00] block leading-tight">1.500+</span>
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs flex flex-col items-center justify-center">
+              <div className="flex items-center gap-1.5">
+                <BrandPaw className="w-3.5 h-3.5 text-[#FF6B00]" />
+                <span className="font-black text-lg sm:text-xl text-[#FF6B00] leading-tight">1.500+</span>
+              </div>
               <span className="text-[10px] sm:text-xs font-mono uppercase text-[#2C1820]/70 font-bold block mt-0.5">Pets Acolhidos</span>
             </div>
-            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs">
-              <span className="font-black text-base sm:text-xl text-[#84CC16] block leading-tight">★ 4.9</span>
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs flex flex-col items-center justify-center">
+              <div className="flex items-center gap-1.5">
+                <BrandStar className="w-3.5 h-3.5 text-[#84CC16] fill-[#84CC16]" />
+                <span className="font-black text-lg sm:text-xl text-[#84CC16] leading-tight">★ 4.9</span>
+              </div>
               <span className="text-[10px] sm:text-xs font-mono uppercase text-[#2C1820]/70 font-bold block mt-0.5">Google Reviews</span>
             </div>
-            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs">
-              <span className="font-black text-base sm:text-xl text-[#2C1820] block leading-tight">0 Gaiolas</span>
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs flex flex-col items-center justify-center">
+              <div className="flex items-center gap-1.5">
+                <BrandCatEar className="w-3.5 h-3.5 text-[#2C1820]" />
+                <span className="font-black text-lg sm:text-xl text-[#2C1820] leading-tight">0 Gaiolas</span>
+              </div>
               <span className="text-[10px] sm:text-xs font-mono uppercase text-[#2C1820]/70 font-bold block mt-0.5">100% Fear-Free</span>
             </div>
           </div>
