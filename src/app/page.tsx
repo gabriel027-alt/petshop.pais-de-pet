@@ -345,92 +345,32 @@ export default function PaisDePetBoutiquePortal() {
       </div>
 
       {/* ========================================================================= */}
-      {/* 1. CABEÇALHO BOUTIQUE COM SUMÁRIO SIMÉTRICO E CENTRALIZAÇÃO MOBILE        */}
+      {/* 1. CABEÇALHO BOUTIQUE: DESIGN MODERNO, EQUILIBRADO E SEM SOBREPOSIÇÃO     */}
       {/* ========================================================================= */}
-      <header className="fixed top-0 inset-x-0 z-40 bg-[#FAF8F5]/94 backdrop-blur-xl border-b border-[#2C1820]/10 transition-all duration-300 pt-[env(safe-area-inset-top,0px)]">
-        
-        {/* BARRA SUPERIOR MOBILE & TABLET (< lg): RIGOROSAMENTE CENTRALIZADA E SEM SOBREPOSIÇÃO */}
-        <div className="lg:hidden max-w-7xl mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between relative overflow-visible">
+      <header className="fixed top-0 inset-x-0 z-40 bg-[#FAF8F5]/96 backdrop-blur-xl border-b border-[#2C1820]/10 transition-all duration-300 pt-[env(safe-area-inset-top,0px)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 h-16 sm:h-20 lg:h-24 flex items-center justify-between gap-4">
           
-          {/* Botão de Sumário / Menu (Esquerda) */}
-          <div className="flex items-center shrink-0 z-10">
-            <button
-              type="button"
-              onClick={() => setSideMenuOpen(!sideMenuOpen)}
-              className="p-2 sm:p-2.5 rounded-2xl bg-white text-[#2C1820] border border-[#2C1820]/15 hover:border-[#FF2E93] transition-all shadow-2xs active:scale-95 cursor-pointer touch-manipulation flex items-center gap-1.5"
-              aria-label="Abrir Menu de Navegação e Sumário"
-            >
-              {sideMenuOpen ? <BrandClose className="w-5 h-5 text-[#FF2E93]" /> : <BrandMenu className="w-5 h-5 text-[#2C1820]" />}
-              <span className="text-[11px] font-mono font-bold uppercase tracking-wider hidden sm:inline">Sumário</span>
-            </button>
-          </div>
-
-          {/* Logotipo da Clínica Perfeitamente Centralizado */}
-          <a
-            href="#"
-            className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 text-center group active:scale-98 transition-transform z-10 max-w-[58%] sm:max-w-[65%]"
-            aria-label="Pais de Pet - Página Inicial"
-          >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full p-[1.5px] bg-gradient-to-tr from-[#FF2E93] via-[#FF6B00] to-[#84CC16] shadow-xs shrink-0">
+          {/* Assinatura Oficial da Clínica (Logotipo Nítido e Título Bem Dimensionado) */}
+          <a href="#" className="flex items-center gap-3 group text-left shrink-0 max-w-[65%] sm:max-w-none" aria-label="Pais de Pet - Início">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full p-[2px] bg-gradient-to-tr from-[#FF2E93] via-[#FF6B00] to-[#84CC16] shadow-xs group-hover:scale-105 transition-transform shrink-0">
               <img
                 src="/foto-perfil-pais-de-pet.jpg"
                 alt="Pais de Pet"
                 className="w-full h-full object-cover rounded-full bg-white"
               />
             </div>
-            <div className="flex flex-col text-left min-w-0">
-              <span className="font-black text-base sm:text-lg text-[#2C1820] tracking-tight block leading-none truncate">
+            <div className="min-w-0">
+              <span className="font-black text-lg sm:text-xl lg:text-2xl text-[#2C1820] tracking-tight block leading-none truncate">
                 Pais de Pet
               </span>
-              <span className="text-[9px] sm:text-[10px] font-mono tracking-wider text-[#FF6B00] uppercase font-bold block mt-0.5 truncate">
-                CRMV-MG 20572
-              </span>
-            </div>
-          </a>
-
-          {/* Botão de Ação Rápida WhatsApp (Direita) */}
-          <div className="flex items-center shrink-0 z-10">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 p-2 sm:px-4 sm:py-2.5 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-sm transition-all active:scale-95 group touch-manipulation shrink-0"
-              aria-label="Falar com a Dra. Natalia no WhatsApp"
-            >
-              <div className="w-5 h-5 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
-                <img src="/foto-perfil-pais-de-pet.jpg" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
-              </div>
-              <span className="hidden sm:inline">WhatsApp</span>
-              <BrandArrow className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
-          </div>
-
-        </div>
-
-        {/* BARRA SUPERIOR DESKTOP (>= lg): ASSINATURA + MENU COMPLETO + AÇÃO */}
-        <div className="hidden lg:flex max-w-7xl mx-auto px-8 xl:px-10 h-24 items-center justify-between gap-6">
-          
-          {/* Assinatura Oficial da Clínica */}
-          <a href="#" className="flex items-center gap-3.5 group text-left shrink-0">
-            <div className="w-14 h-14 rounded-full p-[2px] bg-gradient-to-tr from-[#FF2E93] via-[#FF6B00] to-[#84CC16] shadow-xs group-hover:scale-105 transition-transform shrink-0">
-              <img
-                src="/foto-perfil-pais-de-pet.jpg"
-                alt="Pais de Pet"
-                className="w-full h-full object-cover rounded-full bg-white"
-              />
-            </div>
-            <div>
-              <span className="font-black text-2xl text-[#2C1820] tracking-tight block leading-none">
-                Pais de Pet
-              </span>
-              <span className="text-[11px] font-mono tracking-widest text-[#FF6B00] uppercase font-bold block mt-1">
+              <span className="text-[10px] sm:text-[11px] font-mono tracking-wider text-[#FF6B00] uppercase font-bold block mt-0.5 sm:mt-1 truncate">
                 Dra. Natalia Possas • CRMV-MG 20572
               </span>
             </div>
           </a>
 
           {/* Navegação Desktop Simétrica e Generosamente Espaçada */}
-          <nav className="flex items-center justify-center gap-2 xl:gap-4 text-xs font-bold uppercase tracking-wider text-[#2C1820]/80">
+          <nav className="hidden lg:flex items-center justify-center gap-2 xl:gap-4 text-xs font-bold uppercase tracking-wider text-[#2C1820]/80">
             <a href="#filosofia" className="px-3.5 py-2 rounded-full hover:bg-white hover:text-[#FF2E93] transition-all">
               O Refúgio
             </a>
@@ -448,28 +388,30 @@ export default function PaisDePetBoutiquePortal() {
             </a>
           </nav>
 
-          {/* Ação Oficial com Logomarca + Botão de Menu Detalhado */}
-          <div className="flex items-center gap-3 shrink-0">
+          {/* Grupo de Ação Rápida: Botão WhatsApp Elegante + Botão Sumário/Menu */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95 group"
+              className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95 group touch-manipulation"
+              aria-label="Falar com a Dra. Natalia no WhatsApp"
             >
-              <div className="w-6 h-6 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
-                <img src="/foto-perfil-pais-de-pet.jpg" alt="Dra. Natalia Possas" className="w-full h-full object-cover rounded-full" />
+              <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
+                <img src="/foto-perfil-pais-de-pet.jpg" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
               </div>
-              <span>WhatsApp Dra. Natalia</span>
+              <span className="hidden xs:inline sm:inline">WhatsApp</span>
               <BrandArrow className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
 
             <button
               type="button"
               onClick={() => setSideMenuOpen(!sideMenuOpen)}
-              className="p-3 rounded-2xl bg-white text-[#2C1820] border border-[#2C1820]/15 hover:border-[#FF2E93] transition-all shadow-2xs cursor-pointer"
+              className="p-2.5 sm:p-3 rounded-2xl bg-white text-[#2C1820] border border-[#2C1820]/15 hover:border-[#FF2E93] transition-all shadow-2xs active:scale-95 cursor-pointer touch-manipulation flex items-center gap-1.5"
               aria-label="Abrir Menu de Navegação e Sumário"
             >
               {sideMenuOpen ? <BrandClose className="w-5 h-5 text-[#FF2E93]" /> : <BrandMenu className="w-5 h-5 text-[#2C1820]" />}
+              <span className="text-[11px] font-mono font-bold uppercase tracking-wider hidden md:inline">Sumário</span>
             </button>
           </div>
 
@@ -575,9 +517,9 @@ export default function PaisDePetBoutiquePortal() {
       </AnimatePresence>
 
       {/* ========================================================================= */}
-      {/* 2. HERO CINEMATOGRÁFICO COM VÍDEO EM AUTOPLAY E ÁUDIO OPCIONAL           */}
+      {/* 2. HERO CINEMATOGRÁFICO COM VÍDEO EM AUTOPLAY E PREENCHIMENTO IMPONENTE   */}
       {/* ========================================================================= */}
-      <section className="relative min-h-[92vh] lg:min-h-screen w-full flex items-center pt-28 pb-20 sm:pt-36 sm:pb-28 px-4 sm:px-8 lg:px-16 overflow-hidden">
+      <section className="relative min-h-[90vh] lg:min-h-screen w-full flex items-center pt-20 sm:pt-28 lg:pt-32 pb-8 sm:pb-16 px-3 sm:px-6 lg:px-12 overflow-hidden">
         
         {/* VÍDEO EM LARGURA TOTAL COM CONTROLE E PROPORÇÃO SUAVE */}
         <motion.div
@@ -597,25 +539,33 @@ export default function PaisDePetBoutiquePortal() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#FAF8F5] via-[#FAF8F5]/85 to-transparent pointer-events-none" />
         </motion.div>
 
-        {/* CONTAINER EDITORIAL COM VIDRO FOSCO E CONTRASTE ABSOLUTO */}
-        <div className="max-w-7xl mx-auto w-full relative z-20 pointer-events-auto">
+        {/* CONTAINER EDITORIAL: PREENCHIMENTO COMPLETO, IMPONENTE E SEM ESPAÇOS VAZIOS */}
+        <div className="max-w-5xl mx-auto w-full relative z-20 pointer-events-auto">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-3xl xl:max-w-4xl p-8 sm:p-12 lg:p-14 rounded-[2.5rem] lg:rounded-[3rem] bg-white/94 backdrop-blur-2xl border border-white/90 shadow-[0_25px_60px_rgba(44,24,32,0.07)] space-y-8 text-left"
+            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            className="p-5 sm:p-10 lg:p-12 rounded-3xl sm:rounded-[2.5rem] bg-white/95 backdrop-blur-2xl border border-white/90 shadow-[0_20px_50px_rgba(44,24,32,0.08)] space-y-4 sm:space-y-6 text-left"
           >
             
             {/* Responsabilidade Técnica & Localização */}
-            <div className="inline-flex flex-wrap items-center gap-2.5 px-4 py-2 rounded-full bg-[#FAF8F5] border border-[#84CC16]/50">
-              <BrandCross className="w-3.5 h-3.5 text-[#84CC16]" />
-              <span className="text-xs font-mono font-bold text-[#2C1820] uppercase tracking-wider">
-                Sagrada Família • Rua Silvestre Ferraz, 27 • BH
-              </span>
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FAF8F5] border border-[#84CC16]/50">
+                <BrandCross className="w-3.5 h-3.5 text-[#84CC16] shrink-0" />
+                <span className="text-[11px] sm:text-xs font-mono font-bold text-[#2C1820] uppercase tracking-wider">
+                  Sagrada Família • Rua Silvestre Ferraz, 27 • BH
+                </span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#84CC16]/10 border border-[#84CC16]/30">
+                <span className="w-2 h-2 rounded-full bg-[#84CC16] animate-pulse" />
+                <span className="text-[11px] sm:text-xs font-mono font-bold text-[#2C1820] uppercase tracking-wider">
+                  Aberto Hoje • Plantão WhatsApp
+                </span>
+              </div>
             </div>
 
             {/* Título Principal Escultural */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-[66px] font-black tracking-tight text-[#2C1820] leading-[1.04]">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-[56px] font-black tracking-tight text-[#2C1820] leading-[1.08]">
               A gente sabe o que passa no seu coração quando ele{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E93] via-[#FF6B00] to-[#84CC16]">
                 treme antes de entrar no veterinário.
@@ -623,20 +573,20 @@ export default function PaisDePetBoutiquePortal() {
             </h1>
 
             {/* Subtítulo Empático */}
-            <p className="text-base sm:text-xl lg:text-2xl text-[#2C1820]/90 font-normal leading-relaxed">
+            <p className="text-sm sm:text-lg lg:text-xl text-[#2C1820]/90 font-normal leading-relaxed">
               Aqui, nenhuma porta bate, nenhum cão late na orelha do seu gato, e nenhuma consulta dura 15 minutos. Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz. Sob o cuidado médico da{" "}
               <strong className="font-bold text-[#FF6B00]">Dra. Natalia Possas (CRMV-MG 20572)</strong>.
             </p>
 
             {/* Ações Oficiais com a Logo da Clínica */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-95 group text-center"
+                className="inline-flex items-center justify-center gap-3 px-7 py-3.5 sm:py-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-95 group text-center"
               >
-                <div className="w-7 h-7 rounded-full overflow-hidden p-[1.5px] bg-white shrink-0 shadow-2xs">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden p-[1.5px] bg-white shrink-0 shadow-2xs">
                   <img src="/foto-perfil-pais-de-pet.jpg" alt="Logo" className="w-full h-full object-cover rounded-full" />
                 </div>
                 <span>Conversar com a Dra. Natalia</span>
@@ -645,36 +595,66 @@ export default function PaisDePetBoutiquePortal() {
 
               <a
                 href="#triagem"
-                className="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-white hover:bg-[#FAF8F5] text-[#2C1820] font-black text-xs uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#84CC16] transition-all text-center"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:py-4 rounded-full bg-white hover:bg-[#FAF8F5] text-[#2C1820] font-black text-xs sm:text-sm uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#84CC16] transition-all text-center"
               >
                 <BrandPaw className="w-4 h-4 text-[#84CC16]" />
                 <span>Iniciar Triagem Pré-Clínica</span>
               </a>
             </div>
 
-            {/* Pilares com Elementos Visuais Próprios */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-[#2C1820]/10 text-xs">
-              <div className="flex items-center gap-2.5">
-                <span className="p-1.5 rounded-lg bg-[#84CC16]/15 text-[#84CC16]">
-                  <BrandCheck className="w-3.5 h-3.5" />
+            {/* Pilares com Elementos Visuais Próprios e Preenchimento Rico */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 pt-4 sm:pt-5 border-t border-[#2C1820]/10 text-xs">
+              <div className="flex items-center gap-2.5 p-2 sm:p-0 rounded-xl bg-[#FAF8F5] sm:bg-transparent">
+                <span className="p-1.5 rounded-lg bg-[#84CC16]/15 text-[#84CC16] shrink-0">
+                  <BrandCheck className="w-4 h-4" />
                 </span>
-                <span className="font-bold text-[#2C1820]">100% Toalhas Descartáveis</span>
+                <div>
+                  <span className="font-bold text-[#2C1820] block">100% Toalhas Descartáveis</span>
+                  <span className="text-[11px] text-[#2C1820]/65 block sm:hidden md:block">Esterilizadas e individuais</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2.5">
-                <span className="p-1.5 rounded-lg bg-[#FF2E93]/15 text-[#FF2E93]">
-                  <BrandCatEar className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-2.5 p-2 sm:p-0 rounded-xl bg-[#FAF8F5] sm:bg-transparent">
+                <span className="p-1.5 rounded-lg bg-[#FF2E93]/15 text-[#FF2E93] shrink-0">
+                  <BrandCatEar className="w-4 h-4" />
                 </span>
-                <span className="font-bold text-[#2C1820]">Manejo Cat-Friendly</span>
+                <div>
+                  <span className="font-bold text-[#2C1820] block">Manejo Cat-Friendly</span>
+                  <span className="text-[11px] text-[#2C1820]/65 block sm:hidden md:block">Zero estresse e sem latidos</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2.5">
-                <span className="p-1.5 rounded-lg bg-[#FF6B00]/15 text-[#FF6B00]">
-                  <BrandCross className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-2.5 p-2 sm:p-0 rounded-xl bg-[#FAF8F5] sm:bg-transparent">
+                <span className="p-1.5 rounded-lg bg-[#FF6B00]/15 text-[#FF6B00] shrink-0">
+                  <BrandCross className="w-4 h-4" />
                 </span>
-                <span className="font-bold text-[#2C1820]">Credenciada Petlove</span>
+                <div>
+                  <span className="font-bold text-[#2C1820] block">Credenciada Petlove</span>
+                  <span className="text-[11px] text-[#2C1820]/65 block sm:hidden md:block">Presencial & Domiciliar</span>
+                </div>
               </div>
             </div>
 
           </motion.div>
+
+          {/* FAIXA COMPACTA DE PROVA SOCIAL E REPUTAÇÃO (PRIMEIRA DOBRA IMPONENTE) */}
+          <div className="mt-3 sm:mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs">
+              <span className="font-black text-base sm:text-xl text-[#FF2E93] block leading-tight">10+ Anos</span>
+              <span className="text-[10px] sm:text-xs font-mono uppercase text-[#2C1820]/70 font-bold block mt-0.5">de Dedicação</span>
+            </div>
+            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs">
+              <span className="font-black text-base sm:text-xl text-[#FF6B00] block leading-tight">1.500+</span>
+              <span className="text-[10px] sm:text-xs font-mono uppercase text-[#2C1820]/70 font-bold block mt-0.5">Pets Acolhidos</span>
+            </div>
+            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs">
+              <span className="font-black text-base sm:text-xl text-[#84CC16] block leading-tight">★ 4.9</span>
+              <span className="text-[10px] sm:text-xs font-mono uppercase text-[#2C1820]/70 font-bold block mt-0.5">Google Reviews</span>
+            </div>
+            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs">
+              <span className="font-black text-base sm:text-xl text-[#2C1820] block leading-tight">0 Gaiolas</span>
+              <span className="text-[10px] sm:text-xs font-mono uppercase text-[#2C1820]/70 font-bold block mt-0.5">100% Fear-Free</span>
+            </div>
+          </div>
+
         </div>
       </section>
 

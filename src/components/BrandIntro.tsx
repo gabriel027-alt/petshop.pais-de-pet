@@ -134,59 +134,65 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
             />
           </div>
 
-          {/* 1. LOGOMARCA OFICIAL DA CLÍNICA NO TOPO ESQUERDO (COM SURGIMENTO SUAVE E RESPEITANDO SAFE-AREA) */}
+          {/* 1. LOGOMARCA OFICIAL CENTRALIZADA E IMPONENTE NO TOPO (COM ANIMAÇÃO SUAVE DE ZOOM/FADE-IN) */}
           <motion.div
-            initial={{ opacity: 0, y: -18, scale: 0.92 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ delay: 0.35, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute top-[max(1.25rem,env(safe-area-inset-top))] left-[max(1.25rem,env(safe-area-inset-left))] z-50 inline-flex items-center gap-2.5 sm:gap-3 p-1.5 pr-3.5 sm:pr-4 rounded-full bg-white/90 backdrop-blur-md border border-white/80 shadow-lg pointer-events-none"
+            initial={{ opacity: 0, scale: 0.85, y: -25 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="absolute top-[max(1.25rem,env(safe-area-inset-top))] inset-x-0 flex justify-center z-50 pointer-events-none px-4"
           >
-            <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden ring-2 ring-[#84CC16]/70 shadow-xs shrink-0">
-              <img
-                src="/foto-perfil-pais-de-pet.jpg"
-                alt="Pais de Pet"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex flex-col text-left">
-              <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#84CC16] animate-pulse" />
-                <span className="text-[11px] sm:text-xs font-mono font-bold text-[#2C1820] uppercase tracking-wider leading-none">
-                  Pais de Pet
+            <div className="inline-flex items-center gap-3 sm:gap-3.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/94 backdrop-blur-xl border border-white/85 shadow-[0_12px_40px_rgba(44,24,32,0.16)] max-w-[85vw] sm:max-w-none">
+              <div className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-full overflow-hidden p-[2px] bg-gradient-to-tr from-[#FF2E93] via-[#FF6B00] to-[#84CC16] shadow-sm shrink-0">
+                <img
+                  src="/foto-perfil-pais-de-pet.jpg"
+                  alt="Pais de Pet"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <div className="flex flex-col text-left truncate">
+                <div className="flex items-center gap-1.5 truncate">
+                  <span className="w-2 h-2 rounded-full bg-[#84CC16] animate-pulse shrink-0" />
+                  <span className="font-black text-sm sm:text-base text-[#2C1820] tracking-tight uppercase leading-none truncate">
+                    Pais de Pet
+                  </span>
+                </div>
+                <span className="text-[10px] sm:text-[11px] font-mono font-bold text-[#FF6B00] uppercase tracking-wider block mt-0.5 truncate">
+                  Clínica Veterinária & Pet Shop
                 </span>
               </div>
-              <span className="text-[9px] sm:text-[10px] font-sans font-semibold text-[#FF2E93] uppercase tracking-wider leading-tight mt-0.5">
-                Clínica & Pet Shop
-              </span>
             </div>
           </motion.div>
 
-          {/* BOTÃO MINIMALISTA DE PULAR INTRODUÇÃO (TOUCH OTIMIZADO E SAFE-AREA) */}
+          {/* BOTÃO MINIMALISTA DE PULAR INTRODUÇÃO (CANTO SUPERIOR DIREITO) */}
           <motion.button
             type="button"
             onClick={handleClose}
-            initial={{ opacity: 0, y: -18 }}
+            initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute top-[max(1.25rem,env(safe-area-inset-top))] right-[max(1.25rem,env(safe-area-inset-right))] z-50 inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#2C1820]/80 hover:bg-[#2C1820]/95 text-[#FAF8F5] border border-white/30 backdrop-blur-md text-xs sm:text-sm font-mono font-bold uppercase tracking-wider transition-all duration-200 shadow-xl active:scale-95 cursor-pointer touch-manipulation pointer-events-auto"
+            transition={{ delay: 0.35, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-[max(1.25rem,env(safe-area-inset-top))] right-[max(1rem,env(safe-area-inset-right))] z-50 inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#2C1820]/75 hover:bg-[#2C1820]/90 text-white/95 border border-white/20 backdrop-blur-md text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider transition-all duration-200 shadow-md active:scale-95 cursor-pointer touch-manipulation pointer-events-auto"
             aria-label="Pular Introdução"
           >
-            <span>Pular Introdução ✕</span>
+            <span>Pular ✕</span>
           </motion.button>
 
-          {/* 2. COPY OFICIAL ANIMADA COM A FRASE DA MARCA (SURGIMENTO FLUIDO SEM OBSTRUIR O CÃO) */}
+          {/* 2. BANNER FOSCO/TRANSLÚCIDO COM A COPY PRINCIPAL NA PARTE INFERIOR CENTRAL */}
           <motion.div
-            initial={{ opacity: 0, y: 25, scale: 0.96 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ delay: 0.85, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-6 sm:bottom-10 inset-x-4 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 z-50 pointer-events-none flex justify-center"
+            transition={{ delay: 0.65, duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute bottom-6 sm:bottom-10 inset-x-3 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 z-50 pointer-events-none max-w-lg w-full px-2"
           >
-            <div className="inline-flex items-center gap-2.5 sm:gap-3 px-4 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#2C1820]/80 backdrop-blur-md border border-white/20 shadow-2xl text-center max-w-lg">
-              <svg viewBox="0 0 24 24" fill="#FF2E93" className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 animate-pulse" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-              </svg>
-              <p className="text-xs sm:text-sm md:text-base font-sans font-medium text-[#FAF8F5] tracking-normal leading-tight">
+            <div className="p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-[#2C1820]/85 sm:bg-[#2C1820]/80 backdrop-blur-xl border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.35)] text-center space-y-1.5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-[#84CC16]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#84CC16] animate-pulse" />
+                <span>Dra. Natalia Possas • CRMV-MG 20572</span>
+              </div>
+              <h2 className="text-base sm:text-lg md:text-xl font-black text-white tracking-tight leading-snug">
                 “Amor de pai e mãe com o cuidado de especialista”
+              </h2>
+              <p className="text-xs text-white/80 font-normal">
+                Consultório veterinário com acolhimento sensorial e carinho em BH
               </p>
             </div>
           </motion.div>
