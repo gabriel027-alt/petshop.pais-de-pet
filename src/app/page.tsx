@@ -295,7 +295,7 @@ export default function PaisDePetBoutiquePortal() {
     <div ref={containerRef} className="min-h-screen bg-[#FAF8F5] text-[#2C1820] font-sans selection:bg-[#84CC16] selection:text-[#2C1820] relative overflow-x-hidden">
       
       {/* ========================================================================= */}
-      {/* VÍDEO DE INTRODUÇÃO DA MARCA (5S COM AUTOPLAY E TRANSIÇÃO SUAVE)          */}
+      {/* VÍDEO DE INTRODUÇÃO DA MARCA (8S COM AUTOPLAY E TRANSIÇÃO SUAVE)          */}
       {/* ========================================================================= */}
       <BrandIntro />
 
