@@ -83,20 +83,30 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-[100] w-full h-[100dvh] min-h-[100dvh] bg-[#FAF8F5] flex items-center justify-center overflow-hidden select-none touch-none"
+          className="fixed inset-0 z-[100] w-full h-[100dvh] min-h-[100dvh] bg-black flex items-center justify-center overflow-hidden select-none touch-none"
         >
-          {/* CONTAINER DO VÍDEO COM POSTER SÍNCRONO (ELIMINA QUALQUER TELA BRANCA/CINZA) */}
-          <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-black">
-            {/* Frame 0 instantâneo para renderização visual imediata a 0ms */}
+          {/* FUNDO AMBIENTE DESFOCADO PARA DESKTOP / PC (ESTÉTICA DE ALTO LUXO EM MONITORES WIDESCREEN) */}
+          <div className="hidden sm:block absolute inset-0 overflow-hidden pointer-events-none select-none">
+            <img
+              src="/intro-poster.jpg"
+              alt=""
+              className="w-full h-full object-cover scale-110 blur-3xl opacity-30"
+            />
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+
+          {/* CONTAINER DO VÍDEO COM PROPORÇÃO INTELIGENTE (COVER NO MOBILE / CONTAIN NO DESKTOP) */}
+          <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+            {/* Frame 0 instantâneo com a mesma proporção para zero piscar */}
             <img
               src="/intro-poster.jpg"
               alt="Pais de Pet"
               fetchPriority="high"
               decoding="sync"
-              className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+              className="absolute inset-0 w-full h-full object-cover sm:object-contain object-center pointer-events-none"
             />
 
-            {/* Vídeo institucional otimizado (1.64 MB com +faststart) */}
+            {/* Vídeo institucional: cover no celular (tela cheia) e contain no PC (sem cortes e sem zoom forçado) */}
             <video
               ref={videoRef}
               src="/intro-paisdepet.mp4"
@@ -110,13 +120,13 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
               onPlaying={() => setIsPlaying(true)}
               onTimeUpdate={handleTimeUpdate}
               onEnded={handleClose}
-              className="absolute inset-0 w-full h-full object-cover object-center bg-transparent transition-opacity duration-300"
+              className="w-full h-full object-cover sm:object-contain object-center bg-transparent transition-opacity duration-300"
             />
           </div>
 
-          {/* VINHETA CINEMATOGRÁFICA SUAVE (CONTRASTE NATURAL SEM ESCURECER EXCESSIVAMENTE) */}
-          <div className="absolute inset-0 bg-black/25 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/35 pointer-events-none" />
+          {/* VINHETA CINEMATOGRÁFICA SUAVE (CONTRASTE NATURAL SEM ESCURECER O CÃO) */}
+          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/35 pointer-events-none" />
 
           {/* BOTÃO DISCRETO 'PULAR INTRODUÇÃO' NO CANTO SUPERIOR DIREITO */}
           <motion.button
@@ -132,15 +142,15 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
             <span className="text-white/60">✕</span>
           </motion.button>
 
-          {/* COMPOSIÇÃO CENTRAL-INFERIOR: CACHORRO LIVRE NO TOPO/MEIO, COPY E LOGO NA PARTE INFERIOR */}
-          <div className="absolute inset-x-0 bottom-8 sm:bottom-12 lg:bottom-16 pb-[env(safe-area-inset-bottom,0px)] z-40 flex flex-col items-center max-w-2xl mx-auto px-6 text-center pointer-events-none space-y-3 sm:space-y-4">
+          {/* COMPOSIÇÃO CENTRAL-INFERIOR: PROPORCIONAL E HARMONIOSA NO MOBILE E NO DESKTOP */}
+          <div className="absolute inset-x-0 bottom-6 sm:bottom-8 lg:bottom-10 pb-[env(safe-area-inset-bottom,0px)] z-40 flex flex-col items-center max-w-sm sm:max-w-md md:max-w-lg mx-auto px-4 sm:px-6 text-center pointer-events-none space-y-2.5 sm:space-y-3">
             
-            {/* 1. LOGOMARCA OFICIAL (SURGE SUAVEMENTE EM FADE-IN SEGUNDOS APÓS A COPY, LOGO ACIMA DELA) */}
+            {/* 1. LOGOMARCA OFICIAL (FADE-IN SUAVE AOS 2.2S LOGO ACIMA DA COPY) */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.88, y: -10 }}
+              initial={{ opacity: 0, scale: 0.88, y: -8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 2.2 }}
-              className="w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-full overflow-hidden shadow-[0_12px_35px_rgba(0,0,0,0.7)] border border-white/25 shrink-0"
+              className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.7)] border border-white/25 shrink-0"
             >
               <img
                 src="/foto-perfil-pais-de-pet.jpg"
@@ -149,17 +159,17 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
               />
             </motion.div>
 
-            {/* 2. COPY PRINCIPAL (SURGE PRIMEIRO, NA REGIÃO CENTRAL-INFERIOR, SEM BORDAS E SEM CAIXAS) */}
+            {/* 2. COPY PRINCIPAL (SURGE AOS 0.5S, SEM BORDAS E TOTALMENTE PROPORCIONAL AO VÍDEO) */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-              className="space-y-1.5 max-w-xl sm:max-w-2xl"
+              className="space-y-1 w-full"
             >
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-white tracking-tight leading-tight [text-shadow:_0_2px_15px_rgba(0,0,0,0.9),_0_4px_35px_rgba(0,0,0,0.85)]">
+              <h1 className="text-lg sm:text-xl md:text-2xl lg:text-[26px] font-extrabold text-white tracking-tight leading-snug [text-shadow:_0_2px_12px_rgba(0,0,0,0.95),_0_4px_30px_rgba(0,0,0,0.9)]">
                 Amor de pai e mãe com o cuidado de especialista
               </h1>
-              <p className="text-[11px] sm:text-xs md:text-sm font-sans font-semibold text-white/90 uppercase tracking-widest [text-shadow:_0_2px_10px_rgba(0,0,0,0.9)] mt-1">
+              <p className="text-[10px] sm:text-[11px] md:text-xs font-sans font-semibold text-white/90 uppercase tracking-widest [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
                 Dra. Natalia Possas • CRMV-MG 20572
               </p>
             </motion.div>
