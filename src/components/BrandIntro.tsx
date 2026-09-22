@@ -135,36 +135,33 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
             </motion.button>
 
             {/* COMPOSIÇÃO CENTRAL-INFERIOR: CACHORRO 100% LIVRE NO MEIO/TOPO, CONFINADO À LARGURA DO VÍDEO */}
-            <div className="absolute inset-x-0 bottom-7 sm:bottom-10 pb-[env(safe-area-inset-bottom,0px)] z-30 flex flex-col items-center w-full max-w-[310px] sm:max-w-[360px] mx-auto px-4 text-center pointer-events-none space-y-2 sm:space-y-2.5">
+            <div className="absolute inset-x-0 bottom-6 sm:bottom-10 pb-[env(safe-area-inset-bottom,0px)] z-30 flex flex-col items-center w-full max-w-[340px] sm:max-w-[360px] mx-auto px-4 text-center pointer-events-none space-y-2.5 sm:space-y-2.5">
               
-              {/* 1. LOGOMARCA OFICIAL ELEGANTE E PROPORCIONAL (TAMANHO CONTROLADO RIGOROSAMENTE) */}
+              {/* 1. LOGOMARCA OFICIAL ELEGANTE E PROPORCIONAL NO MOBILE (AMPLIADA COM EQUILÍBRIO) */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.88, y: -6 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 2.2 }}
-                className="w-12 h-12 min-w-[48px] min-h-[48px] max-w-[48px] max-h-[48px] sm:w-14 sm:h-14 sm:min-w-[56px] sm:min-h-[56px] sm:max-w-[56px] sm:max-h-[56px] rounded-full overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/35 shrink-0"
-                style={{ width: "48px", height: "48px" }}
+                className="w-16 h-16 min-w-[64px] min-h-[64px] max-w-[64px] max-h-[64px] sm:w-14 sm:h-14 sm:min-w-[56px] sm:min-h-[56px] sm:max-w-[56px] sm:max-h-[56px] rounded-full overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.6)] border-2 border-white/40 shrink-0"
               >
                 <img
                   src="/foto-perfil-pais-de-pet.jpg"
                   alt="Pais de Pet"
-                  width={48}
-                  height={48}
                   className="w-full h-full object-cover rounded-full"
                 />
               </motion.div>
 
-              {/* 2. COPY PRINCIPAL (SURGE AOS 0.5S, LIMPA, SEM BORDAS E PERFEITAMENTE CONFINADA AO VÍDEO) */}
+              {/* 2. COPY PRINCIPAL (SURGE AOS 0.5S, MAIOR NO MOBILE, SEM BORDAS E COM ALTA LEGIBILIDADE) */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
                 className="space-y-1 w-full"
               >
-                <h1 className="text-lg sm:text-xl md:text-2xl font-extrabold text-white tracking-tight leading-snug [text-shadow:_0_2px_14px_rgba(0,0,0,0.95),_0_4px_28px_rgba(0,0,0,0.9)]">
+                <h1 className="text-[21px] leading-[1.25] sm:text-xl sm:leading-snug md:text-2xl font-extrabold text-white tracking-tight [text-shadow:_0_2px_14px_rgba(0,0,0,0.95),_0_4px_28px_rgba(0,0,0,0.9)]">
                   Amor de pai e mãe com o cuidado de especialista
                 </h1>
-                <p className="text-[11px] sm:text-xs font-sans font-semibold text-white/90 uppercase tracking-widest [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
+                <p className="text-xs sm:text-xs font-sans font-semibold text-white/90 uppercase tracking-widest [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
                   Dra. Natalia Possas • CRMV-MG 20572
                 </p>
               </motion.div>
