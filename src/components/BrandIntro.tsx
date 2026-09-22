@@ -85,21 +85,21 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           className="fixed inset-0 z-[100] w-full h-[100dvh] min-h-[100dvh] bg-[#FAF8F5] sm:bg-white flex items-center justify-center overflow-hidden select-none touch-none"
         >
-          {/* CONTAINER DO VÍDEO: MOBILE EM TELA CHEIA (COVER) / PC CENTRALIZADO COM LATERAIS BRANCAS (CONTAIN) */}
-          <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-[#FAF8F5] sm:bg-white">
+          {/* COLUNA CENTRAL DO VÍDEO: 100% EM TELA CHEIA NO MOBILE / PROPORÇÃO 9:16 COM LATERAIS BRANCAS NO PC */}
+          <div className="relative w-full h-full sm:w-auto sm:h-full sm:aspect-[9/16] sm:max-w-[calc(100dvh*9/16)] flex items-center justify-center overflow-hidden sm:shadow-[0_25px_60px_-15px_rgba(44,24,32,0.18)]">
             
-            {/* Frame 0 instantâneo para evitar tela branca/cinza (fades out assim que o vídeo inicia a reprodução) */}
+            {/* Frame 0 instantâneo para eliminar tela cinza/branca (fade-out assim que o vídeo começa) */}
             <img
               src="/intro-poster.jpg"
               alt="Pais de Pet"
               fetchPriority="high"
               decoding="sync"
-              className={`absolute inset-0 w-full h-full object-cover sm:object-contain object-center pointer-events-none transition-opacity duration-300 z-10 ${
+              className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-300 z-10 ${
                 isPlaying ? "opacity-0" : "opacity-100"
               }`}
             />
 
-            {/* Vídeo institucional: cover no celular (100% fluido) e contain no PC (com laterais brancas limpas e loop contínuo) */}
+            {/* Vídeo institucional 720x1280 (9:16): contínuo, sem congelamentos e 100% fluido */}
             <video
               ref={videoRef}
               src="/intro-paisdepet.mp4"
@@ -114,71 +114,75 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
               onPlaying={() => setIsPlaying(true)}
               onTimeUpdate={handleTimeUpdate}
               onEnded={handleClose}
-              className="absolute inset-0 w-full h-full object-cover sm:object-contain object-center bg-transparent z-20 transition-opacity duration-300 sm:drop-shadow-[0_20px_50px_rgba(44,24,32,0.12)]"
+              className="absolute inset-0 w-full h-full object-cover object-center bg-transparent z-20 transition-opacity duration-300"
             />
 
-            {/* VINHETA SUTIL PARA CONTRASTE DA COPY NA PARTE INFERIOR (SEM ESCURECER O CACHORRO) */}
-            <div className="absolute inset-0 w-full h-full pointer-events-none z-25 bg-gradient-to-t from-black/55 via-transparent to-black/25 sm:max-w-[calc(100dvh*9/16)] sm:mx-auto" />
-          </div>
+            {/* VINHETA SUTIL PARA CONTRASTE DA COPY NA PARTE INFERIOR (SEM ESCURECER O ROSTO DO CACHORRO) */}
+            <div className="absolute inset-0 w-full h-full pointer-events-none z-25 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
 
-          {/* BOTÃO DISCRETO 'PULAR INTRODUÇÃO' NO CANTO SUPERIOR DIREITO */}
-          <motion.button
-            type="button"
-            onClick={handleClose}
-            initial={{ opacity: 0, x: 15 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="absolute top-[max(1.25rem,env(safe-area-inset-top))] right-[max(1.25rem,env(safe-area-inset-right))] z-50 inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#2C1820]/80 hover:bg-[#2C1820] text-white border border-white/20 backdrop-blur-md text-xs font-sans font-medium tracking-wide transition-all shadow-lg active:scale-95 cursor-pointer touch-manipulation pointer-events-auto"
-            aria-label="Pular Introdução"
-          >
-            <span>Pular Introdução</span>
-            <span className="text-white/60">✕</span>
-          </motion.button>
-
-          {/* COMPOSIÇÃO CENTRAL-INFERIOR: PROPORCIONAL AO VÍDEO (CACHORRO TOTALMENTE LIVRE NO MEIO/TOPO) */}
-          <div className="absolute inset-x-0 bottom-8 sm:bottom-12 lg:bottom-14 pb-[env(safe-area-inset-bottom,0px)] z-40 flex flex-col items-center max-w-sm sm:max-w-md md:max-w-lg mx-auto px-4 sm:px-6 text-center pointer-events-none space-y-2.5 sm:space-y-3.5">
-            
-            {/* 1. LOGOMARCA OFICIAL (FADE-IN SUAVE AOS 2.2S LOGO ACIMA DA COPY) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.88, y: -8 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 2.2 }}
-              className="w-13 h-13 sm:w-16 sm:h-16 rounded-full overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.6)] border border-white/30 shrink-0"
+            {/* BOTÃO DISCRETO 'PULAR INTRODUÇÃO' NO CANTO SUPERIOR DIREITO DO VÍDEO */}
+            <motion.button
+              type="button"
+              onClick={handleClose}
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              className="absolute top-[max(1rem,env(safe-area-inset-top))] right-[max(1rem,env(safe-area-inset-right))] z-40 inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full bg-[#2C1820]/80 hover:bg-[#2C1820] text-white border border-white/20 backdrop-blur-md text-xs font-sans font-medium tracking-wide transition-all shadow-lg active:scale-95 cursor-pointer touch-manipulation pointer-events-auto"
+              aria-label="Pular Introdução"
             >
-              <img
-                src="/foto-perfil-pais-de-pet.jpg"
-                alt="Pais de Pet"
-                className="w-full h-full object-cover rounded-full"
-              />
-            </motion.div>
+              <span>Pular Introdução</span>
+              <span className="text-white/60 text-[10px]">✕</span>
+            </motion.button>
 
-            {/* 2. COPY PRINCIPAL (SURGE AOS 0.5S, SEM BORDAS E PERFEITAMENTE PROPORCIONAL AO VÍDEO) */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-              className="space-y-1 w-full"
-            >
-              <h1 className="text-xl sm:text-2xl md:text-[28px] font-extrabold text-white tracking-tight leading-tight [text-shadow:_0_2px_14px_rgba(0,0,0,0.95),_0_4px_30px_rgba(0,0,0,0.9)]">
-                Amor de pai e mãe com o cuidado de especialista
-              </h1>
-              <p className="text-[11px] sm:text-xs md:text-sm font-sans font-semibold text-white/90 uppercase tracking-widest [text-shadow:_0_2px_10px_rgba(0,0,0,0.95)]">
-                Dra. Natalia Possas • CRMV-MG 20572
-              </p>
-            </motion.div>
-
-          </div>
-
-          {/* BARRA MINIMALISTA DE PROGRESSO DE 10 SEGUNDOS NA BASE DA TELA */}
-          <div className="absolute bottom-0 inset-x-0 pb-[env(safe-area-inset-bottom,0px)] z-40">
-            <div className="h-[2px] w-full bg-[#2C1820]/10 overflow-hidden">
+            {/* COMPOSIÇÃO CENTRAL-INFERIOR: CACHORRO 100% LIVRE NO MEIO/TOPO, CONFINADO À LARGURA DO VÍDEO */}
+            <div className="absolute inset-x-0 bottom-7 sm:bottom-10 pb-[env(safe-area-inset-bottom,0px)] z-30 flex flex-col items-center w-full max-w-[310px] sm:max-w-[360px] mx-auto px-4 text-center pointer-events-none space-y-2 sm:space-y-2.5">
+              
+              {/* 1. LOGOMARCA OFICIAL ELEGANTE E PROPORCIONAL (TAMANHO CONTROLADO RIGOROSAMENTE) */}
               <motion.div
-                initial={{ width: "0%" }}
-                animate={{ width: isPlaying ? "100%" : "0%" }}
-                transition={{ duration: 10, ease: "linear" }}
-                className="h-full bg-gradient-to-r from-[#FF2E93] to-[#84CC16]"
-              />
+                initial={{ opacity: 0, scale: 0.88, y: -6 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 2.2 }}
+                className="w-12 h-12 min-w-[48px] min-h-[48px] max-w-[48px] max-h-[48px] sm:w-14 sm:h-14 sm:min-w-[56px] sm:min-h-[56px] sm:max-w-[56px] sm:max-h-[56px] rounded-full overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/35 shrink-0"
+                style={{ width: "48px", height: "48px" }}
+              >
+                <img
+                  src="/foto-perfil-pais-de-pet.jpg"
+                  alt="Pais de Pet"
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </motion.div>
+
+              {/* 2. COPY PRINCIPAL (SURGE AOS 0.5S, LIMPA, SEM BORDAS E PERFEITAMENTE CONFINADA AO VÍDEO) */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
+                className="space-y-1 w-full"
+              >
+                <h1 className="text-lg sm:text-xl md:text-2xl font-extrabold text-white tracking-tight leading-snug [text-shadow:_0_2px_14px_rgba(0,0,0,0.95),_0_4px_28px_rgba(0,0,0,0.9)]">
+                  Amor de pai e mãe com o cuidado de especialista
+                </h1>
+                <p className="text-[11px] sm:text-xs font-sans font-semibold text-white/90 uppercase tracking-widest [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
+                  Dra. Natalia Possas • CRMV-MG 20572
+                </p>
+              </motion.div>
+
             </div>
+
+            {/* BARRA MINIMALISTA DE PROGRESSO DE 10 SEGUNDOS NA BASE DA COLUNA */}
+            <div className="absolute bottom-0 inset-x-0 pb-[env(safe-area-inset-bottom,0px)] z-30">
+              <div className="h-[2px] w-full bg-white/20 overflow-hidden">
+                <motion.div
+                  initial={{ width: "0%" }}
+                  animate={{ width: isPlaying ? "100%" : "0%" }}
+                  transition={{ duration: 10, ease: "linear" }}
+                  className="h-full bg-gradient-to-r from-[#FF2E93] to-[#84CC16]"
+                />
+              </div>
+            </div>
+
           </div>
         </motion.div>
       )}
