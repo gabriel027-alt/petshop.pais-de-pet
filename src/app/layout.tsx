@@ -65,19 +65,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <head>
-        {/* Pré-carregamento imediato do poster da intro para zero atraso visual no mobile */}
+        {/* Pré-carregamento imediato do poster e do vídeo institucional para zero atraso visual no mobile e desktop */}
         <link rel="preload" as="image" href="/intro-poster.jpg" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                if (sessionStorage.getItem('paisdepet_intro_seen') === 'true') {
-                  document.documentElement.classList.add('intro-seen');
-                }
-              } catch (e) {}
-            `,
-          }}
-        />
+        <link rel="preload" as="video" href="/intro-paisdepet.mp4" type="video/mp4" />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
