@@ -132,15 +132,15 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
             <span className="text-white/60">✕</span>
           </motion.button>
 
-          {/* COMPOSIÇÃO CENTRALIZADA HARMONIOSA: COPY SURGE PRIMEIRO E LOGO APARECE SEGUNDOS DEPOIS */}
-          <div className="absolute inset-0 z-40 flex flex-col items-center justify-center max-w-2xl mx-auto px-6 text-center pointer-events-none space-y-4 sm:space-y-6">
+          {/* COMPOSIÇÃO CENTRAL-INFERIOR: CACHORRO LIVRE NO TOPO/MEIO, COPY E LOGO NA PARTE INFERIOR */}
+          <div className="absolute inset-x-0 bottom-8 sm:bottom-12 lg:bottom-16 pb-[env(safe-area-inset-bottom,0px)] z-40 flex flex-col items-center max-w-2xl mx-auto px-6 text-center pointer-events-none space-y-3 sm:space-y-4">
             
             {/* 1. LOGOMARCA OFICIAL (SURGE SUAVEMENTE EM FADE-IN SEGUNDOS APÓS A COPY, LOGO ACIMA DELA) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.88, y: -10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 2.2 }}
-              className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden shadow-[0_12px_35px_rgba(0,0,0,0.7)] border border-white/25 shrink-0"
+              className="w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-full overflow-hidden shadow-[0_12px_35px_rgba(0,0,0,0.7)] border border-white/25 shrink-0"
             >
               <img
                 src="/foto-perfil-pais-de-pet.jpg"
@@ -149,17 +149,17 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
               />
             </motion.div>
 
-            {/* 2. COPY PRINCIPAL (SURGE PRIMEIRO, PERFEITAMENTE CENTRALIZADA, SEM BORDAS E SEM CAIXAS) */}
+            {/* 2. COPY PRINCIPAL (SURGE PRIMEIRO, NA REGIÃO CENTRAL-INFERIOR, SEM BORDAS E SEM CAIXAS) */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-              className="space-y-2 max-w-xl sm:max-w-2xl"
+              className="space-y-1.5 max-w-xl sm:max-w-2xl"
             >
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-tight [text-shadow:_0_2px_15px_rgba(0,0,0,0.9),_0_4px_35px_rgba(0,0,0,0.85)]">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold text-white tracking-tight leading-tight [text-shadow:_0_2px_15px_rgba(0,0,0,0.9),_0_4px_35px_rgba(0,0,0,0.85)]">
                 Amor de pai e mãe com o cuidado de especialista
               </h1>
-              <p className="text-xs sm:text-sm font-sans font-semibold text-white/90 uppercase tracking-widest [text-shadow:_0_2px_10px_rgba(0,0,0,0.9)] mt-1.5">
+              <p className="text-[11px] sm:text-xs md:text-sm font-sans font-semibold text-white/90 uppercase tracking-widest [text-shadow:_0_2px_10px_rgba(0,0,0,0.9)] mt-1">
                 Dra. Natalia Possas • CRMV-MG 20572
               </p>
             </motion.div>
