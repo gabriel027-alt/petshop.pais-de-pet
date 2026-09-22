@@ -246,6 +246,9 @@ export default function PaisDePetBoutiquePortal() {
   const { scrollY, scrollYProgress } = useScroll();
   const heroVideoY = useTransform(scrollY, [0, 800], [0, 100]);
   const heroScale = useTransform(scrollY, [0, 800], [1.0, 1.05]);
+  const floatingBtnOpacity = useTransform(scrollY, [250, 450], [0, 1]);
+  const floatingBtnScale = useTransform(scrollY, [250, 450], [0.7, 1]);
+  const floatingBtnPointerEvents = useTransform(scrollY, (val) => (val > 250 ? "auto" : "none"));
 
   // Sistema de Patinhas Flutuantes em SVG com Paralaxe e Fade
   const pawLeft1Y = useTransform(scrollYProgress, [0, 1], [0, 480]);
@@ -517,171 +520,150 @@ export default function PaisDePetBoutiquePortal() {
       </AnimatePresence>
 
       {/* ========================================================================= */}
-      {/* 2. SEÇÃO PRINCIPAL COM VÍDEO INTERATIVO & CONVERSÃO DE ALTO LUXO           */}
       {/* ========================================================================= */}
-      <section className="relative min-h-[90vh] lg:min-h-screen w-full flex flex-col justify-center pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 overflow-hidden bg-[#FAF8F5]">
+      {/* 2. INTRO 2: HERO PRINCIPAL COM BACKGROUND VIDEO FULL-BLEED (EDGE-TO-EDGE)  */}
+      {/* ========================================================================= */}
+      <section className="relative w-full h-[100dvh] min-h-[100dvh] overflow-hidden flex flex-col justify-end items-center pb-12 sm:pb-16 select-none bg-black">
         
-        <div className="max-w-7xl mx-auto w-full relative z-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
+        {/* VÍDEO DE FUNDO IMERSIVO EDGE-TO-EDGE (ZERO BORDAS, ZERO CARDS, ZERO MOLDURAS) */}
+        <video
+          src="/intro-interativa.mp4"
+          poster="/intro-interativa-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none"
+        />
+
+        {/* OVERLAY ESCURO SUTIL DE FUNDO PARA CONTRASTE E LEGIBILIDADE PERFEITA */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20 pointer-events-none z-10" />
+
+        {/* COMPOSIÇÃO CINEMATOGRÁFICA COM TIPOGRAFIA EM MOTION DESIGN CONTÍNUO */}
+        <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-5">
+          
+          <motion.div
+            initial={{ opacity: 0, y: 22, filter: "blur(6px)" }}
+            animate={{ 
+              opacity: 1, 
+              y: [0, -4, 0],
+              filter: "blur(0px)" 
+            }}
+            transition={{ 
+              duration: 1.0, 
+              ease: [0.16, 1, 0.3, 1],
+              y: {
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1.2
+              }
+            }}
+            className="space-y-2 sm:space-y-3 w-full"
+          >
+            {/* Headline Principal Cinematográfica */}
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-black text-white tracking-tight leading-[1.12] [text-shadow:_0_3px_20px_rgba(0,0,0,0.95),_0_6px_40px_rgba(0,0,0,0.85)] max-w-3xl mx-auto">
+              Amor de pai e mãe com o cuidado de especialista.
+            </h1>
+
+            {/* Assinatura Oficial Clara */}
+            <p className="text-xs sm:text-sm md:text-base font-mono font-bold text-white/90 uppercase tracking-widest [text-shadow:_0_2px_12px_rgba(0,0,0,0.95)]">
+              DRA. NATALIA POSSAS • CRMV-MG 20572
+            </p>
+          </motion.div>
+
+          {/* BOTÃO PRINCIPAL DE ALTA CONVERSÃO PARA O WHATSAPP (ÚNICO E EXCLUSIVO) */}
+          <motion.div
+            initial={{ opacity: 0, y: 16, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="pt-2 w-full flex justify-center"
+          >
+            <motion.a
+              href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de tirar dúvidas e agendar uma consulta para o meu pet na Pais de Pet.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              animate={{
+                boxShadow: [
+                  "0 10px 30px rgba(255,46,147,0.45)",
+                  "0 14px 45px rgba(255,46,147,0.75)",
+                  "0 10px 30px rgba(255,46,147,0.45)"
+                ]
+              }}
+              transition={{
+                boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-gradient-to-r from-[#FF2E93] via-[#FF3B9B] to-[#FF2E93] text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/35 backdrop-blur-md cursor-pointer touch-manipulation group ring-4 ring-[#FF2E93]/20"
+              aria-label="Conversar com a Dra. Natalia no WhatsApp"
+            >
+              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
+                <img src="/foto-perfil-pais-de-pet.jpg" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
+              </div>
+              <span>Conversar com a Dra. Natália</span>
+              <BrandArrow className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </motion.a>
+          </motion.div>
+
+        </div>
+
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 3. MANIFESTO BOUTIQUE & SELOS DE QUALIDADE EXCLUSIVOS                    */}
+      {/* ========================================================================= */}
+      <section className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-12 bg-[#FAF8F5] border-t border-[#2C1820]/10">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* 1. CABEÇALHO, TÍTULO E COPY (DESKTOP: LINHA 1 ESQUERDA / MOBILE: TOPO) */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-7 order-1 flex flex-col text-left space-y-4 sm:space-y-5"
-            >
-              {/* Localização e Responsabilidade Técnica (Sem bolinhas pulsantes) */}
-              <div className="flex flex-wrap items-center gap-2">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#2C1820]/10 shadow-2xs">
-                  <BrandCross className="w-3.5 h-3.5 text-[#84CC16] shrink-0" />
-                  <span className="text-[11px] sm:text-xs font-mono font-bold text-[#2C1820] uppercase tracking-wider">
-                    Sagrada Família • Rua Silvestre Ferraz, 27 • BH
-                  </span>
-                </div>
-              </div>
-
-              {/* Assinatura Oficial da Clínica & Headline Principal */}
-              <div className="space-y-2.5 sm:space-y-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full p-[2px] bg-gradient-to-tr from-[#FF2E93] via-[#FF6B00] to-[#84CC16] shadow-xs shrink-0">
-                    <img
-                      src="/foto-perfil-pais-de-pet.jpg"
-                      alt="Pais de Pet"
-                      className="w-full h-full object-cover rounded-full bg-white"
-                    />
-                  </div>
-                  <div>
-                    <span className="font-black text-xl sm:text-2xl text-[#2C1820] tracking-tight block leading-none">
-                      Pais de Pet
-                    </span>
-                    <span className="text-xs font-mono text-[#FF6B00] font-bold uppercase tracking-wider block mt-1">
-                      Dra. Natalia Possas • CRMV-MG 20572
-                    </span>
-                  </div>
-                </div>
-
-                <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[46px] xl:text-[52px] font-black tracking-tight text-[#2C1820] leading-[1.1]">
-                  Amor de pai e mãe com o{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E93] via-[#FF6B00] to-[#84CC16]">
-                    cuidado de especialista.
-                  </span>
-                </h1>
-              </div>
-
-              {/* Subtítulo Empático de Alto Padrão */}
-              <p className="text-sm sm:text-base lg:text-lg text-[#2C1820]/85 font-normal leading-relaxed">
-                A gente sabe o que passa no seu coração quando ele treme antes de entrar no veterinário. Aqui, nenhuma porta bate, nenhum cão late na orelha do seu gato, e nenhuma consulta dura 15 minutos. Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz.
+            {/* Manifesto Empático */}
+            <div className="lg:col-span-6 space-y-4 text-left">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93] block">
+                Filosofia Fear-Free • Pais de Pet
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#2C1820] tracking-tight">
+                Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz.
+              </h2>
+              <p className="text-sm sm:text-base text-[#2C1820]/80 leading-relaxed">
+                A gente sabe o que passa no seu coração quando ele treme antes de entrar no veterinário. Aqui, nenhuma porta bate, nenhum cão late na orelha do seu gato, e nenhuma consulta dura 15 minutos.
               </p>
-            </motion.div>
-
-            {/* 2. VÍDEO CINEMATOGRÁFICO PURO & SEM CAIXAS (DESKTOP: COLUNA DIREITA / MOBILE: NATIVO COM MARCA) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.85, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-5 order-2 lg:row-span-2 flex justify-center items-center w-full my-1 lg:my-0"
-            >
-              <div className="relative w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[390px] aspect-[9/16] rounded-[2.2rem] sm:rounded-[2.6rem] overflow-hidden shadow-[0_20px_50px_rgba(44,24,32,0.12)] border border-[#2C1820]/8 bg-[#FAF8F5] select-none">
-                
-                {/* Vídeo institucional 720x1280 rodando em loop suave e contínuo */}
-                <BoutiqueVideoPlayer
-                  src="/intro-interativa.mp4"
-                  aspectRatio="aspect-auto"
-                  rounded="rounded-none"
-                  objectFit="object-cover"
-                  className="w-full h-full absolute inset-0"
-                  audioPosition="top-right"
-                />
-
-                {/* Sutil vinheta cinematográfica inferior para contraste da tipografia nativa */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none z-10" />
-
-                {/* Tipografia Nativa sobre o Vídeo no Mobile (Estilo Comercial de Luxo) */}
-                <div className="lg:hidden absolute inset-x-0 bottom-4 pb-2 z-20 flex flex-col items-center px-4 text-center pointer-events-none space-y-2">
-                  <div className="w-13 h-13 min-w-[52px] min-h-[52px] max-w-[52px] max-h-[52px] rounded-full overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.6)] border-2 border-white/45 shrink-0">
-                    <img
-                      src="/foto-perfil-pais-de-pet.jpg"
-                      alt="Pais de Pet"
-                      className="w-full h-full object-cover rounded-full"
-                    />
-                  </div>
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] font-sans font-bold text-white/95 uppercase tracking-widest block [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
-                      Pais de Pet • Clínica Boutique
-                    </span>
-                    <span className="text-[10px] font-mono text-white/80 uppercase tracking-wider block [text-shadow:_0_2px_6px_rgba(0,0,0,0.95)]">
-                      Dra. Natalia Possas • CRMV-MG 20572
-                    </span>
-                  </div>
-                </div>
-
-              </div>
-            </motion.div>
-
-            {/* 3. BOTÕES DE CONVERSÃO & SELOS DE QUALIDADE (DESKTOP: LINHA 2 ESQUERDA / MOBILE: LOGO ABAIXO DO VÍDEO) */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-7 order-3 flex flex-col space-y-4 sm:space-y-5"
-            >
-              {/* Ações de Conversão com WhatsApp em Destaque Absoluto */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1">
-                <a
-                  href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de tirar dúvidas e agendar uma consulta para o meu pet na Pais de Pet.")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg hover:shadow-xl transition-all active:scale-95 group text-center touch-manipulation ring-4 ring-[#FF2E93]/20"
-                  aria-label="Conversar com a Dra. Natalia no WhatsApp"
-                >
-                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden p-[1.5px] bg-white shrink-0 shadow-2xs">
-                    <img src="/foto-perfil-pais-de-pet.jpg" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
-                  </div>
-                  <span>Conversar com a Dra. Natalia</span>
-                  <BrandArrow className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </a>
-
+              <div className="pt-2">
                 <a
                   href="#triagem"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-white hover:bg-[#FAF8F5] text-[#2C1820] font-black text-xs sm:text-sm uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#84CC16] transition-all text-center touch-manipulation shadow-2xs"
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-white hover:bg-white/80 text-[#2C1820] font-black text-xs sm:text-sm uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#84CC16] transition-all shadow-2xs"
                 >
                   <BrandPaw className="w-4 h-4 text-[#84CC16]" />
                   <span>Iniciar Triagem Pré-Clínica</span>
                 </a>
               </div>
+            </div>
 
-              {/* Selos de Qualidade Alinhados Logo Abaixo */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 pt-4 border-t border-[#2C1820]/10 text-xs">
-                <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs">
-                  <span className="p-2 rounded-xl bg-[#84CC16]/15 text-[#84CC16] shrink-0">
-                    <BrandPaw className="w-4 h-4" />
-                  </span>
-                  <div>
-                    <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">100% Toalhas Descartáveis</span>
-                    <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Esterilizadas e individuais</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs">
-                  <span className="p-2 rounded-xl bg-[#FF2E93]/15 text-[#FF2E93] shrink-0">
-                    <BrandCatEar className="w-4 h-4" />
-                  </span>
-                  <div>
-                    <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">Manejo Cat-Friendly</span>
-                    <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Zero estresse e sem latidos</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs">
-                  <span className="p-2 rounded-xl bg-[#FF6B00]/15 text-[#FF6B00] shrink-0">
-                    <BrandCross className="w-4 h-4" />
-                  </span>
-                  <div>
-                    <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">Credenciada Petlove</span>
-                    <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Presencial & Domiciliar</span>
-                  </div>
-                </div>
+            {/* Selos de Qualidade */}
+            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="flex flex-col items-start p-4 sm:p-5 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs space-y-2">
+                <span className="p-2.5 rounded-xl bg-[#84CC16]/15 text-[#84CC16]">
+                  <BrandPaw className="w-5 h-5" />
+                </span>
+                <span className="font-bold text-[#2C1820] text-sm block">100% Toalhas Descartáveis</span>
+                <span className="text-xs text-[#2C1820]/65 block">Esterilizadas e individuais para cada atendimento</span>
               </div>
-            </motion.div>
+              <div className="flex flex-col items-start p-4 sm:p-5 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs space-y-2">
+                <span className="p-2.5 rounded-xl bg-[#FF2E93]/15 text-[#FF2E93]">
+                  <BrandCatEar className="w-5 h-5" />
+                </span>
+                <span className="font-bold text-[#2C1820] text-sm block">Manejo Cat-Friendly</span>
+                <span className="text-xs text-[#2C1820]/65 block">Zero estresse e isolamento total de ruídos caninos</span>
+              </div>
+              <div className="flex flex-col items-start p-4 sm:p-5 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs space-y-2">
+                <span className="p-2.5 rounded-xl bg-[#FF6B00]/15 text-[#FF6B00]">
+                  <BrandCross className="w-5 h-5" />
+                </span>
+                <span className="font-bold text-[#2C1820] text-sm block">Credenciada Petlove</span>
+                <span className="text-xs text-[#2C1820]/65 block">Ampla cobertura e facilidade no seu plano de saúde pet</span>
+              </div>
+            </div>
 
           </div>
 
@@ -1710,7 +1692,15 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 13. BOTÃO FLUTUANTE EXCLUSIVO COM LOGOMARCA OFICIAL DA PAIS DE PET         */}
       {/* ========================================================================= */}
-      <aside aria-label="Canal oficial WhatsApp" className="fixed bottom-6 right-6 z-40">
+      <motion.aside
+        aria-label="Canal oficial WhatsApp"
+        style={{
+          opacity: floatingBtnOpacity,
+          scale: floatingBtnScale,
+          pointerEvents: floatingBtnPointerEvents as any,
+        }}
+        className="fixed bottom-6 right-6 z-40"
+      >
         <motion.a
           href={whatsappUrl}
           target="_blank"
@@ -1724,7 +1714,7 @@ export default function PaisDePetBoutiquePortal() {
             <img src="/foto-perfil-pais-de-pet.jpg" alt="Dra. Natalia Possas" className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform" />
           </div>
         </motion.a>
-      </aside>
+      </motion.aside>
 
     </div>
   );
