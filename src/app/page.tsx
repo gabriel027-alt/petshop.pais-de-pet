@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { clinicMetadata } from "@/data/clinicMetadata";
 import { faqData } from "@/data/faqData";
-
+import BrandIntro from "@/components/BrandIntro";
 
 // =============================================================================
 // ELEMENTOS VISUAIS PROPRIETÁRIOS DA MARCA (ZERO ÍCONES GENÉRICOS DE TERCEIROS)
@@ -294,6 +294,11 @@ export default function PaisDePetBoutiquePortal() {
   return (
     <div ref={containerRef} className="min-h-screen bg-[#FAF8F5] text-[#2C1820] font-sans selection:bg-[#84CC16] selection:text-[#2C1820] relative overflow-x-hidden">
       
+      {/* ========================================================================= */}
+      {/* VÍDEO INSTITUCIONAL DE ABERTURA (10S • CINEMATOGRÁFICO DE ALTO LUXO)      */}
+      {/* ========================================================================= */}
+      <BrandIntro />
+
       {/* ========================================================================= */}
       {/* SISTEMA DE PATINHAS E ORELHINHAS FLUTUANTES COM PARALAXE (DESKTOP & MOBILE) */}
       {/* ========================================================================= */}
