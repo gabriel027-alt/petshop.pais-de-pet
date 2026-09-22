@@ -135,14 +135,14 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
             </motion.button>
 
             {/* COMPOSIÇÃO CENTRAL-INFERIOR: CACHORRO 100% LIVRE NO MEIO/TOPO, CONFINADO À LARGURA DO VÍDEO */}
-            <div className="absolute inset-x-0 bottom-6 sm:bottom-10 pb-[env(safe-area-inset-bottom,0px)] z-30 flex flex-col items-center w-full max-w-[340px] sm:max-w-[360px] mx-auto px-4 text-center pointer-events-none space-y-2.5 sm:space-y-2.5">
+            <div className="absolute inset-x-0 bottom-5 sm:bottom-10 pb-[env(safe-area-inset-bottom,0px)] z-30 flex flex-col items-center w-full max-w-[340px] sm:max-w-[360px] mx-auto px-4 text-center pointer-events-none space-y-2.5 sm:space-y-2.5">
               
-              {/* 1. LOGOMARCA OFICIAL ELEGANTE E PROPORCIONAL NO MOBILE (AMPLIADA COM EQUILÍBRIO) */}
+              {/* 1. LOGOMARCA OFICIAL ELEGANTE E PROPORCIONAL NO MOBILE (LEVEMENTE AMPLIADA E COM RESPIRO) */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.88, y: -6 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 2.2 }}
-                className="w-16 h-16 min-w-[64px] min-h-[64px] max-w-[64px] max-h-[64px] sm:w-14 sm:h-14 sm:min-w-[56px] sm:min-h-[56px] sm:max-w-[56px] sm:max-h-[56px] rounded-full overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.6)] border-2 border-white/40 shrink-0"
+                className="w-[72px] h-[72px] min-w-[72px] min-h-[72px] max-w-[72px] max-h-[72px] sm:w-14 sm:h-14 sm:min-w-[56px] sm:min-h-[56px] sm:max-w-[56px] sm:max-h-[56px] rounded-full overflow-hidden shadow-[0_12px_32px_rgba(0,0,0,0.65)] border-2 border-white/50 shrink-0 mb-2 sm:mb-0"
               >
                 <img
                   src="/foto-perfil-pais-de-pet.jpg"
