@@ -80,6 +80,7 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
       };
 
       video.addEventListener("timeupdate", handleTimeUpdate);
+      video.addEventListener("seeked", handleTimeUpdate);
       video.addEventListener("ended", triggerLogoPhase);
 
       // Fallback timer de segurança para garantir a transição mesmo se timeupdate for throttled
@@ -89,6 +90,7 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
 
       return () => {
         video.removeEventListener("timeupdate", handleTimeUpdate);
+        video.removeEventListener("seeked", handleTimeUpdate);
         video.removeEventListener("ended", triggerLogoPhase);
         clearTimeout(fallbackTimer);
       };
@@ -183,10 +185,10 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
                 }`}
               />
 
-              {/* Vídeo 'intro-paisdepet.mp4' (Executa uma única vez, SEM loop infinito) */}
+              {/* Vídeo 'intro-paisdepet-4k.mp4' (Versão 4K Ultra-Sharp, executa uma única vez sem loop) */}
               <video
                 ref={videoRef}
-                src="/intro-paisdepet.mp4"
+                src="/intro-paisdepet-4k.mp4"
                 poster="/intro-poster.jpg"
                 autoPlay
                 muted

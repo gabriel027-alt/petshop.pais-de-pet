@@ -536,44 +536,27 @@ export default function PaisDePetBoutiquePortal() {
 
       {/* ========================================================================= */}
       {/* ========================================================================= */}
-      {/* 2. INTRO 2: HERO PRINCIPAL COM BACKGROUND VIDEO FULL-BLEED (EDGE-TO-EDGE)  */}
+      {/* 2. INTRO 2: HERO PRINCIPAL COM BACKGROUND VIDEO REAL FULL-BLEED (EDGE-TO-EDGE) */}
       {/* ========================================================================= */}
       <section className="relative w-full h-[100dvh] min-h-[100dvh] overflow-hidden flex flex-col justify-end items-center pb-12 sm:pb-16 select-none bg-black">
         
-        {/* AMBIENTAÇÃO FULL-BLEED EXCLUSIVA PARA DESKTOP (ELIMINA CORTES E DISTORÇÕES EM TELAS GRANDES) */}
-        <video
-          src="/intro-interativa.mp4"
-          poster="/intro-interativa-poster.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-          className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center blur-3xl opacity-35 scale-110 z-0 pointer-events-none"
-        />
-
-        {/* VÍDEO PRINCIPAL: 100% OBJECT-COVER NO MOBILE / PROPORÇÃO E ENQUADRAMENTO PERFEITOS NO DESKTOP */}
+        {/* VÍDEO DE FUNDO IMERSIVO REAL FULL-BLEED (100% LARGURA E ALTURA NO DESKTOP E MOBILE) */}
         <video
           ref={heroVideoRef}
-          src="/intro-interativa.mp4"
+          src="/intro-interativa-4k.mp4"
           poster="/intro-interativa-poster.jpg"
           autoPlay
           muted={heroMuted}
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover sm:object-contain object-center z-0 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none"
         />
-
-        {/* TRANSIÇÃO LATERAL EM GRADIENTE SUAVE NO DESKTOP */}
-        <div className="hidden sm:block absolute inset-y-0 left-0 w-32 md:w-56 bg-gradient-to-r from-black/85 via-black/40 to-transparent pointer-events-none z-10" />
-        <div className="hidden sm:block absolute inset-y-0 right-0 w-32 md:w-56 bg-gradient-to-l from-black/85 via-black/40 to-transparent pointer-events-none z-10" />
 
         {/* OVERLAY ESCURO SUTIL DE FUNDO PARA CONTRASTE E LEGIBILIDADE PERFEITA */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20 pointer-events-none z-10" />
 
-        {/* BOTÃO DISCRETO DE ÁUDIO NO HERO (ONDE O VÍDEO TEM ÁUDIO REAL) */}
+        {/* BOTÃO DISCRETO DE ÁUDIO NO HERO */}
         <button
           type="button"
           onClick={toggleHeroAudio}
@@ -593,13 +576,31 @@ export default function PaisDePetBoutiquePortal() {
           )}
         </button>
 
-        {/* COMPOSIÇÃO CINEMATOGRÁFICA COM TIPOGRAFIA EM TEXT-REVEAL (LIMPA, SEM BOLINHAS OU BADGES RUÍDO) */}
-        <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-5">
+        {/* COMPOSIÇÃO CINEMATOGRÁFICA COM TIPOGRAFIA EM TEXT-REVEAL SEQUENCIAL */}
+        <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-6">
           
-          <div className="space-y-3 sm:space-y-4 w-full">
-            {/* Headline Principal: Proposta de Valor / Serviço (Sem ruídos) */}
+          <motion.div
+            initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
+            animate={{ 
+              opacity: 1, 
+              y: [0, -3, 0],
+              filter: "blur(0px)" 
+            }}
+            transition={{ 
+              duration: 0.9, 
+              ease: [0.16, 1, 0.3, 1],
+              y: {
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1.0
+              }
+            }}
+            className="space-y-3 sm:space-y-4 w-full"
+          >
+            {/* Headline Principal: Proposta de Valor / Serviço */}
             <motion.h1
-              initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-white tracking-tight leading-[1.15] [text-shadow:_0_3px_20px_rgba(0,0,0,0.95),_0_6px_40px_rgba(0,0,0,0.85)] max-w-3xl mx-auto"
@@ -609,39 +610,40 @@ export default function PaisDePetBoutiquePortal() {
 
             {/* Subtítulo Complementar: Introduz o que vem a seguir */}
             <motion.p
-              initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
+              initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.85, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="text-xs sm:text-base md:text-lg font-medium text-white/90 max-w-2xl mx-auto leading-relaxed [text-shadow:_0_2px_12px_rgba(0,0,0,0.95)]"
             >
               Consultas especializadas, exames e acolhimento em um ambiente projetado para reduzir o estresse do seu animal.
             </motion.p>
-          </div>
+          </motion.div>
 
-          {/* BOTÃO PRINCIPAL DE ALTA CONVERSÃO PARA O WHATSAPP (ÚNICO E EXCLUSIVO) */}
+          {/* GRUPO DE CTAS DE ALTA CONVERSÃO: WHATSAPP PRINCIPAL & AGENDAR TRIAGEM */}
           <motion.div
-            initial={{ opacity: 0, y: 16, scale: 0.95 }}
+            initial={{ opacity: 0, y: 18, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="pt-2 w-full flex justify-center"
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="pt-2 sm:pt-3 w-full flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
           >
+            {/* 1. BOTÃO PRIMÁRIO DE DESTAQUE ABSOLUTO: WHATSAPP DA DRA. NATALIA */}
             <motion.a
               href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de tirar dúvidas e agendar uma consulta para o meu pet na Pais de Pet.")}`}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.04 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               animate={{
                 boxShadow: [
-                  "0 10px 30px rgba(255,46,147,0.45)",
-                  "0 14px 45px rgba(255,46,147,0.75)",
-                  "0 10px 30px rgba(255,46,147,0.45)"
+                  "0 10px 30px rgba(255,46,147,0.55)",
+                  "0 14px 45px rgba(255,46,147,0.85)",
+                  "0 10px 30px rgba(255,46,147,0.55)"
                 ]
               }}
               transition={{
-                boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                boxShadow: { duration: 2.8, repeat: Infinity, ease: "easeInOut" }
               }}
-              className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-gradient-to-r from-[#FF2E93] via-[#FF3B9B] to-[#FF2E93] text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/35 backdrop-blur-md cursor-pointer touch-manipulation group ring-4 ring-[#FF2E93]/20"
+              className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-gradient-to-r from-[#FF2E93] via-[#FF3B9B] to-[#FF2E93] text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/35 backdrop-blur-md cursor-pointer touch-manipulation group ring-4 ring-[#FF2E93]/20 shadow-xl"
               aria-label="Conversar com a Dra. Natalia no WhatsApp"
             >
               <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
@@ -649,6 +651,18 @@ export default function PaisDePetBoutiquePortal() {
               </div>
               <span>Conversar com a Dra. Natália</span>
               <BrandArrow className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </motion.a>
+
+            {/* 2. BOTÃO SECUNDÁRIO DE ALTA CONVERSÃO NO DESKTOP: AGENDAR TRIAGEM */}
+            <motion.a
+              href="#triagem"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="hidden sm:inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 sm:py-4.5 rounded-full bg-[#84CC16] hover:bg-[#74b413] text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/30 backdrop-blur-md shadow-lg shadow-[#84CC16]/30 cursor-pointer touch-manipulation transition-colors"
+              aria-label="Agendar Triagem Pré-Clínica"
+            >
+              <BrandPaw className="w-4 h-4 text-white shrink-0" />
+              <span>Agendar Triagem</span>
             </motion.a>
           </motion.div>
 
