@@ -517,117 +517,179 @@ export default function PaisDePetBoutiquePortal() {
       </AnimatePresence>
 
       {/* ========================================================================= */}
-      {/* 2. HERO CINEMATOGRÁFICO COM VÍDEO EM AUTOPLAY E PREENCHIMENTO IMPONENTE   */}
+      {/* 2. SEÇÃO PRINCIPAL COM VÍDEO INTERATIVO & CONVERSÃO DE ALTO LUXO           */}
       {/* ========================================================================= */}
-      <section className="relative min-h-[92vh] lg:min-h-screen w-full flex items-center pt-24 sm:pt-28 lg:pt-32 pb-10 sm:pb-16 px-3.5 sm:px-6 lg:px-12 overflow-hidden">
+      <section className="relative min-h-[90vh] lg:min-h-screen w-full flex flex-col justify-center pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 overflow-hidden bg-[#FAF8F5]">
         
-        {/* VÍDEO EM LARGURA TOTAL COM CONTROLE E PROPORÇÃO SUAVE */}
-        <motion.div
-          style={{ y: heroVideoY, scale: heroScale }}
-          className="absolute inset-0 w-full h-full"
-        >
-          <BoutiqueVideoPlayer
-            src="/video-apresentação-por-dentro-paisdepet.mp4"
-            aspectRatio="aspect-auto"
-            rounded="rounded-none"
-            objectFit="object-cover"
-            className="w-full h-full absolute inset-0"
-            audioPosition="top-right"
-          />
-          {/* Camada Nobre em Off-White Translúcida para Contraste Impecável */}
-          <div className="absolute inset-0 bg-[#FAF8F5]/80 backdrop-blur-[1px] pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FAF8F5] via-[#FAF8F5]/85 to-transparent pointer-events-none" />
-        </motion.div>
-
-        {/* CONTAINER EDITORIAL: PREENCHIMENTO COMPLETO, IMPONENTE E SEM ESPAÇOS VAZIOS */}
-        <div className="max-w-5xl mx-auto w-full relative z-20 pointer-events-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="p-6 sm:p-10 lg:p-12 rounded-[2rem] sm:rounded-[2.5rem] bg-white/95 backdrop-blur-2xl border border-white/90 shadow-[0_20px_50px_rgba(44,24,32,0.08)] space-y-5 sm:space-y-6 text-left"
-          >
+        <div className="max-w-7xl mx-auto w-full relative z-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 xl:gap-16 items-center">
             
-            {/* Responsabilidade Técnica & Localização (Topo Limpo Sem Elementos Pulsantes) */}
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#84CC16]/50 shadow-2xs">
-                <BrandCross className="w-3.5 h-3.5 text-[#84CC16] shrink-0" />
-                <span className="text-[11px] sm:text-xs font-mono font-bold text-[#2C1820] uppercase tracking-wider">
-                  Sagrada Família • Rua Silvestre Ferraz, 27 • BH
-                </span>
-              </div>
-            </div>
-
-            {/* Título Principal Escultural e Imponente no Mobile */}
-            <h1 className="text-[28px] xs:text-[32px] sm:text-4xl lg:text-5xl xl:text-[56px] font-black tracking-tight text-[#2C1820] leading-[1.12] sm:leading-[1.08]">
-              A gente sabe o que passa no seu coração quando ele{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E93] via-[#FF6B00] to-[#84CC16]">
-                treme antes de entrar no veterinário.
-              </span>
-            </h1>
-
-            {/* Subtítulo Empático de Alto Padrão */}
-            <p className="text-base sm:text-lg lg:text-xl text-[#2C1820]/90 font-normal leading-relaxed">
-              Aqui, nenhuma porta bate, nenhum cão late na orelha do seu gato, e nenhuma consulta dura 15 minutos. Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz. Sob o cuidado médico da{" "}
-              <strong className="font-bold text-[#FF6B00]">Dra. Natalia Possas (CRMV-MG 20572)</strong>.
-            </p>
-
-            {/* Ações Oficiais com a Logo da Clínica */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 pt-1">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-95 group text-center touch-manipulation"
-              >
-                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden p-[1.5px] bg-white shrink-0 shadow-2xs">
-                  <img src="/foto-perfil-pais-de-pet.jpg" alt="Logo" className="w-full h-full object-cover rounded-full" />
-                </div>
-                <span>Conversar com a Dra. Natalia</span>
-                <BrandArrow className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </a>
-
-              <a
-                href="#triagem"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-white hover:bg-[#FAF8F5] text-[#2C1820] font-black text-xs sm:text-sm uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#84CC16] transition-all text-center touch-manipulation shadow-2xs"
-              >
-                <BrandPaw className="w-4 h-4 text-[#84CC16]" />
-                <span>Iniciar Triagem Pré-Clínica</span>
-              </a>
-            </div>
-
-            {/* Pilares com Elementos Visuais Próprios de Cães e Gatos (Sempre Visíveis no Mobile) */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4 pt-5 sm:pt-6 border-t border-[#2C1820]/10 text-xs">
-              <div className="flex items-center gap-3 p-2.5 sm:p-0 rounded-2xl bg-[#FAF8F5] sm:bg-transparent">
-                <span className="p-2 rounded-xl bg-[#84CC16]/15 text-[#84CC16] shrink-0">
-                  <BrandPaw className="w-4 h-4" />
-                </span>
-                <div>
-                  <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">100% Toalhas Descartáveis</span>
-                  <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Esterilizadas e individuais</span>
+            {/* 1. CABEÇALHO, TÍTULO E COPY (DESKTOP: LINHA 1 ESQUERDA / MOBILE: TOPO) */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:col-span-7 order-1 flex flex-col text-left space-y-4 sm:space-y-5"
+            >
+              {/* Localização e Responsabilidade Técnica */}
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#2C1820]/10 shadow-2xs">
+                  <div className="w-2 h-2 rounded-full bg-[#84CC16] animate-pulse" />
+                  <span className="text-[11px] sm:text-xs font-mono font-bold text-[#2C1820] uppercase tracking-wider">
+                    Sagrada Família • Rua Silvestre Ferraz, 27 • BH
+                  </span>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-2.5 sm:p-0 rounded-2xl bg-[#FAF8F5] sm:bg-transparent">
-                <span className="p-2 rounded-xl bg-[#FF2E93]/15 text-[#FF2E93] shrink-0">
-                  <BrandCatEar className="w-4 h-4" />
-                </span>
-                <div>
-                  <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">Manejo Cat-Friendly</span>
-                  <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Zero estresse e sem latidos</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 p-2.5 sm:p-0 rounded-2xl bg-[#FAF8F5] sm:bg-transparent">
-                <span className="p-2 rounded-xl bg-[#FF6B00]/15 text-[#FF6B00] shrink-0">
-                  <BrandCross className="w-4 h-4" />
-                </span>
-                <div>
-                  <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">Credenciada Petlove</span>
-                  <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Presencial & Domiciliar</span>
-                </div>
-              </div>
-            </div>
 
-          </motion.div>
+              {/* Assinatura Oficial da Clínica & Headline Principal */}
+              <div className="space-y-2.5 sm:space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full p-[2px] bg-gradient-to-tr from-[#FF2E93] via-[#FF6B00] to-[#84CC16] shadow-xs shrink-0">
+                    <img
+                      src="/foto-perfil-pais-de-pet.jpg"
+                      alt="Pais de Pet"
+                      className="w-full h-full object-cover rounded-full bg-white"
+                    />
+                  </div>
+                  <div>
+                    <span className="font-black text-xl sm:text-2xl text-[#2C1820] tracking-tight block leading-none">
+                      Pais de Pet
+                    </span>
+                    <span className="text-xs font-mono text-[#FF6B00] font-bold uppercase tracking-wider block mt-1">
+                      Dra. Natalia Possas • CRMV-MG 20572
+                    </span>
+                  </div>
+                </div>
+
+                <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[46px] xl:text-[52px] font-black tracking-tight text-[#2C1820] leading-[1.1]">
+                  Amor de pai e mãe com o{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E93] via-[#FF6B00] to-[#84CC16]">
+                    cuidado de especialista.
+                  </span>
+                </h1>
+              </div>
+
+              {/* Subtítulo Empático de Alto Padrão */}
+              <p className="text-sm sm:text-base lg:text-lg text-[#2C1820]/85 font-normal leading-relaxed">
+                A gente sabe o que passa no seu coração quando ele treme antes de entrar no veterinário. Aqui, nenhuma porta bate, nenhum cão late na orelha do seu gato, e nenhuma consulta dura 15 minutos. Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz.
+              </p>
+            </motion.div>
+
+            {/* 2. VÍDEO INTERATIVO (DESKTOP: COLUNA DIREITA / MOBILE: CENTRALIZADO COM ÁUDIO INTERATIVO) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.85, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:col-span-5 order-2 lg:row-span-2 flex justify-center items-center w-full my-2 lg:my-0"
+            >
+              <div className="w-full max-w-[290px] sm:max-w-[340px] lg:max-w-[400px] rounded-[2.2rem] sm:rounded-[2.4rem] bg-white p-2.5 sm:p-3 shadow-[0_25px_60px_-15px_rgba(44,24,32,0.16)] border border-[#2C1820]/10 relative group">
+                
+                {/* Indicador Superior do Vídeo Interativo */}
+                <div className="absolute top-4 sm:top-5 left-4 sm:left-5 z-20 inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[#2C1820]/80 backdrop-blur-md text-white border border-white/20 shadow-md pointer-events-none">
+                  <span className="w-2 h-2 rounded-full bg-[#84CC16] animate-pulse" />
+                  <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider">Vídeo Interativo</span>
+                </div>
+
+                {/* Player Vertical em Proporção 9:16 com Som Opcional e Loop Suave */}
+                <BoutiqueVideoPlayer
+                  src="/intro-interativa.mp4"
+                  aspectRatio="aspect-[9/16]"
+                  rounded="rounded-[1.7rem] sm:rounded-[2rem]"
+                  objectFit="object-cover"
+                  className="w-full shadow-inner"
+                  audioPosition="top-right"
+                />
+
+                {/* Assinatura de Rodapé do Player */}
+                <div className="pt-2.5 pb-1 px-1.5 sm:px-2 flex items-center justify-between gap-2 border-t border-[#2C1820]/6 mt-1.5 sm:mt-2">
+                  <div className="flex items-center gap-2 text-left min-w-0">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden p-[1px] bg-gradient-to-tr from-[#FF2E93] to-[#84CC16] shrink-0">
+                      <img src="/foto-perfil-pais-de-pet.jpg" alt="Dra. Natalia" className="w-full h-full object-cover rounded-full" />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="font-black text-[11px] sm:text-xs text-[#2C1820] block leading-tight truncate">Dra. Natalia Possas</span>
+                      <span className="text-[9px] sm:text-[10px] font-mono text-[#FF6B00] font-bold block truncate">CRMV-MG 20572</span>
+                    </div>
+                  </div>
+                  <a
+                    href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de conversar com você sobre o atendimento do meu pet.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[#84CC16]/15 hover:bg-[#84CC16]/25 text-[#2C1820] text-[10px] sm:text-[11px] font-black uppercase tracking-wider transition-colors active:scale-95 shrink-0"
+                  >
+                    <span>Agendar</span>
+                    <BrandArrow className="w-3 h-3 text-[#84CC16]" />
+                  </a>
+                </div>
+
+              </div>
+            </motion.div>
+
+            {/* 3. BOTÕES DE CONVERSÃO & SELOS DE QUALIDADE (DESKTOP: LINHA 2 ESQUERDA / MOBILE: LOGO ABAIXO DO VÍDEO) */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:col-span-7 order-3 flex flex-col space-y-4 sm:space-y-5"
+            >
+              {/* Ações de Conversão com WhatsApp em Destaque Absoluto */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1">
+                <a
+                  href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de tirar dúvidas e agendar uma consulta para o meu pet na Pais de Pet.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg hover:shadow-xl transition-all active:scale-95 group text-center touch-manipulation ring-4 ring-[#FF2E93]/20"
+                  aria-label="Conversar com a Dra. Natalia no WhatsApp"
+                >
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden p-[1.5px] bg-white shrink-0 shadow-2xs">
+                    <img src="/foto-perfil-pais-de-pet.jpg" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
+                  </div>
+                  <span>Conversar com a Dra. Natalia</span>
+                  <BrandArrow className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </a>
+
+                <a
+                  href="#triagem"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-white hover:bg-[#FAF8F5] text-[#2C1820] font-black text-xs sm:text-sm uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#84CC16] transition-all text-center touch-manipulation shadow-2xs"
+                >
+                  <BrandPaw className="w-4 h-4 text-[#84CC16]" />
+                  <span>Iniciar Triagem Pré-Clínica</span>
+                </a>
+              </div>
+
+              {/* Selos de Qualidade Alinhados Logo Abaixo */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 pt-4 border-t border-[#2C1820]/10 text-xs">
+                <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs">
+                  <span className="p-2 rounded-xl bg-[#84CC16]/15 text-[#84CC16] shrink-0">
+                    <BrandPaw className="w-4 h-4" />
+                  </span>
+                  <div>
+                    <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">100% Toalhas Descartáveis</span>
+                    <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Esterilizadas e individuais</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs">
+                  <span className="p-2 rounded-xl bg-[#FF2E93]/15 text-[#FF2E93] shrink-0">
+                    <BrandCatEar className="w-4 h-4" />
+                  </span>
+                  <div>
+                    <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">Manejo Cat-Friendly</span>
+                    <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Zero estresse e sem latidos</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs">
+                  <span className="p-2 rounded-xl bg-[#FF6B00]/15 text-[#FF6B00] shrink-0">
+                    <BrandCross className="w-4 h-4" />
+                  </span>
+                  <div>
+                    <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">Credenciada Petlove</span>
+                    <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Presencial & Domiciliar</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
 
           {/* FAIXA COMPACTA DE PROVA SOCIAL E REPUTAÇÃO COM ÍCONES VIVOS (PRIMEIRA DOBRA IMPONENTE) */}
           <div className="mt-3.5 sm:mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
