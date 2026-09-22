@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { clinicMetadata } from "@/data/clinicMetadata";
 import { faqData } from "@/data/faqData";
-import BrandIntro from "@/components/BrandIntro";
 
 // =============================================================================
 // ELEMENTOS VISUAIS PROPRIETÁRIOS DA MARCA (ZERO ÍCONES GENÉRICOS DE TERCEIROS)
@@ -262,6 +261,49 @@ export default function PaisDePetBoutiquePortal() {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(0);
 
+  // Controle de Áudio e Autoplay do Vídeo Hero
+  const [heroMuted, setHeroMuted] = useState(true);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleHeroAudio = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (heroVideoRef.current) {
+      const nextMuted = !heroVideoRef.current.muted;
+      heroVideoRef.current.muted = nextMuted;
+      setHeroMuted(nextMuted);
+      if (heroVideoRef.current.paused) {
+        heroVideoRef.current.play().catch(() => {});
+      }
+    }
+  };
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.setAttribute("autoplay", "");
+
+      const play = () => {
+        video.play().catch(() => {
+          const unlock = () => {
+            video.play().catch(() => {});
+          };
+          window.addEventListener("touchstart", unlock, { once: true, passive: true });
+          window.addEventListener("pointerdown", unlock, { once: true, passive: true });
+          window.addEventListener("click", unlock, { once: true, passive: true });
+        });
+      };
+      play();
+      video.addEventListener("canplay", play, { once: true });
+    }
+  }, []);
+
   // Estados da Triagem Pré-Clínica Inteligente
   const [triageStep, setTriageStep] = useState<1 | 2 | 3 | 4>(1);
   const [petSpecies, setPetSpecies] = useState<"Cão" | "Gato">("Cão");
@@ -294,10 +336,7 @@ export default function PaisDePetBoutiquePortal() {
   return (
     <div ref={containerRef} className="min-h-screen bg-[#FAF8F5] text-[#2C1820] font-sans selection:bg-[#84CC16] selection:text-[#2C1820] relative overflow-x-hidden">
       
-      {/* ========================================================================= */}
-      {/* VÍDEO INSTITUCIONAL DE ABERTURA (10S • CINEMATOGRÁFICO DE ALTO LUXO)      */}
-      {/* ========================================================================= */}
-      <BrandIntro />
+
 
       {/* ========================================================================= */}
       {/* SISTEMA DE PATINHAS E ORELHINHAS FLUTUANTES COM PARALAXE (DESKTOP & MOBILE) */}
@@ -517,176 +556,213 @@ export default function PaisDePetBoutiquePortal() {
       </AnimatePresence>
 
       {/* ========================================================================= */}
-      {/* 2. SEÇÃO PRINCIPAL COM VÍDEO INTERATIVO & CONVERSÃO DE ALTO LUXO           */}
+      {/* 2. SEÇÃO HERO CINEMATOGRÁFICA DE ELITE (AWWWARDS / MAGIC UI STANDARD)      */}
       {/* ========================================================================= */}
-      <section className="relative min-h-[90vh] lg:min-h-screen w-full flex flex-col justify-center pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 overflow-hidden bg-[#FAF8F5]">
+      <section className="relative min-h-screen w-full flex flex-col justify-between pt-20 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 overflow-hidden bg-[#FAF8F5]">
         
-        <div className="max-w-7xl mx-auto w-full relative z-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
-            
-            {/* 1. CABEÇALHO, TÍTULO E COPY (DESKTOP: LINHA 1 ESQUERDA / MOBILE: TOPO) */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-7 order-1 flex flex-col text-left space-y-4 sm:space-y-5"
+        <div className="w-full max-w-7xl mx-auto flex flex-col items-center justify-center relative z-20 my-auto">
+          
+          {/* PALCO CENTRAL DO VÍDEO CINEMATOGRÁFICO */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-full max-w-[340px] xs:max-w-[375px] sm:max-w-[420px] lg:max-w-[450px] aspect-[9/16] max-h-[78vh] sm:max-h-[82vh] rounded-[2.5rem] sm:rounded-[3rem] overflow-hidden shadow-[0_25px_70px_rgba(44,24,32,0.14)] border border-[#2C1820]/8 bg-[#FAF8F5] select-none group"
+          >
+            {/* Vídeo institucional "intro-interativa.mp4" em loop contínuo e fluido */}
+            <video
+              ref={heroVideoRef}
+              src="/intro-interativa.mp4"
+              poster="/intro-poster.jpg"
+              autoPlay
+              muted={heroMuted}
+              loop
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover object-center"
+            />
+
+            {/* Controle Discreto de Áudio (Frosted Glass no Canto Superior Direito) */}
+            <button
+              type="button"
+              onClick={toggleHeroAudio}
+              className="absolute top-4 sm:top-5 right-4 sm:right-5 z-30 inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-black/40 hover:bg-black/60 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 text-xs font-mono font-medium tracking-wide shadow-md cursor-pointer"
+              aria-label={heroMuted ? "Ativar som do vídeo" : "Silenciar áudio do vídeo"}
             >
-              {/* Localização e Responsabilidade Técnica (Sem bolinhas pulsantes) */}
-              <div className="flex flex-wrap items-center gap-2">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#2C1820]/10 shadow-2xs">
-                  <BrandCross className="w-3.5 h-3.5 text-[#84CC16] shrink-0" />
-                  <span className="text-[11px] sm:text-xs font-mono font-bold text-[#2C1820] uppercase tracking-wider">
-                    Sagrada Família • Rua Silvestre Ferraz, 27 • BH
-                  </span>
-                </div>
-              </div>
+              {heroMuted ? (
+                <>
+                  <BrandSoundOff className="w-3.5 h-3.5 text-white/80" />
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-white/90">Ativar Som</span>
+                </>
+              ) : (
+                <>
+                  <BrandSoundOn className="w-3.5 h-3.5 text-[#84CC16]" />
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-[#84CC16]">Som Ativo</span>
+                </>
+              )}
+            </button>
 
-              {/* Assinatura Oficial da Clínica & Headline Principal */}
-              <div className="space-y-2.5 sm:space-y-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full p-[2px] bg-gradient-to-tr from-[#FF2E93] via-[#FF6B00] to-[#84CC16] shadow-xs shrink-0">
-                    <img
-                      src="/foto-perfil-pais-de-pet.jpg"
-                      alt="Pais de Pet"
-                      className="w-full h-full object-cover rounded-full bg-white"
-                    />
-                  </div>
-                  <div>
-                    <span className="font-black text-xl sm:text-2xl text-[#2C1820] tracking-tight block leading-none">
-                      Pais de Pet
-                    </span>
-                    <span className="text-xs font-mono text-[#FF6B00] font-bold uppercase tracking-wider block mt-1">
-                      Dra. Natalia Possas • CRMV-MG 20572
-                    </span>
-                  </div>
-                </div>
+            {/* Sutil Vinheta Cinematográfica Inferior (Mantém o Focinho e Olhos 100% Claros) */}
+            <div className="absolute inset-0 pointer-events-none z-10 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
 
-                <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[46px] xl:text-[52px] font-black tracking-tight text-[#2C1820] leading-[1.1]">
-                  Amor de pai e mãe com o{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E93] via-[#FF6B00] to-[#84CC16]">
-                    cuidado de especialista.
-                  </span>
-                </h1>
-              </div>
-
-              {/* Subtítulo Empático de Alto Padrão */}
-              <p className="text-sm sm:text-base lg:text-lg text-[#2C1820]/85 font-normal leading-relaxed">
-                A gente sabe o que passa no seu coração quando ele treme antes de entrar no veterinário. Aqui, nenhuma porta bate, nenhum cão late na orelha do seu gato, e nenhuma consulta dura 15 minutos. Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz.
-              </p>
-            </motion.div>
-
-            {/* 2. VÍDEO CINEMATOGRÁFICO PURO & SEM CAIXAS (DESKTOP: COLUNA DIREITA / MOBILE: NATIVO COM MARCA) */}
+            {/* Tipografia Flutuante Integrada com Micro-Animações Sequenciais (Type Reveal) */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.85, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-5 order-2 lg:row-span-2 flex justify-center items-center w-full my-1 lg:my-0"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.22, delayChildren: 0.25 }
+                }
+              }}
+              className="absolute inset-x-0 bottom-5 sm:bottom-7 px-4 sm:px-6 z-20 flex flex-col items-center text-center space-y-2.5 sm:space-y-3 pointer-events-auto"
             >
-              <div className="relative w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[390px] aspect-[9/16] rounded-[2.2rem] sm:rounded-[2.6rem] overflow-hidden shadow-[0_20px_50px_rgba(44,24,32,0.12)] border border-[#2C1820]/8 bg-[#FAF8F5] select-none">
-                
-                {/* Vídeo institucional 720x1280 rodando em loop suave e contínuo */}
-                <BoutiqueVideoPlayer
-                  src="/intro-interativa.mp4"
-                  aspectRatio="aspect-auto"
-                  rounded="rounded-none"
-                  objectFit="object-cover"
-                  className="w-full h-full absolute inset-0"
-                  audioPosition="top-right"
-                />
-
-                {/* Sutil vinheta cinematográfica inferior para contraste da tipografia nativa */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none z-10" />
-
-                {/* Tipografia Nativa sobre o Vídeo no Mobile (Estilo Comercial de Luxo) */}
-                <div className="lg:hidden absolute inset-x-0 bottom-4 pb-2 z-20 flex flex-col items-center px-4 text-center pointer-events-none space-y-2">
-                  <div className="w-13 h-13 min-w-[52px] min-h-[52px] max-w-[52px] max-h-[52px] rounded-full overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.6)] border-2 border-white/45 shrink-0">
-                    <img
-                      src="/foto-perfil-pais-de-pet.jpg"
-                      alt="Pais de Pet"
-                      className="w-full h-full object-cover rounded-full"
-                    />
-                  </div>
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] font-sans font-bold text-white/95 uppercase tracking-widest block [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
-                      Pais de Pet • Clínica Boutique
-                    </span>
-                    <span className="text-[10px] font-mono text-white/80 uppercase tracking-wider block [text-shadow:_0_2px_6px_rgba(0,0,0,0.95)]">
-                      Dra. Natalia Possas • CRMV-MG 20572
-                    </span>
-                  </div>
+              {/* 1. Assinatura Oficial da Dra. Natalia (Type Reveal Suave) */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 12, filter: "blur(4px)" },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+                  }
+                }}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-white/25 shadow-sm"
+              >
+                <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full overflow-hidden p-[1px] bg-gradient-to-tr from-[#FF2E93] to-[#84CC16] shrink-0">
+                  <img
+                    src="/foto-perfil-pais-de-pet.jpg"
+                    alt="Pais de Pet"
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </div>
+                <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider text-white/95">
+                  Dra. Natalia Possas • CRMV-MG 20572
+                </span>
+              </motion.div>
 
-              </div>
-            </motion.div>
+              {/* 2. Headline Cinematográfica Integrada com Type Reveal */}
+              <motion.h1
+                variants={{
+                  hidden: { opacity: 0, y: 16, filter: "blur(6px)" },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] }
+                  }
+                }}
+                className="text-[20px] xs:text-[22px] sm:text-[25px] font-black text-white leading-[1.2] tracking-tight [text-shadow:_0_2px_14px_rgba(0,0,0,0.95),_0_4px_24px_rgba(0,0,0,0.85)] max-w-[320px] sm:max-w-[360px]"
+              >
+                Amor de pai e mãe com o cuidado de especialista
+              </motion.h1>
 
-            {/* 3. BOTÕES DE CONVERSÃO & SELOS DE QUALIDADE (DESKTOP: LINHA 2 ESQUERDA / MOBILE: LOGO ABAIXO DO VÍDEO) */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-7 order-3 flex flex-col space-y-4 sm:space-y-5"
-            >
-              {/* Ações de Conversão com WhatsApp em Destaque Absoluto */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1">
+              {/* 3. Botão de Alta Performance Minimalista WhatsApp */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 14, scale: 0.95 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+                  }
+                }}
+                className="w-full pt-0.5 flex flex-col items-center"
+              >
                 <a
-                  href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de tirar dúvidas e agendar uma consulta para o meu pet na Pais de Pet.")}`}
+                  href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de conversar com você sobre o atendimento do meu pet na Pais de Pet.")}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg hover:shadow-xl transition-all active:scale-95 group text-center touch-manipulation ring-4 ring-[#FF2E93]/20"
+                  className="w-full max-w-[270px] sm:max-w-[290px] inline-flex items-center justify-center gap-2.5 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-gradient-to-r from-[#FF2E93] via-[#FF3B9B] to-[#FF2E93] text-white font-black text-xs sm:text-[13px] uppercase tracking-wider shadow-[0_8px_25px_rgba(255,46,147,0.45)] hover:shadow-[0_12px_35px_rgba(255,46,147,0.65)] hover:scale-[1.02] active:scale-95 transition-all text-center border border-white/30 backdrop-blur-sm touch-manipulation group"
                   aria-label="Conversar com a Dra. Natalia no WhatsApp"
                 >
-                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden p-[1.5px] bg-white shrink-0 shadow-2xs">
+                  <div className="w-5 h-5 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
                     <img src="/foto-perfil-pais-de-pet.jpg" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
                   </div>
-                  <span>Conversar com a Dra. Natalia</span>
-                  <BrandArrow className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <span>Conversar com a Dra. Natália</span>
+                  <BrandArrow className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
-
-                <a
-                  href="#triagem"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-white hover:bg-[#FAF8F5] text-[#2C1820] font-black text-xs sm:text-sm uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#84CC16] transition-all text-center touch-manipulation shadow-2xs"
-                >
-                  <BrandPaw className="w-4 h-4 text-[#84CC16]" />
-                  <span>Iniciar Triagem Pré-Clínica</span>
-                </a>
-              </div>
-
-              {/* Selos de Qualidade Alinhados Logo Abaixo */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 pt-4 border-t border-[#2C1820]/10 text-xs">
-                <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs">
-                  <span className="p-2 rounded-xl bg-[#84CC16]/15 text-[#84CC16] shrink-0">
-                    <BrandPaw className="w-4 h-4" />
-                  </span>
-                  <div>
-                    <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">100% Toalhas Descartáveis</span>
-                    <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Esterilizadas e individuais</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs">
-                  <span className="p-2 rounded-xl bg-[#FF2E93]/15 text-[#FF2E93] shrink-0">
-                    <BrandCatEar className="w-4 h-4" />
-                  </span>
-                  <div>
-                    <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">Manejo Cat-Friendly</span>
-                    <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Zero estresse e sem latidos</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs">
-                  <span className="p-2 rounded-xl bg-[#FF6B00]/15 text-[#FF6B00] shrink-0">
-                    <BrandCross className="w-4 h-4" />
-                  </span>
-                  <div>
-                    <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">Credenciada Petlove</span>
-                    <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Presencial & Domiciliar</span>
-                  </div>
-                </div>
-              </div>
+              </motion.div>
             </motion.div>
 
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 2.1 BLOCO EDITORIAL: MANIFESTO, SELOS DE QUALIDADE & NÚMEROS DE CONFIANÇA */}
+      {/* ========================================================================= */}
+      <section className="relative w-full py-12 sm:py-16 px-4 sm:px-6 lg:px-12 bg-[#FAF8F5] border-t border-[#2C1820]/6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full max-w-4xl mx-auto flex flex-col items-center text-center space-y-5 px-2 sm:px-4"
+        >
+          {/* Localização e Endereço */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#2C1820]/10 shadow-2xs">
+            <BrandCross className="w-3.5 h-3.5 text-[#84CC16] shrink-0" />
+            <span className="text-[11px] sm:text-xs font-mono font-bold text-[#2C1820] uppercase tracking-wider">
+              Sagrada Família • Rua Silvestre Ferraz, 27 • BH
+            </span>
           </div>
 
-          {/* FAIXA COMPACTA DE PROVA SOCIAL E REPUTAÇÃO COM ÍCONES VIVOS (PRIMEIRA DOBRA IMPONENTE) */}
-          <div className="mt-3.5 sm:mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+          {/* Manifesto Empático de Acolhimento */}
+          <p className="max-w-2xl text-xs sm:text-sm md:text-base text-[#2C1820]/80 font-normal leading-relaxed">
+            A gente sabe o que passa no seu coração quando ele treme antes de entrar no veterinário. Aqui, nenhuma porta bate, nenhum cão late na orelha do seu gato, e nenhuma consulta dura 15 minutos. Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz.
+          </p>
+
+          {/* 3 Selos de Qualidade */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 w-full text-xs text-left">
+            <div className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs">
+              <span className="p-2 rounded-xl bg-[#84CC16]/15 text-[#84CC16] shrink-0">
+                <BrandPaw className="w-4 h-4" />
+              </span>
+              <div>
+                <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">100% Toalhas Descartáveis</span>
+                <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Esterilizadas e individuais</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs">
+              <span className="p-2 rounded-xl bg-[#FF2E93]/15 text-[#FF2E93] shrink-0">
+                <BrandCatEar className="w-4 h-4" />
+              </span>
+              <div>
+                <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">Manejo Cat-Friendly</span>
+                <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Zero estresse e sem latidos</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs">
+              <span className="p-2 rounded-xl bg-[#FF6B00]/15 text-[#FF6B00] shrink-0">
+                <BrandCross className="w-4 h-4" />
+              </span>
+              <div>
+                <span className="font-bold text-[#2C1820] text-xs sm:text-sm block">Credenciada Petlove</span>
+                <span className="text-[11px] text-[#2C1820]/65 block mt-0.5">Presencial & Domiciliar</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Ação Complementar de Triagem */}
+          <div className="pt-1">
+            <a
+              href="#triagem"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-[#FAF8F5] text-[#2C1820] font-black text-xs uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#84CC16] transition-all text-center touch-manipulation shadow-2xs"
+            >
+              <BrandPaw className="w-3.5 h-3.5 text-[#84CC16]" />
+              <span>Iniciar Triagem Pré-Clínica Inteligente</span>
+            </a>
+          </div>
+
+          {/* Faixa de Prova Social */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 w-full pt-1">
             <div className="p-3 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs flex flex-col items-center justify-center">
               <div className="flex items-center gap-1.5">
                 <BrandPaw className="w-3.5 h-3.5 text-[#FF2E93]" />
@@ -717,7 +793,7 @@ export default function PaisDePetBoutiquePortal() {
             </div>
           </div>
 
-        </div>
+        </motion.div>
       </section>
 
       {/* ========================================================================= */}

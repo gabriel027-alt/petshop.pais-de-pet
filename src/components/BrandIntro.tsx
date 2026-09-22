@@ -102,7 +102,7 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
             {/* Vídeo institucional 720x1280 (9:16): contínuo, sem congelamentos e 100% fluido */}
             <video
               ref={videoRef}
-              src="/intro-paisdepet.mp4"
+              src="/intro-interativa.mp4"
               poster="/intro-poster.jpg"
               autoPlay
               muted
