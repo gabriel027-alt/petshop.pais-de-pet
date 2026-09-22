@@ -540,44 +540,49 @@ export default function PaisDePetBoutiquePortal() {
         {/* OVERLAY ESCURO SUTIL DE FUNDO PARA CONTRASTE E LEGIBILIDADE PERFEITA */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20 pointer-events-none z-10" />
 
-        {/* COMPOSIÇÃO CINEMATOGRÁFICA COM TIPOGRAFIA EM MOTION DESIGN CONTÍNUO */}
+        {/* COMPOSIÇÃO CINEMATOGRÁFICA COM TIPOGRAFIA EM TEXT-REVEAL E MOTION DESIGN */}
         <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-5">
           
-          <motion.div
-            initial={{ opacity: 0, y: 22, filter: "blur(6px)" }}
-            animate={{ 
-              opacity: 1, 
-              y: [0, -4, 0],
-              filter: "blur(0px)" 
-            }}
-            transition={{ 
-              duration: 1.0, 
-              ease: [0.16, 1, 0.3, 1],
-              y: {
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1.2
-              }
-            }}
-            className="space-y-2 sm:space-y-3 w-full"
-          >
-            {/* Headline Principal Cinematográfica */}
-            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-black text-white tracking-tight leading-[1.12] [text-shadow:_0_3px_20px_rgba(0,0,0,0.95),_0_6px_40px_rgba(0,0,0,0.85)] max-w-3xl mx-auto">
-              Amor de pai e mãe com o cuidado de especialista.
-            </h1>
+          <div className="space-y-3 sm:space-y-4 w-full">
+            {/* Tag/Chancela de Autoridade Médica */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, filter: "blur(4px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white/90"
+            >
+              <div className="w-2 h-2 rounded-full bg-[#84CC16] animate-pulse" />
+              <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-widest">
+                Dra. Natalia Possas • CRMV-MG 20572
+              </span>
+            </motion.div>
 
-            {/* Assinatura Oficial Clara */}
-            <p className="text-xs sm:text-sm md:text-base font-mono font-bold text-white/90 uppercase tracking-widest [text-shadow:_0_2px_12px_rgba(0,0,0,0.95)]">
-              DRA. NATALIA POSSAS • CRMV-MG 20572
-            </p>
-          </motion.div>
+            {/* Headline Principal: Proposta de Valor / Serviço (Sem repetição da Intro 1) */}
+            <motion.h1
+              initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.85, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-white tracking-tight leading-[1.15] [text-shadow:_0_3px_20px_rgba(0,0,0,0.95),_0_6px_40px_rgba(0,0,0,0.85)] max-w-3xl mx-auto"
+            >
+              Medicina veterinária humanizada e de ponta a ponta para o seu pet.
+            </motion.h1>
+
+            {/* Subtítulo Complementar: Introduz o que vem a seguir */}
+            <motion.p
+              initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.85, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="text-xs sm:text-base md:text-lg font-medium text-white/90 max-w-2xl mx-auto leading-relaxed [text-shadow:_0_2px_12px_rgba(0,0,0,0.95)]"
+            >
+              Consultas especializadas, exames e acolhimento em um ambiente projetado para reduzir o estresse do seu animal.
+            </motion.p>
+          </div>
 
           {/* BOTÃO PRINCIPAL DE ALTA CONVERSÃO PARA O WHATSAPP (ÚNICO E EXCLUSIVO) */}
           <motion.div
             initial={{ opacity: 0, y: 16, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="pt-2 w-full flex justify-center"
           >
             <motion.a
