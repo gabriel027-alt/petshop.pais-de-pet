@@ -241,6 +241,21 @@ const hybridTestimonials: TestimonialMedia[] = [
 export default function PaisDePetBoutiquePortal() {
   const whatsappUrl = clinicMetadata.contacts.whatsappUrl;
   const containerRef = useRef<HTMLDivElement>(null);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const [heroMuted, setHeroMuted] = useState(true);
+
+  const toggleHeroAudio = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (heroVideoRef.current) {
+      const nextMuted = !heroVideoRef.current.muted;
+      heroVideoRef.current.muted = nextMuted;
+      setHeroMuted(nextMuted);
+      if (heroVideoRef.current.paused) {
+        heroVideoRef.current.play().catch(() => {});
+      }
+    }
+  };
 
   // Animação de Scroll e Paralaxe Profissional
   const { scrollY, scrollYProgress } = useScroll();
@@ -525,7 +540,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       <section className="relative w-full h-[100dvh] min-h-[100dvh] overflow-hidden flex flex-col justify-end items-center pb-12 sm:pb-16 select-none bg-black">
         
-        {/* VÍDEO DE FUNDO IMERSIVO EDGE-TO-EDGE (ZERO BORDAS, ZERO CARDS, ZERO MOLDURAS) */}
+        {/* AMBIENTAÇÃO FULL-BLEED EXCLUSIVA PARA DESKTOP (ELIMINA CORTES E DISTORÇÕES EM TELAS GRANDES) */}
         <video
           src="/intro-interativa.mp4"
           poster="/intro-interativa-poster.jpg"
@@ -534,34 +549,59 @@ export default function PaisDePetBoutiquePortal() {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none"
+          aria-hidden="true"
+          className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center blur-3xl opacity-35 scale-110 z-0 pointer-events-none"
         />
+
+        {/* VÍDEO PRINCIPAL: 100% OBJECT-COVER NO MOBILE / PROPORÇÃO E ENQUADRAMENTO PERFEITOS NO DESKTOP */}
+        <video
+          ref={heroVideoRef}
+          src="/intro-interativa.mp4"
+          poster="/intro-interativa-poster.jpg"
+          autoPlay
+          muted={heroMuted}
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover sm:object-contain object-center z-0 pointer-events-none"
+        />
+
+        {/* TRANSIÇÃO LATERAL EM GRADIENTE SUAVE NO DESKTOP */}
+        <div className="hidden sm:block absolute inset-y-0 left-0 w-32 md:w-56 bg-gradient-to-r from-black/85 via-black/40 to-transparent pointer-events-none z-10" />
+        <div className="hidden sm:block absolute inset-y-0 right-0 w-32 md:w-56 bg-gradient-to-l from-black/85 via-black/40 to-transparent pointer-events-none z-10" />
 
         {/* OVERLAY ESCURO SUTIL DE FUNDO PARA CONTRASTE E LEGIBILIDADE PERFEITA */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20 pointer-events-none z-10" />
 
-        {/* COMPOSIÇÃO CINEMATOGRÁFICA COM TIPOGRAFIA EM TEXT-REVEAL E MOTION DESIGN */}
+        {/* BOTÃO DISCRETO DE ÁUDIO NO HERO (ONDE O VÍDEO TEM ÁUDIO REAL) */}
+        <button
+          type="button"
+          onClick={toggleHeroAudio}
+          className="absolute top-20 sm:top-24 right-4 sm:right-8 z-30 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 hover:bg-black/70 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 text-xs font-mono font-medium tracking-wide shadow-md cursor-pointer touch-manipulation"
+          aria-label={heroMuted ? "Ativar som do vídeo" : "Silenciar áudio do vídeo"}
+        >
+          {heroMuted ? (
+            <>
+              <BrandSoundOff className="w-3.5 h-3.5 text-white/80" />
+              <span className="text-[10px] uppercase font-bold text-white/90">Ativar Som</span>
+            </>
+          ) : (
+            <>
+              <BrandSoundOn className="w-3.5 h-3.5 text-[#84CC16]" />
+              <span className="text-[10px] uppercase font-bold text-[#84CC16]">Áudio Ativo</span>
+            </>
+          )}
+        </button>
+
+        {/* COMPOSIÇÃO CINEMATOGRÁFICA COM TIPOGRAFIA EM TEXT-REVEAL (LIMPA, SEM BOLINHAS OU BADGES RUÍDO) */}
         <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-5">
           
           <div className="space-y-3 sm:space-y-4 w-full">
-            {/* Tag/Chancela de Autoridade Médica */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, filter: "blur(4px)" }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white/90"
-            >
-              <div className="w-2 h-2 rounded-full bg-[#84CC16] animate-pulse" />
-              <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-widest">
-                Dra. Natalia Possas • CRMV-MG 20572
-              </span>
-            </motion.div>
-
-            {/* Headline Principal: Proposta de Valor / Serviço (Sem repetição da Intro 1) */}
+            {/* Headline Principal: Proposta de Valor / Serviço (Sem ruídos) */}
             <motion.h1
               initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.85, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-white tracking-tight leading-[1.15] [text-shadow:_0_3px_20px_rgba(0,0,0,0.95),_0_6px_40px_rgba(0,0,0,0.85)] max-w-3xl mx-auto"
             >
               Medicina veterinária humanizada e de ponta a ponta para o seu pet.
@@ -571,7 +611,7 @@ export default function PaisDePetBoutiquePortal() {
             <motion.p
               initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.85, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.85, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="text-xs sm:text-base md:text-lg font-medium text-white/90 max-w-2xl mx-auto leading-relaxed [text-shadow:_0_2px_12px_rgba(0,0,0,0.95)]"
             >
               Consultas especializadas, exames e acolhimento em um ambiente projetado para reduzir o estresse do seu animal.
