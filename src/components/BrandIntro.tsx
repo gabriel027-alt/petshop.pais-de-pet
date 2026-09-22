@@ -37,6 +37,15 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
   }, [handleClose]);
 
   useEffect(() => {
+    // No Desktop (>= 640px), desativa imediatamente a Intro 1 para carregar direto e instantaneamente na Intro 2
+    if (typeof window !== "undefined" && window.innerWidth >= 640) {
+      setIsVisible(false);
+      if (onComplete) {
+        onComplete();
+      }
+      return;
+    }
+
     // Autoplay forçado com atributos imperativos no DOM para compatibilidade total com iOS e Android
     const video = videoRef.current;
     if (video) {
@@ -150,7 +159,7 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-[100] w-full h-[100dvh] min-h-[100dvh] bg-[#FAF8F5] flex items-center justify-center overflow-hidden select-none"
+          className="sm:hidden fixed inset-0 z-[100] w-full h-[100dvh] min-h-[100dvh] bg-[#FAF8F5] flex items-center justify-center overflow-hidden select-none"
         >
           {/* BOTÃO DISCRETO 'PULAR' NO CANTO SUPERIOR DIREITO */}
           <motion.button

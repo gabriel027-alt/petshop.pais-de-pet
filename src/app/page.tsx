@@ -556,6 +556,10 @@ export default function PaisDePetBoutiquePortal() {
         {/* OVERLAY ESCURO SUTIL DE FUNDO PARA CONTRASTE E LEGIBILIDADE PERFEITA */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20 pointer-events-none z-10" />
 
+        {/* OVERLAYS SUTIS DE MALHA/GRADIENTE NO FUNDO COM CORES DA MARCA NO DESKTOP */}
+        <div className="hidden sm:block absolute inset-0 bg-gradient-to-tr from-[#84CC16]/10 via-transparent to-[#FF6B00]/10 pointer-events-none z-10" />
+        <div className="hidden sm:block absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#FF2E93]/15 via-transparent to-transparent pointer-events-none z-10" />
+
         {/* BOTÃO DISCRETO DE ÁUDIO NO HERO */}
         <button
           type="button"
@@ -579,92 +583,57 @@ export default function PaisDePetBoutiquePortal() {
         {/* COMPOSIÇÃO CINEMATOGRÁFICA COM TIPOGRAFIA EM TEXT-REVEAL SEQUENCIAL */}
         <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-6">
           
-          <motion.div
-            initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
-            animate={{ 
-              opacity: 1, 
-              y: [0, -3, 0],
-              filter: "blur(0px)" 
-            }}
-            transition={{ 
-              duration: 0.9, 
-              ease: [0.16, 1, 0.3, 1],
-              y: {
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1.0
-              }
-            }}
-            className="space-y-3 sm:space-y-4 w-full"
-          >
+          <div className="space-y-3 sm:space-y-4 w-full">
             {/* Headline Principal: Proposta de Valor / Serviço */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-white tracking-tight leading-[1.15] [text-shadow:_0_3px_20px_rgba(0,0,0,0.95),_0_6px_40px_rgba(0,0,0,0.85)] max-w-3xl mx-auto"
-            >
-              Medicina veterinária humanizada e de ponta a ponta para o seu pet.
-            </motion.h1>
+            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-white tracking-tight leading-[1.15] [text-shadow:_0_3px_20px_rgba(0,0,0,0.95),_0_6px_40px_rgba(0,0,0,0.85)] max-w-3xl sm:max-w-4xl mx-auto">
+              Medicina veterinária{" "}
+              <span className="text-white sm:text-transparent sm:bg-clip-text sm:bg-gradient-to-r sm:from-[#D4FC79] sm:via-[#FFD099] sm:to-[#FFA8D5] sm:filter sm:drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] sm:inline">
+                humanizada e de ponta a ponta
+              </span>{" "}
+              para o seu pet.
+            </h1>
 
             {/* Subtítulo Complementar: Introduz o que vem a seguir */}
-            <motion.p
-              initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.85, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="text-xs sm:text-base md:text-lg font-medium text-white/90 max-w-2xl mx-auto leading-relaxed [text-shadow:_0_2px_12px_rgba(0,0,0,0.95)]"
-            >
+            <p className="text-xs sm:text-base md:text-lg font-medium text-white/90 max-w-2xl mx-auto leading-relaxed [text-shadow:_0_2px_12px_rgba(0,0,0,0.95)]">
               Consultas especializadas, exames e acolhimento em um ambiente projetado para reduzir o estresse do seu animal.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
           {/* GRUPO DE CTAS DE ALTA CONVERSÃO: WHATSAPP PRINCIPAL & AGENDAR TRIAGEM */}
-          <motion.div
-            initial={{ opacity: 0, y: 18, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="pt-2 sm:pt-3 w-full flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
-          >
+          <div className="pt-2 sm:pt-3 w-full flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             {/* 1. BOTÃO PRIMÁRIO DE DESTAQUE ABSOLUTO: WHATSAPP DA DRA. NATALIA */}
-            <motion.a
-              href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de tirar dúvidas e agendar uma consulta para o meu pet na Pais de Pet.")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-              animate={{
-                boxShadow: [
-                  "0 10px 30px rgba(255,46,147,0.55)",
-                  "0 14px 45px rgba(255,46,147,0.85)",
-                  "0 10px 30px rgba(255,46,147,0.55)"
-                ]
-              }}
-              transition={{
-                boxShadow: { duration: 2.8, repeat: Infinity, ease: "easeInOut" }
-              }}
-              className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-gradient-to-r from-[#FF2E93] via-[#FF3B9B] to-[#FF2E93] text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/35 backdrop-blur-md cursor-pointer touch-manipulation group ring-4 ring-[#FF2E93]/20 shadow-xl"
-              aria-label="Conversar com a Dra. Natalia no WhatsApp"
-            >
-              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
-                <img src="/foto-perfil-pais-de-pet.jpg" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
-              </div>
-              <span>Conversar com a Dra. Natália</span>
-              <BrandArrow className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </motion.a>
+            <div className="relative group/btn">
+              {/* Halo sutil com gradiente tricolor da marca no Desktop */}
+              <div className="hidden sm:block absolute -inset-1 rounded-full bg-gradient-to-r from-[#84CC16]/50 via-[#FF6B00]/60 to-[#FF2E93]/70 blur-md opacity-75 group-hover/btn:opacity-100 transition-opacity pointer-events-none" />
+              <a
+                href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de tirar dúvidas e agendar uma consulta para o meu pet na Pais de Pet.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-gradient-to-r from-[#FF2E93] via-[#FF3B9B] to-[#FF2E93] hover:scale-105 active:scale-95 text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/35 backdrop-blur-md cursor-pointer touch-manipulation group ring-4 ring-[#FF2E93]/20 sm:ring-2 sm:ring-white/40 shadow-xl transition-transform"
+                aria-label="Conversar com a Dra. Natalia no WhatsApp"
+              >
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
+                  <img src="/foto-perfil-pais-de-pet.jpg" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
+                </div>
+                <span>Conversar com a Dra. Natália</span>
+                <BrandArrow className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </a>
+            </div>
 
             {/* 2. BOTÃO SECUNDÁRIO DE ALTA CONVERSÃO NO DESKTOP: AGENDAR TRIAGEM */}
-            <motion.a
-              href="#triagem"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-              className="hidden sm:inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 sm:py-4.5 rounded-full bg-[#84CC16] hover:bg-[#74b413] text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/30 backdrop-blur-md shadow-lg shadow-[#84CC16]/30 cursor-pointer touch-manipulation transition-colors"
-              aria-label="Agendar Triagem Pré-Clínica"
-            >
-              <BrandPaw className="w-4 h-4 text-white shrink-0" />
-              <span>Agendar Triagem</span>
-            </motion.a>
-          </motion.div>
+            <div className="relative group/triagem hidden sm:inline-flex">
+              {/* Halo sutil com gradiente verde/laranja da marca no Desktop */}
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#BEF264]/60 via-[#84CC16]/70 to-[#FF6B00]/40 blur-md opacity-70 group-hover/triagem:opacity-100 transition-opacity pointer-events-none" />
+              <a
+                href="#triagem"
+                className="relative inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 sm:py-4.5 rounded-full bg-gradient-to-r from-[#84CC16] via-[#93DD19] to-[#84CC16] hover:brightness-105 hover:scale-105 active:scale-95 text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/40 backdrop-blur-md shadow-lg shadow-[#84CC16]/40 ring-2 ring-[#BEF264]/40 cursor-pointer touch-manipulation transition-all"
+                aria-label="Agendar Triagem Pré-Clínica"
+              >
+                <BrandPaw className="w-4 h-4 text-white shrink-0" />
+                <span>Agendar Triagem</span>
+              </a>
+            </div>
+          </div>
 
         </div>
 
