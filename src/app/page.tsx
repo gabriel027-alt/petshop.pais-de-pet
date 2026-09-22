@@ -158,13 +158,13 @@ function BoutiqueVideoPlayer({
         <button
           type="button"
           onClick={toggleAudio}
-          className={`absolute ${audioPosition === "bottom-right" ? "bottom-4 right-4" : "top-4 right-4"} z-20 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/92 hover:bg-white text-[#2C1820] shadow-md backdrop-blur-md transition-all active:scale-95 text-xs font-mono font-bold tracking-wide`}
+          className={`absolute ${audioPosition === "bottom-right" ? "bottom-4 right-4" : "top-4 right-4"} z-20 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 hover:bg-black/60 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 text-xs font-mono font-medium tracking-wide shadow-sm`}
           aria-label={isMuted ? "Ativar som do vídeo" : "Silenciar áudio do vídeo"}
         >
           {isMuted ? (
             <>
-              <BrandSoundOff className="w-3.5 h-3.5 text-[#FF2E93]" />
-              <span className="text-[10px] uppercase font-bold text-[#2C1820]">Ativar Som</span>
+              <BrandSoundOff className="w-3.5 h-3.5 text-white/80" />
+              <span className="text-[10px] uppercase font-bold text-white/90">Ativar Som</span>
             </>
           ) : (
             <>
@@ -522,7 +522,7 @@ export default function PaisDePetBoutiquePortal() {
       <section className="relative min-h-[90vh] lg:min-h-screen w-full flex flex-col justify-center pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 overflow-hidden bg-[#FAF8F5]">
         
         <div className="max-w-7xl mx-auto w-full relative z-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 xl:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
             
             {/* 1. CABEÇALHO, TÍTULO E COPY (DESKTOP: LINHA 1 ESQUERDA / MOBILE: TOPO) */}
             <motion.div
@@ -531,10 +531,10 @@ export default function PaisDePetBoutiquePortal() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="lg:col-span-7 order-1 flex flex-col text-left space-y-4 sm:space-y-5"
             >
-              {/* Localização e Responsabilidade Técnica */}
+              {/* Localização e Responsabilidade Técnica (Sem bolinhas pulsantes) */}
               <div className="flex flex-wrap items-center gap-2">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#2C1820]/10 shadow-2xs">
-                  <div className="w-2 h-2 rounded-full bg-[#84CC16] animate-pulse" />
+                  <BrandCross className="w-3.5 h-3.5 text-[#84CC16] shrink-0" />
                   <span className="text-[11px] sm:text-xs font-mono font-bold text-[#2C1820] uppercase tracking-wider">
                     Sagrada Família • Rua Silvestre Ferraz, 27 • BH
                   </span>
@@ -575,51 +575,45 @@ export default function PaisDePetBoutiquePortal() {
               </p>
             </motion.div>
 
-            {/* 2. VÍDEO INTERATIVO (DESKTOP: COLUNA DIREITA / MOBILE: CENTRALIZADO COM ÁUDIO INTERATIVO) */}
+            {/* 2. VÍDEO CINEMATOGRÁFICO PURO & SEM CAIXAS (DESKTOP: COLUNA DIREITA / MOBILE: NATIVO COM MARCA) */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.85, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-5 order-2 lg:row-span-2 flex justify-center items-center w-full my-2 lg:my-0"
+              className="lg:col-span-5 order-2 lg:row-span-2 flex justify-center items-center w-full my-1 lg:my-0"
             >
-              <div className="w-full max-w-[290px] sm:max-w-[340px] lg:max-w-[400px] rounded-[2.2rem] sm:rounded-[2.4rem] bg-white p-2.5 sm:p-3 shadow-[0_25px_60px_-15px_rgba(44,24,32,0.16)] border border-[#2C1820]/10 relative group">
+              <div className="relative w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[390px] aspect-[9/16] rounded-[2.2rem] sm:rounded-[2.6rem] overflow-hidden shadow-[0_20px_50px_rgba(44,24,32,0.12)] border border-[#2C1820]/8 bg-[#FAF8F5] select-none">
                 
-                {/* Indicador Superior do Vídeo Interativo */}
-                <div className="absolute top-4 sm:top-5 left-4 sm:left-5 z-20 inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[#2C1820]/80 backdrop-blur-md text-white border border-white/20 shadow-md pointer-events-none">
-                  <span className="w-2 h-2 rounded-full bg-[#84CC16] animate-pulse" />
-                  <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider">Vídeo Interativo</span>
-                </div>
-
-                {/* Player Vertical em Proporção 9:16 com Som Opcional e Loop Suave */}
+                {/* Vídeo institucional 720x1280 rodando em loop suave e contínuo */}
                 <BoutiqueVideoPlayer
                   src="/intro-interativa.mp4"
-                  aspectRatio="aspect-[9/16]"
-                  rounded="rounded-[1.7rem] sm:rounded-[2rem]"
+                  aspectRatio="aspect-auto"
+                  rounded="rounded-none"
                   objectFit="object-cover"
-                  className="w-full shadow-inner"
+                  className="w-full h-full absolute inset-0"
                   audioPosition="top-right"
                 />
 
-                {/* Assinatura de Rodapé do Player */}
-                <div className="pt-2.5 pb-1 px-1.5 sm:px-2 flex items-center justify-between gap-2 border-t border-[#2C1820]/6 mt-1.5 sm:mt-2">
-                  <div className="flex items-center gap-2 text-left min-w-0">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden p-[1px] bg-gradient-to-tr from-[#FF2E93] to-[#84CC16] shrink-0">
-                      <img src="/foto-perfil-pais-de-pet.jpg" alt="Dra. Natalia" className="w-full h-full object-cover rounded-full" />
-                    </div>
-                    <div className="min-w-0">
-                      <span className="font-black text-[11px] sm:text-xs text-[#2C1820] block leading-tight truncate">Dra. Natalia Possas</span>
-                      <span className="text-[9px] sm:text-[10px] font-mono text-[#FF6B00] font-bold block truncate">CRMV-MG 20572</span>
-                    </div>
+                {/* Sutil vinheta cinematográfica inferior para contraste da tipografia nativa */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none z-10" />
+
+                {/* Tipografia Nativa sobre o Vídeo no Mobile (Estilo Comercial de Luxo) */}
+                <div className="lg:hidden absolute inset-x-0 bottom-4 pb-2 z-20 flex flex-col items-center px-4 text-center pointer-events-none space-y-2">
+                  <div className="w-13 h-13 min-w-[52px] min-h-[52px] max-w-[52px] max-h-[52px] rounded-full overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.6)] border-2 border-white/45 shrink-0">
+                    <img
+                      src="/foto-perfil-pais-de-pet.jpg"
+                      alt="Pais de Pet"
+                      className="w-full h-full object-cover rounded-full"
+                    />
                   </div>
-                  <a
-                    href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de conversar com você sobre o atendimento do meu pet.")}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[#84CC16]/15 hover:bg-[#84CC16]/25 text-[#2C1820] text-[10px] sm:text-[11px] font-black uppercase tracking-wider transition-colors active:scale-95 shrink-0"
-                  >
-                    <span>Agendar</span>
-                    <BrandArrow className="w-3 h-3 text-[#84CC16]" />
-                  </a>
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] font-sans font-bold text-white/95 uppercase tracking-widest block [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
+                      Pais de Pet • Clínica Boutique
+                    </span>
+                    <span className="text-[10px] font-mono text-white/80 uppercase tracking-wider block [text-shadow:_0_2px_6px_rgba(0,0,0,0.95)]">
+                      Dra. Natalia Possas • CRMV-MG 20572
+                    </span>
+                  </div>
                 </div>
 
               </div>

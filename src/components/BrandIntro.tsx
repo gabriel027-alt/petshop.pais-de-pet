@@ -168,18 +168,6 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
 
             </div>
 
-            {/* BARRA MINIMALISTA DE PROGRESSO DE 10 SEGUNDOS NA BASE DA COLUNA */}
-            <div className="absolute bottom-0 inset-x-0 pb-[env(safe-area-inset-bottom,0px)] z-30">
-              <div className="h-[2px] w-full bg-white/20 overflow-hidden">
-                <motion.div
-                  initial={{ width: "0%" }}
-                  animate={{ width: isPlaying ? "100%" : "0%" }}
-                  transition={{ duration: 10, ease: "linear" }}
-                  className="h-full bg-gradient-to-r from-[#FF2E93] to-[#84CC16]"
-                />
-              </div>
-            </div>
-
           </div>
         </motion.div>
       )}
