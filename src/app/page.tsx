@@ -263,8 +263,26 @@ export default function PaisDePetBoutiquePortal() {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [mapInteractive, setMapInteractive] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
+
+  // Inicialização do vídeo da Hero saltando os 1.8s estáticos
+  useEffect(() => {
+    if (heroVideoRef.current) {
+      const vid = heroVideoRef.current;
+      const handleMetadata = () => {
+        if (vid.currentTime < 1.8) {
+          vid.currentTime = 1.8;
+        }
+      };
+      vid.addEventListener("loadedmetadata", handleMetadata);
+      if (vid.readyState >= 1 && vid.currentTime < 1.8) {
+        vid.currentTime = 1.8;
+      }
+      return () => vid.removeEventListener("loadedmetadata", handleMetadata);
+    }
+  }, []);
 
   // Monitoramento Resiliente de Scroll para o Botão Flutuante
   useEffect(() => {
@@ -418,9 +436,10 @@ export default function PaisDePetBoutiquePortal() {
       {/* MENU DE NAVEGAÇÃO LATERAL (DRAWER SUMÁRIO EXPANSÍVEL)                     */}
       {/* ========================================================================= */}
       <div
+        id="drawer-backdrop"
         onClick={() => setSideMenuOpen(false)}
         hidden={!sideMenuOpen}
-        inert={!sideMenuOpen}
+        inert={(!sideMenuOpen ? ("" as any) : undefined)}
         className={`fixed inset-0 z-50 bg-[#2C1820]/30 backdrop-blur-xs transition-opacity duration-300 ${
           sideMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
@@ -431,7 +450,7 @@ export default function PaisDePetBoutiquePortal() {
         aria-modal="true"
         aria-label="Sumário da página"
         hidden={!sideMenuOpen}
-        inert={!sideMenuOpen}
+        inert={(!sideMenuOpen ? ("" as any) : undefined)}
         className={`fixed top-0 right-0 bottom-0 w-full sm:w-[440px] z-50 bg-[#FAF8F5] border-l border-[#2C1820]/10 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.25rem,env(safe-area-inset-bottom))] px-6 sm:px-10 overflow-y-auto flex flex-col justify-between shadow-2xl transition-transform duration-300 ease-out ${
           sideMenuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"
         }`}
@@ -530,19 +549,29 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 2. HERO PRINCIPAL COM BACKGROUND VIDEO REAL FULL-BLEED (EDGE-TO-EDGE)     */}
       {/* ========================================================================= */}
-      <section className="relative w-full sm:w-[100vw] h-[100dvh] min-h-[100dvh] overflow-hidden flex flex-col justify-end items-center pb-12 sm:pb-16 select-none bg-black">
+      <section className="relative w-full sm:w-[100vw] h-[100svh] min-h-[100svh] overflow-hidden flex flex-col justify-end items-center pb-12 sm:pb-16 select-none bg-black">
         
         {/* VÍDEO DO GOLDEN RETRIEVER: LOOP LIMPO, FLUIDO E FULL-BLEED REAL (100VW x 100VH) */}
         <video
           ref={heroVideoRef}
-          src="/intro-interativa-4k.mp4"
+          src="/intro-interativa-4k.mp4#t=1.8"
           poster="/intro-interativa-poster.jpg"
           autoPlay
           muted={heroMuted}
           loop
           playsInline
           preload="metadata"
-          className="absolute inset-0 w-full h-full sm:w-[100vw] sm:h-[100vh] sm:max-w-none sm:m-0 sm:p-0 object-cover object-center sm:object-[center_28%] z-0 pointer-events-none bg-black"
+          onLoadedMetadata={(e) => {
+            if (e.currentTarget.currentTime < 1.8) {
+              e.currentTarget.currentTime = 1.8;
+            }
+          }}
+          onTimeUpdate={(e) => {
+            if (e.currentTarget.currentTime < 1.8 && !e.currentTarget.seeking) {
+              e.currentTarget.currentTime = 1.8;
+            }
+          }}
+          className="absolute inset-0 w-full h-full sm:w-[100vw] sm:h-[100vh] sm:max-w-none sm:m-0 sm:p-0 object-cover object-center sm:object-[center_28%] z-0 pointer-events-none bg-black will-change-transform"
           style={{ objectFit: "cover" }}
         />
 
@@ -554,7 +583,7 @@ export default function PaisDePetBoutiquePortal() {
           type="button"
           onClick={toggleHeroAudio}
           aria-pressed={!heroMuted}
-          className="absolute top-20 sm:top-24 right-4 sm:right-8 z-30 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 hover:bg-black/70 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 text-xs font-mono font-medium tracking-wide shadow-md cursor-pointer touch-manipulation"
+          className="absolute top-[max(5rem,calc(env(safe-area-inset-top)+4.25rem))] sm:top-24 right-4 sm:right-8 z-30 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 hover:bg-black/70 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 text-xs font-mono font-medium tracking-wide shadow-md cursor-pointer touch-manipulation"
           aria-label={heroMuted ? "Ativar som deste vídeo" : "Silenciar som deste vídeo"}
         >
           {heroMuted ? (
@@ -1087,7 +1116,7 @@ export default function PaisDePetBoutiquePortal() {
                 className="p-5 rounded-3xl bg-white border border-[#2C1820]/10 text-left space-y-4 hover:border-[#FF6B00]/40 transition-all shadow-xs flex flex-col justify-between"
               >
                 <div className="space-y-3">
-                  <div className="rounded-2xl overflow-hidden aspect-square bg-[#FAF8F5] relative">
+                  <div className="rounded-2xl overflow-hidden aspect-square min-h-[180px] sm:min-h-[220px] bg-[#FAF8F5] relative">
                     <img
                       src={prod.img}
                       alt={prod.name}
@@ -1182,12 +1211,12 @@ export default function PaisDePetBoutiquePortal() {
                     className="shadow-[0_15px_35px_rgba(44,24,32,0.07)]"
                   />
                 ) : (
-                  <div className="relative aspect-[9/16] rounded-[2rem] overflow-hidden bg-[#FAF8F5] shadow-[0_15px_35px_rgba(44,24,32,0.07)] select-none group">
+                  <div className="relative aspect-[9/16] w-full h-full rounded-[2rem] overflow-hidden bg-[#FAF8F5] shadow-[0_15px_35px_rgba(44,24,32,0.07)] select-none group">
                     <img
                       src={item.src}
                       alt={item.alt}
                       loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                   </div>
                 )}
@@ -1243,15 +1272,27 @@ export default function PaisDePetBoutiquePortal() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
-            {/* GOOGLE MAPS INTERATIVO EMBED */}
-            <motion.div {...fadeInLeft} className="lg:col-span-7 rounded-[2rem] overflow-hidden border border-[#2C1820]/15 shadow-md h-[400px] lg:h-auto min-h-[380px] bg-white relative">
+            {/* GOOGLE MAPS INTERATIVO EMBED COM PREVENÇÃO DE SCROLL TRAP */}
+            <motion.div
+              {...fadeInLeft}
+              onClick={() => setMapInteractive(true)}
+              onMouseLeave={() => setMapInteractive(false)}
+              className="lg:col-span-7 rounded-[2rem] overflow-hidden border border-[#2C1820]/15 shadow-md h-[400px] lg:h-auto min-h-[380px] bg-white relative group cursor-pointer"
+            >
               <iframe
                 title="Localização Pais de Pet no Google Maps"
                 src="https://maps.google.com/maps?q=Rua+Silvestre+Ferraz,+27+-+Sagrada+Fam%C3%ADlia,+Belo+Horizonte+-+MG&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                className="w-full h-full border-0"
+                className={`w-full h-full border-0 ${mapInteractive ? "pointer-events-auto" : "pointer-events-none"}`}
                 loading="lazy"
                 allowFullScreen
               />
+              {!mapInteractive && (
+                <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/5 backdrop-blur-[0.5px] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  <span className="px-4 py-2 rounded-full bg-white/95 text-[#2C1820] text-xs font-mono font-bold shadow-md">
+                    Toque ou clique para interagir com o mapa
+                  </span>
+                </div>
+              )}
             </motion.div>
 
             {/* CARD DE AVALIAÇÕES E NOTA OFICIAL 4.9 GOOGLE */}
@@ -1353,7 +1394,7 @@ export default function PaisDePetBoutiquePortal() {
             
             {/* BARRA DE PROGRESSO EM GRADIENTE DA MARCA */}
             <div className="space-y-2">
-              <div className="flex items-center justify-between text-xs font-mono font-bold text-[#2C1820]/70">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs font-mono font-bold text-[#2C1820]/70">
                 <span>Passo {triageStep} de 4 • Conclusão em menos de 1 minuto</span>
                 <span>
                   {triageStep === 1 && "Espécie & Idade"}
@@ -1730,7 +1771,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 12. RODAPÉ DE LUXO EM GRADIENTE RADIANTE DA MARCA (ZERO PRETO / ZERO CINZA) */}
       {/* ========================================================================= */}
-      <footer id="contato" className="bg-white border-t border-[#2C1820]/10 pt-20 pb-16 px-6 sm:px-12 lg:px-16 text-left">
+      <footer id="contato" className="bg-white border-t border-[#2C1820]/10 pt-20 pb-28 sm:pb-16 px-6 sm:px-12 lg:px-16 text-left">
         <div className="max-w-7xl mx-auto space-y-16">
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-[#2C1820]/10">
@@ -1791,7 +1832,7 @@ export default function PaisDePetBoutiquePortal() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-sm transition-all text-center min-h-[44px]"
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-95 text-center min-h-[44px]"
                 >
                   <img src="/foto-perfil-pais-de-pet.jpg" alt="Logo" className="w-5 h-5 rounded-full object-cover" />
                   <span>WhatsApp Oficial</span>
@@ -1800,7 +1841,7 @@ export default function PaisDePetBoutiquePortal() {
                   href={clinicMetadata.contacts.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-[#FAF8F5] hover:bg-white text-[#2C1820] font-bold text-xs uppercase tracking-wider border border-[#2C1820]/15 transition-all text-center min-h-[44px]"
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-transparent hover:bg-white text-[#2C1820] hover:text-[#FF2E93] font-bold text-xs uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#FF2E93] transition-all text-center min-h-[44px]"
                 >
                   <BrandCatEar className="w-4 h-4 text-[#FF2E93]" />
                   <span>Instagram @petshoppaisdepet</span>
