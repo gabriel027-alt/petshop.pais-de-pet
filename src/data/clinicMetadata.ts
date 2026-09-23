@@ -28,6 +28,8 @@ export interface ClinicMetadata {
   contacts: {
     whatsappUrl: string;
     whatsappDisplay: string;
+    phone: string;
+    phoneDisplay: string;
     instagramUrl: string;
     instagramHandle: string;
   };
@@ -73,6 +75,8 @@ export const clinicMetadata: ClinicMetadata = {
   contacts: {
     whatsappUrl: "https://wa.link/2ooc5p",
     whatsappDisplay: "wa.link/2ooc5p",
+    phone: "+5531983380139",
+    phoneDisplay: "(31) 98338-0139",
     instagramUrl: "https://instagram.com/petshoppaisdepet",
     instagramHandle: "@petshoppaisdepet"
   },

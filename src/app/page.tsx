@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { clinicMetadata } from "@/data/clinicMetadata";
 import { faqData } from "@/data/faqData";
-import BrandIntro from "@/components/BrandIntro";
 
 // =============================================================================
 // ELEMENTOS VISUAIS PROPRIETÁRIOS DA MARCA (ZERO ÍCONES GENÉRICOS DE TERCEIROS)
@@ -12,7 +11,7 @@ import BrandIntro from "@/components/BrandIntro";
 
 function BrandPaw({ className = "w-5 h-5", fill = "currentColor" }: { className?: string; fill?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill={fill} className={className} xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill={fill} className={className} xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <ellipse cx="12" cy="15.5" rx="4.5" ry="4" />
       <ellipse cx="6.5" cy="10" rx="2" ry="2.8" transform="rotate(-15 6.5 10)" />
       <ellipse cx="17.5" cy="10" rx="2" ry="2.8" transform="rotate(15 17.5 10)" />
@@ -24,7 +23,7 @@ function BrandPaw({ className = "w-5 h-5", fill = "currentColor" }: { className?
 
 function BrandCatEar({ className = "w-5 h-5", stroke = "currentColor" }: { className?: string; stroke?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <svg viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M4 18C4 18 5 12 7 9C8.5 6.8 10 5 10 5C10 5 11 10 12 11C13 10 14 5 14 5C14 5 15.5 6.8 17 9C19 12 20 18 20 18" />
     </svg>
   );
@@ -32,7 +31,7 @@ function BrandCatEar({ className = "w-5 h-5", stroke = "currentColor" }: { class
 
 function BrandArrow({ className = "w-4 h-4" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M3 13L13 3M13 3H6M13 3V10" />
     </svg>
   );
@@ -40,7 +39,7 @@ function BrandArrow({ className = "w-4 h-4" }: { className?: string }) {
 
 function BrandCheck({ className = "w-4 h-4" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M3 8.5L6.5 12L13 4.5" />
     </svg>
   );
@@ -48,7 +47,7 @@ function BrandCheck({ className = "w-4 h-4" }: { className?: string }) {
 
 function BrandMenu({ className = "w-6 h-6" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={className}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={className} aria-hidden="true">
       <path d="M4 7H20M4 12H15M4 17H20" />
     </svg>
   );
@@ -56,7 +55,7 @@ function BrandMenu({ className = "w-6 h-6" }: { className?: string }) {
 
 function BrandClose({ className = "w-6 h-6" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={className}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={className} aria-hidden="true">
       <path d="M6 6L18 18M6 18L18 6" />
     </svg>
   );
@@ -64,7 +63,7 @@ function BrandClose({ className = "w-6 h-6" }: { className?: string }) {
 
 function BrandCross({ className = "w-3.5 h-3.5" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 16 16" fill="currentColor" className={className}>
+    <svg viewBox="0 0 16 16" fill="currentColor" className={className} aria-hidden="true">
       <path d="M6.5 2H9.5V6.5H14V9.5H9.5V14H6.5V9.5H2V6.5H6.5V2Z" />
     </svg>
   );
@@ -72,7 +71,7 @@ function BrandCross({ className = "w-3.5 h-3.5" }: { className?: string }) {
 
 function BrandChevron({ className = "w-4 h-4" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M4 6L8 10L12 6" />
     </svg>
   );
@@ -80,7 +79,7 @@ function BrandChevron({ className = "w-4 h-4" }: { className?: string }) {
 
 function BrandStar({ className = "w-4 h-4", fill = "currentColor" }: { className?: string; fill?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill={fill} className={className} xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill={fill} className={className} xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
     </svg>
   );
@@ -88,7 +87,7 @@ function BrandStar({ className = "w-4 h-4", fill = "currentColor" }: { className
 
 function BrandSoundOff({ className = "w-4 h-4" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
       <line x1="23" y1="9" x2="17" y2="15" />
       <line x1="17" y1="9" x2="23" y2="15" />
@@ -98,7 +97,7 @@ function BrandSoundOff({ className = "w-4 h-4" }: { className?: string }) {
 
 function BrandSoundOn({ className = "w-4 h-4" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
       <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
     </svg>
@@ -113,7 +112,7 @@ function BoutiqueVideoPlayer({
   src,
   aspectRatio = "aspect-[9/16]",
   className = "",
-  rounded = "rounded-[2.2rem]",
+  rounded = "rounded-3xl",
   objectFit = "object-cover",
   showAudioButton = true,
   audioPosition = "top-right"
@@ -159,7 +158,7 @@ function BoutiqueVideoPlayer({
           type="button"
           onClick={toggleAudio}
           aria-pressed={!isMuted}
-          className={`absolute ${audioPosition === "bottom-right" ? "bottom-4 right-4" : "top-4 right-4"} z-20 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 hover:bg-black/60 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 text-xs font-mono font-medium tracking-wide shadow-sm`}
+          className={`absolute ${audioPosition === "bottom-right" ? "bottom-4 right-4" : "top-4 right-4"} z-20 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 hover:bg-black/60 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 text-xs font-mono font-medium tracking-wide shadow-sm cursor-pointer`}
           aria-label={isMuted ? "Ativar som deste vídeo" : "Silenciar som deste vídeo"}
         >
           {isMuted ? (
@@ -189,13 +188,11 @@ type TestimonialMedia =
   | { type: "image"; id: string; src: string; alt: string };
 
 const hybridTestimonials: TestimonialMedia[] = [
-  // 1º: Vídeo de destaque principal (antigo 3º na sequência, exclusivo para esta seção)
   {
     type: "video",
     id: "depoimento-destaque-lhasa",
     src: "/não-tem-com-quem-deixar-paisdepet.mp4"
   },
-  // Demais vídeos de depoimento canino (sem duplicata e sem o gatinho)
   {
     type: "video",
     id: "depoimento-golden",
@@ -206,36 +203,35 @@ const hybridTestimonials: TestimonialMedia[] = [
     id: "depoimento-homecare",
     src: "/depoimento-paisdepet4.mp4"
   },
-  // Fotos reais de relatos e avaliações salvas na pasta public
   {
     type: "image",
     id: "foto-depoimento-1",
     src: "/depoimento-paisdepet1.jpeg",
-    alt: "Relato real de tutor Pais de Pet"
+    alt: "Depoimento real de tutor elogiando o carinho e paciência no atendimento da Dra. Natalia"
   },
   {
     type: "image",
     id: "foto-depoimento-2",
     src: "/depoimento-paisdepet2.jpg",
-    alt: "Relato real de tutor Pais de Pet"
+    alt: "Avaliação no Google sobre banho tranquilo com toalhas 100% descartáveis na Pais de Pet"
   },
   {
     type: "image",
     id: "foto-depoimento-3",
     src: "/depoimento-paisdepet3.jpg",
-    alt: "Relato real de tutor Pais de Pet"
+    alt: "Relato de cliente destacando o acolhimento sem estresse e pontualidade na consulta clínica"
   },
   {
     type: "image",
     id: "foto-depoimento-5",
     src: "/depoimento-paisdepet5.jpg",
-    alt: "Relato real de tutor Pais de Pet"
+    alt: "Depoimento real com foto de paciente canino tranquilo e feliz após procedimento veterinário"
   },
   {
     type: "image",
     id: "foto-depoimento-6",
     src: "/depoimento-paisdepet6.jpg",
-    alt: "Relato real de tutor Pais de Pet"
+    alt: "Avaliação 5 estrelas no Google recomendando o atendimento veterinário humanizado da Pais de Pet"
   }
 ];
 
@@ -259,20 +255,9 @@ export default function PaisDePetBoutiquePortal() {
   };
 
   // Animação de Scroll e Paralaxe Profissional
-  const { scrollY, scrollYProgress } = useScroll();
+  const { scrollY } = useScroll();
   const heroVideoY = useTransform(scrollY, [0, 800], [0, 100]);
   const heroScale = useTransform(scrollY, [0, 800], [1.0, 1.05]);
-
-  // Sistema de Patinhas Flutuantes em SVG com Paralaxe e Fade
-  const pawLeft1Y = useTransform(scrollYProgress, [0, 1], [0, 480]);
-  const pawLeft2Y = useTransform(scrollYProgress, [0, 1], [80, -360]);
-  const pawLeft3Y = useTransform(scrollYProgress, [0, 1], [0, 320]);
-  const pawRight1Y = useTransform(scrollYProgress, [0, 1], [60, -420]);
-  const pawRight2Y = useTransform(scrollYProgress, [0, 1], [0, 520]);
-  const pawRight3Y = useTransform(scrollYProgress, [0, 1], [140, -280]);
-
-  const pawRotate1 = useTransform(scrollYProgress, [0, 1], [-20, 25]);
-  const pawRotate2 = useTransform(scrollYProgress, [0, 1], [15, -30]);
 
   // Estados de Interface
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
@@ -307,6 +292,16 @@ export default function PaisDePetBoutiquePortal() {
     }
   };
 
+  const handleCarouselKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      scrollCarousel("left");
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      scrollCarousel("right");
+    }
+  };
+
   // Estados da Triagem Pré-Clínica Inteligente
   const [triageStep, setTriageStep] = useState<1 | 2 | 3 | 4>(1);
   const [petSpecies, setPetSpecies] = useState<"Cão" | "Gato">("Cão");
@@ -337,58 +332,8 @@ export default function PaisDePetBoutiquePortal() {
   };
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#FAF8F5] text-[#2C1820] font-sans selection:bg-[#84CC16] selection:text-[#2C1820] relative overflow-x-hidden">
+    <div ref={containerRef} className="min-h-screen bg-[#FAF8F5] text-[#2C1820] font-sans selection:bg-[#84CC16]/30 selection:text-[#2C1820] relative overflow-x-hidden flex flex-col">
       
-      {/* ========================================================================= */}
-      {/* VÍDEO INSTITUCIONAL DE ABERTURA (10S • CINEMATOGRÁFICO DE ALTO LUXO)      */}
-      {/* ========================================================================= */}
-      <BrandIntro />
-
-      {/* ========================================================================= */}
-      {/* SISTEMA DE PATINHAS E ORELHINHAS FLUTUANTES COM PARALAXE (DESKTOP & MOBILE) */}
-      {/* ========================================================================= */}
-      <div className="fixed inset-y-0 left-1 sm:left-4 lg:left-8 z-10 pointer-events-none flex flex-col justify-around py-20 sm:py-32 select-none">
-        <motion.div
-          style={{ y: pawLeft1Y, rotate: pawRotate1 }}
-          className="text-[#FF2E93] opacity-20 sm:opacity-25"
-        >
-          <BrandPaw className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10" />
-        </motion.div>
-        <motion.div
-          style={{ y: pawLeft2Y, rotate: pawRotate2 }}
-          className="text-[#84CC16] opacity-15 sm:opacity-20"
-        >
-          <BrandCatEar className="w-7 h-7 sm:w-9 sm:h-9 lg:w-11 lg:h-11" />
-        </motion.div>
-        <motion.div
-          style={{ y: pawLeft3Y, rotate: pawRotate1 }}
-          className="text-[#FF6B00] opacity-20 sm:opacity-25"
-        >
-          <BrandPaw className="w-5 h-5 sm:w-7 sm:h-7 lg:w-9 lg:h-9" />
-        </motion.div>
-      </div>
-
-      <div className="fixed inset-y-0 right-1 sm:right-4 lg:right-8 z-10 pointer-events-none flex flex-col justify-around py-24 sm:py-36 select-none">
-        <motion.div
-          style={{ y: pawRight1Y, rotate: pawRotate2 }}
-          className="text-[#84CC16] opacity-20 sm:opacity-25"
-        >
-          <BrandCatEar className="w-7 h-7 sm:w-9 sm:h-9 lg:w-11 lg:h-11" />
-        </motion.div>
-        <motion.div
-          style={{ y: pawRight2Y, rotate: pawRotate1 }}
-          className="text-[#FF2E93] opacity-15 sm:opacity-20"
-        >
-          <BrandPaw className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10" />
-        </motion.div>
-        <motion.div
-          style={{ y: pawRight3Y, rotate: pawRotate2 }}
-          className="text-[#FF6B00] opacity-20 sm:opacity-25"
-        >
-          <BrandPaw className="w-5 h-5 sm:w-7 sm:h-7 lg:w-9 lg:h-9" />
-        </motion.div>
-      </div>
-
       {/* ========================================================================= */}
       {/* 1. CABEÇALHO BOUTIQUE: DESIGN MODERNO, EQUILIBRADO E SEM SOBREPOSIÇÃO     */}
       {/* ========================================================================= */}
@@ -396,7 +341,7 @@ export default function PaisDePetBoutiquePortal() {
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 h-16 sm:h-20 lg:h-24 flex items-center justify-between gap-4">
           
           {/* Assinatura Oficial da Clínica (Logotipo Nítido e Título Bem Dimensionado) */}
-          <a href="#" className="flex items-center gap-3 group text-left shrink-0 max-w-[65%] sm:max-w-none" aria-label="Pais de Pet - Início">
+          <a href="/" className="flex items-center gap-3 group text-left shrink-0 max-w-[65%] sm:max-w-none" aria-current="page" aria-label="Pais de Pet - Página Inicial">
             <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full p-[2px] bg-gradient-to-tr from-[#FF2E93] via-[#FF6B00] to-[#84CC16] shadow-xs group-hover:scale-105 transition-transform shrink-0">
               <img
                 src="/foto-perfil-pais-de-pet.jpg"
@@ -415,18 +360,18 @@ export default function PaisDePetBoutiquePortal() {
           </a>
 
           {/* Navegação Desktop Simétrica e Generosamente Espaçada */}
-          <nav className="hidden lg:flex items-center justify-center gap-2 xl:gap-4 text-xs font-bold uppercase tracking-wider text-[#2C1820]/80">
-            <a href="#filosofia" className="px-3.5 py-2 rounded-full hover:bg-white hover:text-[#FF2E93] transition-all">
+          <nav className="hidden lg:flex items-center justify-center gap-2 xl:gap-4 text-xs font-bold uppercase tracking-wider text-[#2C1820]/80" aria-label="Navegação Principal">
+            <a href="#refugio" className="px-3.5 py-2 rounded-full hover:bg-white hover:text-[#FF2E93] transition-all">
               O Refúgio
             </a>
             <a href="#consultorio" className="px-3.5 py-2 rounded-full hover:bg-white hover:text-[#84CC16] transition-all">
-              Medicina Preventiva
+              Prevenção
             </a>
             <a href="#galeria-videos" className="px-3.5 py-2 rounded-full hover:bg-white hover:text-[#FF2E93] transition-all">
-              Depoimentos Reais
+              Depoimentos
             </a>
             <a href="#localizacao" className="px-3.5 py-2 rounded-full hover:bg-white hover:text-[#FF6B00] transition-all">
-              Localização & Google 4.9
+              Localização
             </a>
             <a href="#triagem" className="px-3.5 py-2 rounded-full hover:bg-white hover:text-[#84CC16] transition-all">
               Triagem
@@ -439,20 +384,23 @@ export default function PaisDePetBoutiquePortal() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95 group touch-manipulation"
+              className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95 group touch-manipulation min-h-[44px]"
               aria-label="Falar com a Dra. Natalia no WhatsApp"
             >
               <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
                 <img src="/foto-perfil-pais-de-pet.jpg" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
               </div>
-              <span className="hidden xs:inline sm:inline">WhatsApp</span>
+              <span className="inline">WhatsApp</span>
               <BrandArrow className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
 
             <button
               type="button"
               onClick={() => setSideMenuOpen(!sideMenuOpen)}
-              className="p-2.5 sm:p-3 rounded-2xl bg-white text-[#2C1820] border border-[#2C1820]/15 hover:border-[#FF2E93] transition-all shadow-2xs active:scale-95 cursor-pointer touch-manipulation flex items-center gap-1.5"
+              aria-haspopup="dialog"
+              aria-expanded={sideMenuOpen}
+              aria-controls="drawer-sumario"
+              className="p-2.5 sm:p-3 rounded-2xl bg-white text-[#2C1820] border border-[#2C1820]/15 hover:border-[#FF2E93] transition-all shadow-2xs active:scale-95 cursor-pointer touch-manipulation flex items-center gap-1.5 min-h-[44px]"
               aria-label="Abrir Menu de Navegação e Sumário"
             >
               {sideMenuOpen ? <BrandClose className="w-5 h-5 text-[#FF2E93]" /> : <BrandMenu className="w-5 h-5 text-[#2C1820]" />}
@@ -477,6 +425,10 @@ export default function PaisDePetBoutiquePortal() {
               className="fixed inset-0 z-50 bg-[#2C1820]/30 backdrop-blur-xs"
             />
             <motion.aside
+              id="drawer-sumario"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Sumário da página"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -497,7 +449,7 @@ export default function PaisDePetBoutiquePortal() {
                   <button
                     type="button"
                     onClick={() => setSideMenuOpen(false)}
-                    className="p-2.5 rounded-2xl bg-white border border-[#2C1820]/15 text-[#2C1820] hover:bg-[#FAF8F5] transition-colors active:scale-95 cursor-pointer touch-manipulation"
+                    className="p-2.5 rounded-2xl bg-white border border-[#2C1820]/15 text-[#2C1820] hover:bg-[#FAF8F5] transition-colors active:scale-95 cursor-pointer touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
                     aria-label="Fechar Sumário"
                   >
                     <BrandClose className="w-5 h-5 text-[#FF2E93]" />
@@ -508,9 +460,9 @@ export default function PaisDePetBoutiquePortal() {
                   <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93] block">
                     Sumário Completo
                   </span>
-                  <nav className="divide-y divide-[#2C1820]/8 text-base font-black text-[#2C1820]">
+                  <nav className="divide-y divide-[#2C1820]/8 text-base font-black text-[#2C1820]" aria-label="Links do Sumário">
                     {[
-                      { href: "#filosofia", label: "O Refúgio Fear-Free", desc: "Isolamento de ruídos e acolhimento sensorial" },
+                      { href: "#refugio", label: "O Refúgio Fear-Free", desc: "Isolamento de ruídos e acolhimento sensorial" },
                       { href: "#consultorio", label: "Medicina & Vacinação Ética", desc: "Aplicação suave e rastreabilidade total" },
                       { href: "#banho", label: "Estética com Toalha Descartável", desc: "Zero gaiolas e toalhas individuais esterilizadas" },
                       { href: "#homecare", label: "Atendimento no Sofá da sua Casa", desc: "Home care veterinário nos bairros de BH" },
@@ -518,7 +470,7 @@ export default function PaisDePetBoutiquePortal() {
                       { href: "#galeria-videos", label: "Depoimentos Reais em Vídeo", desc: "Depoimentos autênticos de tutores em vídeo puro" },
                       { href: "#localizacao", label: "Localização & Google 4.9", desc: "Mapa interativo e perfil verificado com nota 4.9" },
                       { href: "#triagem", label: "Triagem Pré-Clínica Inteligente", desc: "Prepare a consulta da Dra. Natalia antes de chegar" },
-                      { href: "#faq", label: "Dúvidas Frequentes", desc: "Convenios, toalhas e endereço no Sagrada Família" }
+                      { href: "#faq", label: "Dúvidas Frequentes", desc: "Convênios, toalhas e endereço no Sagrada Família" }
                     ].map((item) => (
                       <a
                         key={item.href}
@@ -562,8 +514,16 @@ export default function PaisDePetBoutiquePortal() {
       </AnimatePresence>
 
       {/* ========================================================================= */}
+      {/* LANDMARK SEMÂNTICO PRINCIPAL (<main>)                                      */}
+      {/* ========================================================================= */}
+      <main id="conteudo-principal" className="flex-grow">
+
+      {/* ========================================================================= */}
       {/* ========================================================================= */}
       {/* 2. INTRO 2: HERO PRINCIPAL COM BACKGROUND VIDEO REAL FULL-BLEED (EDGE-TO-EDGE) */}
+      {/* ========================================================================= */}
+      {/* ========================================================================= */}
+      {/* 2. HERO PRINCIPAL COM BACKGROUND VIDEO REAL FULL-BLEED (EDGE-TO-EDGE)     */}
       {/* ========================================================================= */}
       <section className="relative w-full sm:w-[100vw] h-[100dvh] min-h-[100dvh] overflow-hidden flex flex-col justify-end items-center pb-12 sm:pb-16 select-none bg-black">
         
@@ -576,13 +536,13 @@ export default function PaisDePetBoutiquePortal() {
           muted={heroMuted}
           loop
           playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full sm:w-[100vw] sm:h-[100vh] sm:max-w-none sm:m-0 sm:p-0 object-cover object-center sm:object-[center_28%] z-0 pointer-events-none"
+          preload="metadata"
+          className="absolute inset-0 w-full h-full sm:w-[100vw] sm:h-[100vh] sm:max-w-none sm:m-0 sm:p-0 object-cover object-center sm:object-[center_28%] z-0 pointer-events-none bg-black"
           style={{ objectFit: "cover" }}
         />
 
         {/* OVERLAY ESCURO DENSO DE FUNDO PARA CONTRASTE E LEGIBILIDADE WCAG 2.2 */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/30 pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/65 to-black/40 pointer-events-none z-10" />
 
         {/* BOTÃO DISCRETO DE ÁUDIO NO HERO COM ARIA-PRESSED E LABEL DINÂMICO */}
         <button
@@ -590,7 +550,7 @@ export default function PaisDePetBoutiquePortal() {
           onClick={toggleHeroAudio}
           aria-pressed={!heroMuted}
           className="absolute top-20 sm:top-24 right-4 sm:right-8 z-30 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 hover:bg-black/70 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 text-xs font-mono font-medium tracking-wide shadow-md cursor-pointer touch-manipulation"
-          aria-label={heroMuted ? "Ativar áudio do vídeo da apresentação clínica" : "Silenciar áudio do vídeo da apresentação clínica"}
+          aria-label={heroMuted ? "Ativar som deste vídeo" : "Silenciar som deste vídeo"}
         >
           {heroMuted ? (
             <>
@@ -606,16 +566,11 @@ export default function PaisDePetBoutiquePortal() {
         </button>
 
         {/* COMPOSIÇÃO CINEMATOGRÁFICA COM TIPOGRAFIA EM TEXT-REVEAL SEQUENCIAL & VINHETA PROTETORA */}
-        <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-6 before:absolute before:-inset-8 before:rounded-[3rem] before:bg-radial before:from-black/60 before:via-black/25 before:to-transparent before:-z-10 before:blur-2xl before:pointer-events-none">
+        <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-6 before:absolute before:-inset-8 before:rounded-[3rem] before:bg-radial before:from-black/80 before:via-black/40 before:to-transparent before:-z-10 before:blur-2xl before:pointer-events-none">
           
           <div className="space-y-3 sm:space-y-4 w-full">
             {/* Headline Principal com Gradiente Fluido Dinâmico e Text-Reveal Progressivo */}
-            <h1
-              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-tight leading-[1.28] sm:leading-[1.22] max-w-4xl mx-auto inline-block pb-3 sm:pb-4 pt-1 px-1 hero-fluid-title"
-              style={{
-                filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.55))",
-              }}
-            >
+            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-tight leading-[1.28] sm:leading-[1.22] max-w-4xl mx-auto inline-block pb-4 pt-1 px-1 hero-fluid-title">
               Medicina veterinária de excelência, com o carinho que seu melhor amigo merece.
             </h1>
 
@@ -629,7 +584,7 @@ export default function PaisDePetBoutiquePortal() {
             </div>
 
             {/* Subtítulo Complementar: Introduz o que vem a seguir */}
-            <p className="text-xs sm:text-base md:text-lg font-medium text-white/90 max-w-2xl mx-auto leading-relaxed [text-shadow:_0_2px_12px_rgba(0,0,0,0.95)]">
+            <p className="text-sm sm:text-base md:text-lg font-medium text-white/90 max-w-2xl mx-auto leading-relaxed [text-shadow:_0_2px_12px_rgba(0,0,0,0.95)]">
               Consultas especializadas, exames e acolhimento em um ambiente projetado para reduzir o estresse do seu animal.
             </p>
           </div>
@@ -638,13 +593,12 @@ export default function PaisDePetBoutiquePortal() {
           <div className="pt-2 sm:pt-3 w-full flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             {/* 1. BOTÃO PRIMÁRIO DE DESTAQUE ABSOLUTO (CRO / LEI DE FITTS): WHATSAPP DA DRA. NATALIA */}
             <div className="relative group/btn">
-              {/* Halo sutil com gradiente tricolor da marca no Desktop */}
               <div className="hidden sm:block absolute -inset-1 rounded-full bg-gradient-to-r from-[#84CC16]/60 via-[#FF6B00]/70 to-[#FF2E93]/80 blur-md opacity-80 group-hover/btn:opacity-100 transition-opacity pointer-events-none" />
               <a
                 href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de tirar dúvidas e agendar uma consulta para o meu pet na Pais de Pet.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-gradient-to-r from-[#FF2E93] via-[#FF3B9B] to-[#FF2E93] hover:scale-105 active:scale-95 text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/40 backdrop-blur-md cursor-pointer touch-manipulation group ring-4 ring-[#FF2E93]/20 sm:ring-2 sm:ring-white/40 shadow-xl transition-all"
+                className="relative inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-gradient-to-r from-[#FF2E93] via-[#FF3B9B] to-[#FF2E93] hover:scale-105 active:scale-95 text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/40 backdrop-blur-md cursor-pointer touch-manipulation group ring-4 ring-[#FF2E93]/20 sm:ring-2 sm:ring-white/40 shadow-xl transition-all min-h-[44px]"
                 aria-label="Conversar com a Dra. Natalia no WhatsApp Oficial (Canal Primário de Agendamento)"
               >
                 <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
@@ -659,7 +613,7 @@ export default function PaisDePetBoutiquePortal() {
             <div className="relative group/triagem hidden sm:inline-flex">
               <a
                 href="#triagem"
-                className="relative inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 sm:py-4.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white font-bold text-xs sm:text-sm uppercase tracking-wider text-center border border-white/40 hover:border-white/70 backdrop-blur-md shadow-md hover:shadow-lg hover:shadow-white/10 cursor-pointer touch-manipulation transition-all"
+                className="relative inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 sm:py-4.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white font-bold text-xs sm:text-sm uppercase tracking-wider text-center border border-white/40 hover:border-white/70 backdrop-blur-md shadow-md hover:shadow-lg hover:shadow-white/10 cursor-pointer touch-manipulation transition-all min-h-[44px]"
                 aria-label="Agendar Triagem Pré-Clínica (Opção Secundária)"
               >
                 <BrandPaw className="w-4 h-4 text-[#BEF264] shrink-0" />
@@ -675,7 +629,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 3. MANIFESTO BOUTIQUE & SELOS DE QUALIDADE EXCLUSIVOS                    */}
       {/* ========================================================================= */}
-      <section className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-12 bg-[#FAF8F5] border-t border-[#2C1820]/10">
+      <section id="refugio" className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-12 bg-[#FAF8F5] border-t border-[#2C1820]/10">
         <div className="max-w-7xl mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
@@ -685,10 +639,7 @@ export default function PaisDePetBoutiquePortal() {
                 Filosofia Fear-Free • Pais de Pet
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug">
-                <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
-                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
-                >
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
                   Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz.
                 </span>
               </h2>
@@ -698,7 +649,7 @@ export default function PaisDePetBoutiquePortal() {
               <div className="pt-2">
                 <a
                   href="#triagem"
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-white hover:bg-white/80 text-[#2C1820] font-black text-xs sm:text-sm uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#84CC16] transition-all shadow-2xs"
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-white hover:bg-white/80 text-[#2C1820] font-black text-xs sm:text-sm uppercase tracking-wider border border-[#2C1820]/15 hover:border-[#84CC16] transition-all shadow-2xs min-h-[44px]"
                 >
                   <BrandPaw className="w-4 h-4 text-[#84CC16]" />
                   <span>Iniciar Triagem Pré-Clínica</span>
@@ -708,26 +659,26 @@ export default function PaisDePetBoutiquePortal() {
 
             {/* Selos de Qualidade */}
             <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="flex flex-col items-start p-4 sm:p-5 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs space-y-2">
+              <div className="flex flex-col items-start p-4 sm:p-5 rounded-2xl bg-white border border-[#2C1820]/10 shadow-2xs space-y-2">
                 <span className="p-2.5 rounded-xl bg-[#84CC16]/15 text-[#84CC16]">
                   <BrandPaw className="w-5 h-5" />
                 </span>
                 <span className="font-bold text-[#2C1820] text-sm block">100% Toalhas Descartáveis</span>
-                <span className="text-xs text-[#2C1820]/65 block">Esterilizadas e individuais para cada atendimento</span>
+                <span className="text-sm text-[#2C1820]/75 block">Esterilizadas e individuais para cada atendimento</span>
               </div>
-              <div className="flex flex-col items-start p-4 sm:p-5 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs space-y-2">
+              <div className="flex flex-col items-start p-4 sm:p-5 rounded-2xl bg-white border border-[#2C1820]/10 shadow-2xs space-y-2">
                 <span className="p-2.5 rounded-xl bg-[#FF2E93]/15 text-[#FF2E93]">
                   <BrandCatEar className="w-5 h-5" />
                 </span>
                 <span className="font-bold text-[#2C1820] text-sm block">Manejo Cat-Friendly</span>
-                <span className="text-xs text-[#2C1820]/65 block">Zero estresse e isolamento total de ruídos caninos</span>
+                <span className="text-sm text-[#2C1820]/75 block">Zero estresse e isolamento total de ruídos caninos</span>
               </div>
-              <div className="flex flex-col items-start p-4 sm:p-5 rounded-2xl bg-white border border-[#2C1820]/5 shadow-2xs space-y-2">
+              <div className="flex flex-col items-start p-4 sm:p-5 rounded-2xl bg-white border border-[#2C1820]/10 shadow-2xs space-y-2">
                 <span className="p-2.5 rounded-xl bg-[#FF6B00]/15 text-[#FF6B00]">
                   <BrandCross className="w-5 h-5" />
                 </span>
                 <span className="font-bold text-[#2C1820] text-sm block">Credenciada Petlove</span>
-                <span className="text-xs text-[#2C1820]/65 block">Ampla cobertura e facilidade no seu plano de saúde pet</span>
+                <span className="text-sm text-[#2C1820]/75 block">Ampla cobertura e facilidade no seu plano de saúde pet</span>
               </div>
             </div>
 
@@ -740,28 +691,28 @@ export default function PaisDePetBoutiquePortal() {
                 <BrandPaw className="w-3.5 h-3.5 text-[#FF2E93]" />
                 <span className="font-black text-lg sm:text-xl text-[#FF2E93] leading-tight">10+ Anos</span>
               </div>
-              <span className="text-[10px] sm:text-xs font-mono uppercase text-[#2C1820]/70 font-bold block mt-0.5">de Dedicação</span>
+              <span className="text-xs font-mono uppercase text-[#2C1820]/75 font-bold block mt-0.5">de Dedicação</span>
             </div>
             <div className="p-3 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs flex flex-col items-center justify-center">
               <div className="flex items-center gap-1.5">
                 <BrandPaw className="w-3.5 h-3.5 text-[#FF6B00]" />
                 <span className="font-black text-lg sm:text-xl text-[#FF6B00] leading-tight">1.500+</span>
               </div>
-              <span className="text-[10px] sm:text-xs font-mono uppercase text-[#2C1820]/70 font-bold block mt-0.5">Pets Acolhidos</span>
+              <span className="text-xs font-mono uppercase text-[#2C1820]/75 font-bold block mt-0.5">Pets Acolhidos</span>
             </div>
             <div className="p-3 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs flex flex-col items-center justify-center">
               <div className="flex items-center gap-1.5">
                 <BrandStar className="w-3.5 h-3.5 text-[#84CC16] fill-[#84CC16]" />
                 <span className="font-black text-lg sm:text-xl text-[#84CC16] leading-tight">★ 4.9</span>
               </div>
-              <span className="text-[10px] sm:text-xs font-mono uppercase text-[#2C1820]/70 font-bold block mt-0.5">Google Reviews</span>
+              <span className="text-xs font-mono uppercase text-[#2C1820]/75 font-bold block mt-0.5">Google Reviews</span>
             </div>
             <div className="p-3 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-center shadow-xs flex flex-col items-center justify-center">
               <div className="flex items-center gap-1.5">
                 <BrandCatEar className="w-3.5 h-3.5 text-[#2C1820]" />
                 <span className="font-black text-lg sm:text-xl text-[#2C1820] leading-tight">0 Gaiolas</span>
               </div>
-              <span className="text-[10px] sm:text-xs font-mono uppercase text-[#2C1820]/70 font-bold block mt-0.5">100% Fear-Free</span>
+              <span className="text-xs font-mono uppercase text-[#2C1820]/75 font-bold block mt-0.5">100% Fear-Free</span>
             </div>
           </div>
 
@@ -771,7 +722,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 3. SEÇÃO: O REFÚGIO FEAR-FREE (SILÊNCIO, TEMPO & ACOLHIMENTO)              */}
       {/* ========================================================================= */}
-      <section id="filosofia" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FAF8F5] border-t border-[#FF2E93]/15 overflow-hidden">
+      <section id="refugio" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FAF8F5] border-t border-[#FF2E93]/15 overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-16">
           
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 text-left">
@@ -780,10 +731,7 @@ export default function PaisDePetBoutiquePortal() {
                 Filosofia Fear-Free
               </span>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
-                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
-                >
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
                   Medicina sem contenção forçada. Consultório sem cheiro de medo.
                 </span>
               </h2>
@@ -800,45 +748,42 @@ export default function PaisDePetBoutiquePortal() {
               <BoutiqueVideoPlayer
                 src="/consultorio-atendimentos-paisdepet.mp4"
                 aspectRatio="aspect-[9/16]"
-                rounded="rounded-[2.5rem]"
+                rounded="rounded-[2rem]"
                 objectFit="object-cover"
                 showAudioButton={true}
               />
             </motion.div>
 
-            <motion.div {...fadeInRight} className="lg:col-span-7 rounded-[2.5rem] bg-[#F4FBEA] border border-[#84CC16]/30 p-8 sm:p-12 space-y-8 text-left shadow-xs flex flex-col justify-between">
+            <motion.div {...fadeInRight} className="lg:col-span-7 rounded-[2rem] bg-white border border-[#2C1820]/10 p-8 sm:p-12 space-y-8 text-left shadow-xs flex flex-col justify-between">
               <div className="space-y-6">
                 <span className="text-xs font-mono uppercase text-[#84CC16] font-bold">Arquitetura Sensorial</span>
                 <h3 className="text-2xl sm:text-4xl font-black leading-tight">
-                  <span
-                    className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
-                    style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
-                  >
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
                     Por que cães e gatos não se cruzam nem sentem o cheiro um do outro aqui?
                   </span>
                 </h3>
-                <p className="text-base text-[#2C1820]/85 leading-relaxed">
+                <p className="text-sm sm:text-base text-[#2C1820]/85 leading-relaxed">
                   Gatos são territorialistas e se estressam com odores caninos. Nós desenvolvemos fluxos separados, desinfecção enzimática sem cloro e difusores contínuos de Feliway e Adaptil.
                 </p>
               </div>
 
               <div className="space-y-4">
-                <div className="p-5 rounded-2xl bg-white border border-[#84CC16]/30 space-y-2">
+                <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#84CC16]/30 space-y-2">
                   <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#84CC16]">
                     <BrandPaw className="w-4 h-4" />
                     <span>Atendimento com Hora Marcada</span>
                   </div>
-                  <p className="text-xs sm:text-sm text-[#2C1820]/75">
+                  <p className="text-sm text-[#2C1820]/80">
                     Intervalos generosos entre pacientes para garantir que a recepção esteja sempre vazia e silenciosa quando você chegar.
                   </p>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-white border border-[#84CC16]/30 space-y-2">
+                <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#84CC16]/30 space-y-2">
                   <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#84CC16]">
                     <BrandCatEar className="w-4 h-4" />
                     <span>Aclimatação sem Mesa Fria</span>
                   </div>
-                  <p className="text-xs sm:text-sm text-[#2C1820]/75">
+                  <p className="text-sm text-[#2C1820]/80">
                     O pet cheira, explora e relaxa no chão aquecido antes de qualquer toque. Jamais colocamos o animal em mesas frias e intimidadoras.
                   </p>
                 </div>
@@ -890,10 +835,7 @@ export default function PaisDePetBoutiquePortal() {
                 Imunização Ética & Prevenção
               </span>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
-                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
-                >
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
                   Uma picadinha que ele nem percebe. Vacinas importadas com cadeia de frio viva.
                 </span>
               </h2>
@@ -914,7 +856,7 @@ export default function PaisDePetBoutiquePortal() {
                   </span>
                   <div>
                     <h4 className="text-sm font-black text-[#2C1820]">{item.title}</h4>
-                    <p className="text-xs text-[#2C1820]/75 mt-0.5">{item.desc}</p>
+                    <p className="text-sm text-[#2C1820]/80 mt-0.5">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -924,7 +866,7 @@ export default function PaisDePetBoutiquePortal() {
               href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de consultar o protocolo vacinal do meu pet.")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#84CC16] hover:bg-lime-600 text-white font-black text-xs uppercase tracking-wider shadow-md transition-all active:scale-95"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#84CC16] hover:bg-lime-600 text-white font-black text-xs uppercase tracking-wider shadow-md transition-all active:scale-95 min-h-[44px]"
             >
               <img src="/foto-perfil-pais-de-pet.jpg" alt="Logo" className="w-6 h-6 rounded-full object-cover" />
               <span>Agendar Vacinação Ética</span>
@@ -947,10 +889,7 @@ export default function PaisDePetBoutiquePortal() {
                 Estética Consciente
               </span>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
-                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
-                >
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
                   Você enxugaria o rosto com a toalha usada de outro desconhecido? Nós também não.
                 </span>
               </h2>
@@ -967,7 +906,7 @@ export default function PaisDePetBoutiquePortal() {
               <BoutiqueVideoPlayer
                 src="/banhoetosa-paisdepet1.mp4"
                 aspectRatio="aspect-[9/16]"
-                rounded="rounded-[2.5rem]"
+                rounded="rounded-[2rem]"
                 objectFit="object-cover"
                 showAudioButton={true}
               />
@@ -976,14 +915,14 @@ export default function PaisDePetBoutiquePortal() {
             <motion.div {...fadeInRight} className="lg:col-span-7 space-y-6 text-left">
               <div className="p-6 rounded-3xl bg-white border border-[#FF2E93]/25 space-y-3">
                 <span className="text-xs font-mono font-bold uppercase text-[#FF2E93]">Zero Gaiolas de Espera</span>
-                <p className="text-xs sm:text-sm text-[#2C1820]/85 leading-relaxed">
+                <p className="text-sm sm:text-base text-[#2C1820]/85 leading-relaxed">
                   Seu cão não fica trancado em gaiolas de metal esperando a vez. O horário é exclusivo: ele chega, toma o banho relaxante, é seco com calma e já vai para os seus braços.
                 </p>
               </div>
 
               <div className="p-6 rounded-3xl bg-white border border-[#FF2E93]/25 space-y-3">
                 <span className="text-xs font-mono font-bold uppercase text-[#FF2E93]">Água na Temperatura Corporal</span>
-                <p className="text-xs sm:text-sm text-[#2C1820]/85 leading-relaxed">
+                <p className="text-sm sm:text-base text-[#2C1820]/85 leading-relaxed">
                   Temperatura constante a 38°C para evitar choque térmico, além de dermocosméticos hipoalergênicos e secadores com atenuação acústica.
                 </p>
               </div>
@@ -992,7 +931,7 @@ export default function PaisDePetBoutiquePortal() {
                 href={`${whatsappUrl}?text=${encodeURIComponent("Olá! Gostaria de agendar um banho com toalha descartável para o meu pet.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-md transition-all active:scale-95"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-md transition-all active:scale-95 min-h-[44px]"
               >
                 <img src="/foto-perfil-pais-de-pet.jpg" alt="Logo" className="w-6 h-6 rounded-full object-cover" />
                 <span>Reservar Horário de Banho</span>
@@ -1008,7 +947,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 6. SEÇÃO: ATENDIMENTO EM DOMICÍLIO (HOME CARE BH)                         */}
       {/* ========================================================================= */}
-      <section id="homecare" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-white border-t border-[#2C1820]/10 overflow-hidden">
+      <section id="homecare" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FAF8F5] border-t border-[#2C1820]/10 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <motion.div {...fadeInLeft} className="lg:col-span-7 space-y-6 text-left order-2 lg:order-1">
@@ -1016,10 +955,7 @@ export default function PaisDePetBoutiquePortal() {
               Home Care em Belo Horizonte
             </span>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-              <span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
-                style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
-              >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
                 O consultório no sofá da sua sala. Sem trânsito, sem caixinha de transporte.
               </span>
             </h2>
@@ -1028,11 +964,11 @@ export default function PaisDePetBoutiquePortal() {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#FF6B00]/25">
+              <div className="p-4 rounded-2xl bg-white border border-[#FF6B00]/25 shadow-2xs">
                 <span className="text-xs font-mono uppercase text-[#FF6B00] font-bold block">Bairros de Atendimento</span>
                 <span className="text-sm font-black text-[#2C1820] block mt-1">Sagrada Família, Floresta, Santa Tereza, Cidade Nova, Horto e Silveira.</span>
               </div>
-              <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#FF6B00]/25">
+              <div className="p-4 rounded-2xl bg-white border border-[#FF6B00]/25 shadow-2xs">
                 <span className="text-xs font-mono uppercase text-[#FF6B00] font-bold block">Procedimentos em Casa</span>
                 <span className="text-sm font-black text-[#2C1820] block mt-1">Exames de sangue, vacinas importadas, curativos e avaliação geriátrica.</span>
               </div>
@@ -1042,7 +978,7 @@ export default function PaisDePetBoutiquePortal() {
               href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de agendar um atendimento veterinário no sofá da minha casa em BH.")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#FF6B00] hover:bg-orange-600 text-white font-black text-xs uppercase tracking-wider shadow-md transition-all active:scale-95"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#FF6B00] hover:bg-orange-600 text-white font-black text-xs uppercase tracking-wider shadow-md transition-all active:scale-95 min-h-[44px]"
             >
               <img src="/foto-perfil-pais-de-pet.jpg" alt="Logo" className="w-6 h-6 rounded-full object-cover" />
               <span>Solicitar Home Care em BH</span>
@@ -1055,7 +991,7 @@ export default function PaisDePetBoutiquePortal() {
             <BoutiqueVideoPlayer
               src="/atendimento-clinicaeadomicio-paisdepet.mp4"
               aspectRatio="aspect-[9/16]"
-              rounded="rounded-[2.5rem]"
+              rounded="rounded-[2rem]"
               objectFit="object-cover"
               showAudioButton={true}
             />
@@ -1076,10 +1012,7 @@ export default function PaisDePetBoutiquePortal() {
                 Boutique Farmácia & Nutrição
               </span>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
-                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
-                >
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
                   Peças que aquecem sem prender o movimento. Ração de verdade.
                 </span>
               </h2>
@@ -1092,7 +1025,7 @@ export default function PaisDePetBoutiquePortal() {
           {/* VÍDEOS VERTICAIS 9:16 INSTAGRAM REELS (CURADORIA CLÍNICA EXCLUSIVA) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
             
-            <motion.div {...fadeInLeft} className="rounded-[2.5rem] bg-white border border-[#FF6B00]/25 p-6 space-y-4 text-left shadow-xs">
+            <motion.div {...fadeInLeft} className="rounded-[2rem] bg-white border border-[#FF6B00]/25 p-6 space-y-4 text-left shadow-xs">
               <BoutiqueVideoPlayer
                 src="/colocando-roupa-de-frio-em-pet-paisdepet.mp4"
                 aspectRatio="aspect-[9/16]"
@@ -1101,10 +1034,10 @@ export default function PaisDePetBoutiquePortal() {
                 showAudioButton={true}
               />
               <h4 className="text-base font-black text-[#2C1820]">Moletom Térmico Anatômico</h4>
-              <p className="text-xs text-[#2C1820]/75">Design com corte que libera as patas dianteiras e não aperta a traqueia.</p>
+              <p className="text-sm text-[#2C1820]/80">Design com corte que libera as patas dianteiras e não aperta a traqueia.</p>
             </motion.div>
 
-            <motion.div {...fadeInRight} className="rounded-[2.5rem] bg-white border border-[#84CC16]/30 p-6 space-y-4 text-left shadow-xs">
+            <motion.div {...fadeInRight} className="rounded-[2rem] bg-white border border-[#84CC16]/30 p-6 space-y-4 text-left shadow-xs">
               <BoutiqueVideoPlayer
                 src="/preparado-para-ofrio-paisdepet.mp4"
                 aspectRatio="aspect-[9/16]"
@@ -1113,27 +1046,75 @@ export default function PaisDePetBoutiquePortal() {
                 showAudioButton={true}
               />
               <h4 className="text-base font-black text-[#2C1820]">Proteção de Inverno para Idosos</h4>
-              <p className="text-xs text-[#2C1820]/75">Manutenção da temperatura para cães com artrose e dores articulares.</p>
+              <p className="text-sm text-[#2C1820]/80">Manutenção da temperatura para cães com artrose e dores articulares.</p>
             </motion.div>
 
           </div>
 
-          {/* VITRINE COM AS FOTOS REAIS DA LOJA */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          {/* VITRINE COM PRESCRIÇÕES CLÍNICAS DA DRA. NATALIA */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { img: "/camas-paisdepet.jpg", name: "Camas Ortopédicas", category: "Conforto" },
-              { img: "/racao-cao-paisdepet.jpg", name: "Rações Super Premium", category: "Nutrição Canina" },
-              { img: "/saches-racoes-biscoitos-gato-paisdepet.jpg", name: "Nutrição Felina", category: "Saúde Renal" },
-              { img: "/coleira-paisdepet.jpg", name: "Guias & Peitorais", category: "Passeio Suave" },
-              { img: "/petisco-cao-paisdepet.jpg", name: "Petiscos Naturais", category: "Reforço Positivo" },
-              { img: "/brinquedo-cao-paisdepet.jpg", name: "Brinquedos Atóxicos", category: "Enriquecimento" }
+              {
+                img: "/camas-paisdepet.jpg",
+                name: "Camas Ortopédicas",
+                badge: "Prescrição Postural",
+                desc: "Alívio de pressão nas articulações e suporte de coluna para cães de todas as idades."
+              },
+              {
+                img: "/racao-cao-paisdepet.jpg",
+                name: "Rações Super Premium",
+                badge: "Manejo Nutricional",
+                desc: "Proteína nobre de alta absorção biológica, digestibilidade superior e livre de corantes."
+              },
+              {
+                img: "/saches-racoes-biscoitos-gato-paisdepet.jpg",
+                name: "Nutrição Felina",
+                badge: "Saúde Renal Felina",
+                desc: "Alimentação úmida nobre desenvolvida para estímulo diário de hidratação contínua."
+              },
+              {
+                img: "/coleira-paisdepet.jpg",
+                name: "Guias & Peitorais",
+                badge: "Ergonomia de Passeio",
+                desc: "Design que distribui a tração e libera as escápulas sem estrangular a traqueia."
+              },
+              {
+                img: "/petisco-cao-paisdepet.jpg",
+                name: "Petiscos Naturais",
+                badge: "Reforço Positivo Puro",
+                desc: "Ingredientes 100% desidratados a frio, sem sódio excessivo, aditivos químicos ou glúten."
+              },
+              {
+                img: "/brinquedo-cao-paisdepet.jpg",
+                name: "Brinquedos Atóxicos",
+                badge: "Enriquecimento Sensorial",
+                desc: "Borracha natural atóxica projetada para estímulo cognitivo e alívio de ansiedade."
+              }
             ].map((prod) => (
-              <div key={prod.name} className="p-3 rounded-2xl bg-white border border-[#2C1820]/10 text-left space-y-2 hover:border-[#FF6B00] transition-colors">
-                <div className="rounded-xl overflow-hidden aspect-square bg-[#FAF8F5]">
-                  <img src={prod.img} alt={prod.name} className="w-full h-full object-contain" />
+              <div
+                key={prod.name}
+                className="p-5 rounded-3xl bg-white border border-[#2C1820]/10 text-left space-y-4 hover:border-[#FF6B00]/40 transition-all shadow-xs flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="rounded-2xl overflow-hidden aspect-square bg-[#FAF8F5] relative">
+                    <img
+                      src={prod.img}
+                      alt={prod.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-contain p-4 transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#FF6B00] block">
+                    {prod.badge}
+                  </span>
+                  <h4 className="text-base font-black text-[#2C1820] leading-tight">
+                    {prod.name}
+                  </h4>
                 </div>
-                <span className="text-[10px] font-mono font-bold uppercase text-[#FF6B00] block">{prod.category}</span>
-                <h5 className="text-xs font-black text-[#2C1820] leading-tight">{prod.name}</h5>
+                <p className="text-sm text-[#2C1820]/80 leading-relaxed">
+                  {prod.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -1154,10 +1135,7 @@ export default function PaisDePetBoutiquePortal() {
                 Casos Reais & Depoimentos
               </span>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
-                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
-                >
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
                   O acolhimento gravado e vivido por quem confia o seu maior amor.
                 </span>
               </h2>
@@ -1169,7 +1147,7 @@ export default function PaisDePetBoutiquePortal() {
                 type="button"
                 onClick={() => scrollCarousel("left")}
                 aria-label="Ver depoimento anterior à esquerda"
-                className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#2C1820]/15 hover:border-[#FF2E93] text-[#2C1820] hover:text-[#FF2E93] flex items-center justify-center shadow-xs transition-all active:scale-95 cursor-pointer touch-manipulation focus:outline-none focus:ring-2 focus:ring-[#FF2E93]/40"
+                className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#2C1820]/15 hover:border-[#FF2E93] text-[#2C1820] hover:text-[#FF2E93] flex items-center justify-center shadow-xs transition-all active:scale-95 cursor-pointer touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF2E93]"
               >
                 <BrandChevron className="w-5 h-5 rotate-90" />
               </button>
@@ -1177,7 +1155,7 @@ export default function PaisDePetBoutiquePortal() {
                 type="button"
                 onClick={() => scrollCarousel("right")}
                 aria-label="Ver próximo depoimento à direita"
-                className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#2C1820]/15 hover:border-[#FF2E93] text-[#2C1820] hover:text-[#FF2E93] flex items-center justify-center shadow-xs transition-all active:scale-95 cursor-pointer touch-manipulation focus:outline-none focus:ring-2 focus:ring-[#FF2E93]/40"
+                className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#2C1820]/15 hover:border-[#FF2E93] text-[#2C1820] hover:text-[#FF2E93] flex items-center justify-center shadow-xs transition-all active:scale-95 cursor-pointer touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF2E93]"
               >
                 <BrandChevron className="w-5 h-5 -rotate-90" />
               </button>
@@ -1188,11 +1166,13 @@ export default function PaisDePetBoutiquePortal() {
           <div
             ref={carouselRef}
             onScroll={handleCarouselScroll}
+            onKeyDown={handleCarouselKeyDown}
             role="region"
             aria-label="Carrossel de Casos Reais e Depoimentos"
             aria-roledescription="carousel"
+            aria-live="polite"
             tabIndex={0}
-            className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar cursor-grab active:cursor-grabbing focus:outline-none focus:ring-2 focus:ring-[#FF2E93]/25 rounded-3xl"
+            className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF2E93]/40 rounded-3xl"
           >
             {hybridTestimonials.map((item, idx) => (
               <motion.div
@@ -1207,16 +1187,17 @@ export default function PaisDePetBoutiquePortal() {
                   <BoutiqueVideoPlayer
                     src={item.src}
                     aspectRatio="aspect-[9/16]"
-                    rounded="rounded-[2.5rem]"
+                    rounded="rounded-[2rem]"
                     objectFit="object-cover"
                     showAudioButton={true}
                     className="shadow-[0_15px_35px_rgba(44,24,32,0.07)]"
                   />
                 ) : (
-                  <div className="relative aspect-[9/16] rounded-[2.5rem] overflow-hidden bg-[#FAF8F5] shadow-[0_15px_35px_rgba(44,24,32,0.07)] select-none group">
+                  <div className="relative aspect-[9/16] rounded-[2rem] overflow-hidden bg-[#FAF8F5] shadow-[0_15px_35px_rgba(44,24,32,0.07)] select-none group">
                     <img
                       src={item.src}
                       alt={item.alt}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                   </div>
@@ -1225,23 +1206,25 @@ export default function PaisDePetBoutiquePortal() {
             ))}
           </div>
 
-          {/* INDICADOR VISUAL DISCRETO DE NAVEGAÇÃO LATERAL (PAGINAÇÃO SUTIL WCAG 2.2) */}
-          <div className="flex items-center justify-center gap-2 pt-2" aria-hidden="true">
+          {/* INDICADOR VISUAL DISCRETO DE NAVEGAÇÃO LATERAL (PAGINAÇÃO W3C TABLIST WCAG 2.2) */}
+          <div role="tablist" aria-label="Indicadores de slides do carrossel" className="flex items-center justify-center gap-2 pt-2">
             {hybridTestimonials.map((_, idx) => (
               <button
                 key={idx}
                 type="button"
+                role="tab"
+                aria-selected={carouselIndex === idx}
+                aria-label={`Ir para depoimento ${idx + 1}`}
                 onClick={() => {
                   if (carouselRef.current) {
                     carouselRef.current.scrollTo({ left: idx * 330, behavior: "smooth" });
                   }
                 }}
-                className={`transition-all duration-300 rounded-full ${
+                className={`transition-all duration-300 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF2E93] ${
                   carouselIndex === idx
                     ? "w-8 h-2 bg-[#FF2E93]"
                     : "w-2 h-2 bg-[#2C1820]/20 hover:bg-[#2C1820]/40"
                 }`}
-                aria-label={`Ir para depoimento ${idx + 1}`}
               />
             ))}
           </div>
@@ -1261,10 +1244,7 @@ export default function PaisDePetBoutiquePortal() {
                 Transparência & Proximidade
               </span>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
-                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
-                >
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
                   Localização oficial & nota 4.9 ★ verificada no Google.
                 </span>
               </h2>
@@ -1277,7 +1257,7 @@ export default function PaisDePetBoutiquePortal() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
             {/* GOOGLE MAPS INTERATIVO EMBED */}
-            <motion.div {...fadeInLeft} className="lg:col-span-7 rounded-[2.5rem] overflow-hidden border border-[#2C1820]/15 shadow-md h-[400px] lg:h-auto min-h-[380px] bg-white relative">
+            <motion.div {...fadeInLeft} className="lg:col-span-7 rounded-[2rem] overflow-hidden border border-[#2C1820]/15 shadow-md h-[400px] lg:h-auto min-h-[380px] bg-white relative">
               <iframe
                 title="Localização Pais de Pet no Google Maps"
                 src="https://maps.google.com/maps?q=Rua+Silvestre+Ferraz,+27+-+Sagrada+Fam%C3%ADlia,+Belo+Horizonte+-+MG&t=&z=16&ie=UTF8&iwloc=&output=embed"
@@ -1288,16 +1268,16 @@ export default function PaisDePetBoutiquePortal() {
             </motion.div>
 
             {/* CARD DE AVALIAÇÕES E NOTA OFICIAL 4.9 GOOGLE */}
-            <motion.div {...fadeInRight} className="lg:col-span-5 rounded-[2.5rem] bg-white border border-[#2C1820]/10 p-8 sm:p-10 flex flex-col justify-between space-y-8 text-left shadow-sm">
+            <motion.div {...fadeInRight} className="lg:col-span-5 rounded-[2rem] bg-white border border-[#2C1820]/10 p-8 sm:p-10 flex flex-col justify-between space-y-8 text-left shadow-sm">
               
               <div className="space-y-6">
                 
                 {/* Selo Oficial Google Score 4.9 */}
                 <div className="flex items-center gap-4">
-                  <div className="p-3.5 rounded-2xl bg-white border border-[#FF2E93]/20 shadow-xs">
-                    <div className="flex items-center gap-1 text-amber-500">
+                  <div className="p-3.5 rounded-2xl bg-[#FAF8F5] border border-[#FF2E93]/20 shadow-2xs">
+                    <div className="flex items-center gap-1 text-amber-500" aria-label="5 de 5 estrelas">
                       {[...Array(5)].map((_, i) => (
-                        <BrandStar key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                        <BrandStar key={i} className="w-5 h-5 fill-amber-400 text-amber-400" aria-hidden="true" />
                       ))}
                     </div>
                   </div>
@@ -1309,25 +1289,25 @@ export default function PaisDePetBoutiquePortal() {
 
                 <div className="space-y-2">
                   <h3 className="text-xl sm:text-2xl font-black leading-snug">
-                    <span
-                      className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-1.5 pt-0.5"
-                      style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
-                    >
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-1.5 pt-0.5">
                       Avaliações 100% autênticas de tutores de Belo Horizonte.
                     </span>
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#2C1820]/80 leading-relaxed">
+                  <p className="text-sm text-[#2C1820]/80 leading-relaxed">
                     Mais de uma centena de avaliações públicas no Google destacando a dedicação e paciência da Dra. Natalia Possas, o banho sem estresse com toalhas descartáveis e o atendimento acolhedor.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white border border-[#84CC16]/30 space-y-1.5 text-xs text-[#2C1820]/85">
+                <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#84CC16]/30 space-y-1.5 text-xs text-[#2C1820]/85">
                   <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#84CC16] uppercase">
                     <BrandCheck className="w-4 h-4" />
-                    <span>Horários de Atendimento</span>
+                    <span>Horários & Telefone</span>
                   </div>
                   <p>Segunda a Sexta: 09h00 às 18h00</p>
                   <p>Sábados: 08h30 às 13h00</p>
+                  <p className="pt-1 text-xs">
+                    Telefone: <a href="tel:+5531983380139" className="hover:underline font-bold text-[#2C1820]">(31) 98338-0139</a>
+                  </p>
                 </div>
 
               </div>
@@ -1338,7 +1318,7 @@ export default function PaisDePetBoutiquePortal() {
                   href="https://www.google.com/maps/search/?api=1&query=Pais+de+Pet+Rua+Silvestre+Ferraz+27+Sagrada+Fam%C3%ADlia+Belo+Horizonte+MG"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-white hover:bg-[#FFF0F6] text-[#2C1820] font-black text-xs uppercase tracking-wider border border-[#FF2E93]/40 hover:border-[#FF2E93] transition-all shadow-xs group text-center"
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-white hover:bg-[#FFF0F6] text-[#2C1820] font-black text-xs uppercase tracking-wider border border-[#FF2E93]/40 hover:border-[#FF2E93] transition-all shadow-xs group text-center min-h-[44px]"
                 >
                   <BrandStar className="w-4 h-4 text-amber-400 fill-amber-400" />
                   <span>Ver Nota 4.9 e Avaliações no Google</span>
@@ -1346,10 +1326,10 @@ export default function PaisDePetBoutiquePortal() {
                 </a>
 
                 <a
-                  href="https://www.google.com/maps/dir/?api=1&destination=Rua+Silvestre+Ferraz+27+Sagrada+Fam%C3%ADlia+Belo+Horizonte+MG"
+                  href="https://www.google.com/maps/dir/?api=1&destination=Rua+Silvestre+Ferraz+27+Belo+Horizonte"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-[#84CC16] hover:bg-lime-600 text-white font-black text-xs uppercase tracking-wider shadow-md transition-all active:scale-95 text-center"
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-[#84CC16] hover:bg-lime-600 text-white font-black text-xs uppercase tracking-wider shadow-md transition-all active:scale-95 text-center min-h-[44px]"
                 >
                   <BrandPaw className="w-4 h-4" />
                   <span>Traçar Rota no Google Maps</span>
@@ -1376,10 +1356,7 @@ export default function PaisDePetBoutiquePortal() {
               <span>Triagem Pré-Clínica Inteligente</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-              <span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
-                style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
-              >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
                 Facilite o acolhimento do seu pet antes mesmo de chegar à clínica.
               </span>
             </h2>
@@ -1389,12 +1366,12 @@ export default function PaisDePetBoutiquePortal() {
           </motion.div>
 
           {/* PAINEL INTERATIVO DE TRIAGEM */}
-          <motion.div {...fadeInUp} className="bg-[#FAF8F5] rounded-[2.5rem] p-6 sm:p-10 border border-[#2C1820]/10 shadow-[0_20px_50px_rgba(44,24,32,0.04)] space-y-8">
+          <motion.div {...fadeInUp} className="bg-[#FAF8F5] rounded-[2rem] p-6 sm:p-10 border border-[#2C1820]/10 shadow-[0_20px_50px_rgba(44,24,32,0.04)] space-y-8">
             
             {/* BARRA DE PROGRESSO EM GRADIENTE DA MARCA */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs font-mono font-bold text-[#2C1820]/70">
-                <span>Passo {triageStep} de 4</span>
+                <span>Passo {triageStep} de 4 • Conclusão em menos de 1 minuto</span>
                 <span>
                   {triageStep === 1 && "Espécie & Idade"}
                   {triageStep === 2 && "Objetivo ou Sintoma"}
@@ -1402,7 +1379,14 @@ export default function PaisDePetBoutiquePortal() {
                   {triageStep === 4 && "Resumo Pré-Clínico Concluído"}
                 </span>
               </div>
-              <div className="h-2 w-full bg-[#FAF8F5] rounded-full overflow-hidden border border-[#84CC16]/20">
+              <div
+                role="progressbar"
+                aria-valuenow={(triageStep / 4) * 100}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label="Progresso da triagem pré-clínica"
+                className="h-2.5 w-full bg-white rounded-full overflow-hidden border border-[#84CC16]/25"
+              >
                 <div
                   className="h-full bg-gradient-to-r from-[#FF2E93] via-[#FF6B00] to-[#84CC16] transition-all duration-500 rounded-full"
                   style={{ width: `${(triageStep / 4) * 100}%` }}
@@ -1428,13 +1412,13 @@ export default function PaisDePetBoutiquePortal() {
                     onClick={() => setPetSpecies("Cão")}
                     className={`p-5 rounded-2xl border text-left transition-all ${
                       petSpecies === "Cão"
-                        ? "bg-[#FFF7ED] border-[#FF6B00] text-[#FF6B00] font-bold shadow-xs"
-                        : "bg-[#FAF8F5] border-transparent hover:border-[#FF6B00]/40 text-[#2C1820]"
+                        ? "ring-2 ring-[#84CC16] bg-[#F4FBEA] border-[#84CC16] text-[#2C1820] font-black shadow-sm"
+                        : "bg-white border-[#2C1820]/10 hover:border-[#84CC16]/50 text-[#2C1820]"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-mono text-xs uppercase tracking-wider block opacity-70">Espécie</span>
-                      {petSpecies === "Cão" && <BrandCheck className="w-4 h-4 text-[#FF6B00]" />}
+                      {petSpecies === "Cão" && <BrandCheck className="w-4 h-4 text-[#84CC16]" />}
                     </div>
                     <span className="text-xl sm:text-2xl font-black block mt-1 text-[#2C1820]">Cachorro</span>
                     <span className="text-xs text-[#2C1820]/70 block mt-1">Acolhimento com difusor Adaptil</span>
@@ -1445,13 +1429,13 @@ export default function PaisDePetBoutiquePortal() {
                     onClick={() => setPetSpecies("Gato")}
                     className={`p-5 rounded-2xl border text-left transition-all ${
                       petSpecies === "Gato"
-                        ? "bg-[#FFF0F6] border-[#FF2E93] text-[#FF2E93] font-bold shadow-xs"
-                        : "bg-[#FAF8F5] border-transparent hover:border-[#FF2E93]/40 text-[#2C1820]"
+                        ? "ring-2 ring-[#84CC16] bg-[#F4FBEA] border-[#84CC16] text-[#2C1820] font-black shadow-sm"
+                        : "bg-white border-[#2C1820]/10 hover:border-[#84CC16]/50 text-[#2C1820]"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-mono text-xs uppercase tracking-wider block opacity-70">Espécie</span>
-                      {petSpecies === "Gato" && <BrandCheck className="w-4 h-4 text-[#FF2E93]" />}
+                      {petSpecies === "Gato" && <BrandCheck className="w-4 h-4 text-[#84CC16]" />}
                     </div>
                     <span className="text-xl sm:text-2xl font-black block mt-1 text-[#2C1820]">Gato</span>
                     <span className="text-xs text-[#2C1820]/70 block mt-1">Acolhimento com difusor Feliway & Cat-Friendly</span>
@@ -1474,8 +1458,8 @@ export default function PaisDePetBoutiquePortal() {
                         onClick={() => setPetAge(age.value as any)}
                         className={`p-4 rounded-2xl border text-left transition-all ${
                           petAge === age.value
-                            ? "bg-[#F4FBEA] border-[#84CC16] text-[#2C1820] font-bold shadow-xs"
-                            : "bg-[#FAF8F5] border-transparent hover:border-[#84CC16]/30 text-[#2C1820]"
+                            ? "ring-2 ring-[#84CC16] bg-[#F4FBEA] border-[#84CC16] text-[#2C1820] font-black shadow-sm"
+                            : "bg-white border-[#2C1820]/10 hover:border-[#84CC16]/40 text-[#2C1820]"
                         }`}
                       >
                         <span className="text-base font-black block">{age.label}</span>
@@ -1489,7 +1473,7 @@ export default function PaisDePetBoutiquePortal() {
                   <button
                     type="button"
                     onClick={() => setTriageStep(2)}
-                    className="px-8 py-3.5 rounded-full bg-[#84CC16] hover:bg-lime-600 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md active:scale-95"
+                    className="px-8 py-3.5 rounded-full bg-[#84CC16] hover:bg-lime-600 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 min-h-[44px]"
                   >
                     Continuar para o Motivo
                   </button>
@@ -1525,8 +1509,8 @@ export default function PaisDePetBoutiquePortal() {
                       onClick={() => setPetService(srv.title)}
                       className={`p-4 rounded-2xl border text-left transition-all ${
                         petService === srv.title
-                          ? "bg-[#FFF0F6] border-[#FF2E93] text-[#2C1820] font-bold shadow-xs"
-                          : "bg-[#FAF8F5] border-transparent hover:border-[#FF2E93]/30 text-[#2C1820]"
+                          ? "ring-2 ring-[#FF2E93] bg-[#FFF0F6] border-[#FF2E93] text-[#2C1820] font-black shadow-sm"
+                          : "bg-white border-[#2C1820]/10 hover:border-[#FF2E93]/40 text-[#2C1820]"
                       }`}
                     >
                       <div className="flex items-center justify-between">
@@ -1534,7 +1518,7 @@ export default function PaisDePetBoutiquePortal() {
                         {petService === srv.title && <BrandCheck className="w-4 h-4 text-[#FF2E93]" />}
                       </div>
                       <span className="text-sm font-black block mt-1 text-[#2C1820]">{srv.title}</span>
-                      <span className="text-xs text-[#2C1820]/70 block mt-0.5">{srv.desc}</span>
+                      <span className="text-xs text-[#2C1820]/75 block mt-0.5">{srv.desc}</span>
                     </button>
                   ))}
                 </div>
@@ -1543,14 +1527,14 @@ export default function PaisDePetBoutiquePortal() {
                   <button
                     type="button"
                     onClick={() => setTriageStep(1)}
-                    className="px-6 py-3 rounded-full bg-white border border-[#2C1820]/20 text-[#2C1820] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF8F5] transition-all"
+                    className="px-6 py-3 rounded-full bg-white border border-[#2C1820]/20 text-[#2C1820] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF8F5] transition-all min-h-[44px]"
                   >
                     Voltar
                   </button>
                   <button
                     type="button"
                     onClick={() => setTriageStep(3)}
-                    className="px-8 py-3.5 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md active:scale-95"
+                    className="px-8 py-3.5 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 min-h-[44px]"
                   >
                     Continuar para o Comportamento
                   </button>
@@ -1594,8 +1578,8 @@ export default function PaisDePetBoutiquePortal() {
                       onClick={() => setPetBehavior(beh.value as any)}
                       className={`p-5 rounded-2xl border text-left transition-all ${
                         petBehavior === beh.value
-                          ? "bg-[#FFF7ED] border-[#FF6B00] text-[#2C1820] font-bold shadow-xs scale-[1.01]"
-                          : "bg-[#FAF8F5] border-transparent hover:border-[#FF6B00]/30 text-[#2C1820]"
+                          ? "ring-2 ring-[#FF6B00] bg-[#FFF7ED] border-[#FF6B00] text-[#2C1820] font-black shadow-sm scale-[1.01]"
+                          : "bg-white border-[#2C1820]/10 hover:border-[#FF6B00]/40 text-[#2C1820]"
                       }`}
                     >
                       <div className="flex items-center justify-between">
@@ -1603,7 +1587,7 @@ export default function PaisDePetBoutiquePortal() {
                         {petBehavior === beh.value && <BrandCheck className="w-4 h-4 text-[#FF6B00]" />}
                       </div>
                       <span className="text-base font-black block mt-1.5 text-[#2C1820]">{beh.title}</span>
-                      <span className="text-xs text-[#2C1820]/70 block mt-1 leading-relaxed">{beh.desc}</span>
+                      <span className="text-sm text-[#2C1820]/80 block mt-1 leading-relaxed">{beh.desc}</span>
                     </button>
                   ))}
                 </div>
@@ -1612,14 +1596,14 @@ export default function PaisDePetBoutiquePortal() {
                   <button
                     type="button"
                     onClick={() => setTriageStep(2)}
-                    className="px-6 py-3 rounded-full bg-white border border-[#2C1820]/20 text-[#2C1820] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF8F5] transition-all"
+                    className="px-6 py-3 rounded-full bg-white border border-[#2C1820]/20 text-[#2C1820] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF8F5] transition-all min-h-[44px]"
                   >
                     Voltar
                   </button>
                   <button
                     type="button"
                     onClick={() => setTriageStep(4)}
-                    className="px-8 py-3.5 rounded-full bg-[#FF6B00] hover:bg-orange-600 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md active:scale-95"
+                    className="px-8 py-3.5 rounded-full bg-[#FF6B00] hover:bg-orange-600 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 min-h-[44px]"
                   >
                     Ver Resumo & Enviar
                   </button>
@@ -1639,7 +1623,7 @@ export default function PaisDePetBoutiquePortal() {
                   </h3>
                 </div>
 
-                <div className="p-6 rounded-3xl bg-[#FAF8F5] border border-[#84CC16]/30 space-y-4">
+                <div className="p-6 rounded-3xl bg-white border border-[#84CC16]/30 space-y-4 shadow-xs">
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-4 border-b border-[#2C1820]/10">
                     <div>
                       <span className="text-[11px] font-mono uppercase font-bold text-[#2C1820]/60 block">Paciente</span>
@@ -1659,7 +1643,7 @@ export default function PaisDePetBoutiquePortal() {
                     <span className="text-[11px] font-mono uppercase font-bold text-[#84CC16] block">
                       Protocolo Especial Preparado pela Dra. Natalia:
                     </span>
-                    <p className="text-xs sm:text-sm text-[#2C1820]/80">
+                    <p className="text-sm text-[#2C1820]/80 leading-relaxed">
                       {petSpecies === "Gato"
                         ? "Sala sensorial com difusor ativo de Feliway, iluminação indireta suave, consulta sem jalecos intimidadores e isolamento rigoroso de odores caninos."
                         : petBehavior === "Amedrontado / Traumatizado"
@@ -1676,7 +1660,7 @@ export default function PaisDePetBoutiquePortal() {
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg active:scale-95 text-center"
+                    className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg active:scale-95 text-center min-h-[44px]"
                   >
                     <div className="w-6 h-6 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
                       <img src="/foto-perfil-pais-de-pet.jpg" alt="Logo" className="w-full h-full object-cover rounded-full" />
@@ -1688,7 +1672,7 @@ export default function PaisDePetBoutiquePortal() {
                   <button
                     type="button"
                     onClick={() => setTriageStep(1)}
-                    className="w-full sm:w-auto px-6 py-4 rounded-full bg-white border border-[#2C1820]/20 text-[#2C1820] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF8F5] transition-all text-center"
+                    className="w-full sm:w-auto px-6 py-4 rounded-full bg-white border border-[#2C1820]/20 text-[#2C1820] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF8F5] transition-all text-center min-h-[44px]"
                   >
                     Refazer Triagem
                   </button>
@@ -1712,10 +1696,7 @@ export default function PaisDePetBoutiquePortal() {
               Transparência Sem Enrolação
             </span>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-              <span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
-                style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
-              >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
                 Dúvidas que todo pai e mãe de pet tem antes de vir à clínica.
               </span>
             </h2>
@@ -1726,13 +1707,16 @@ export default function PaisDePetBoutiquePortal() {
               <div key={item.id} className="py-6 sm:py-8">
                 <button
                   type="button"
+                  id={`faq-pergunta-${item.id}`}
+                  aria-expanded={faqOpenIndex === index}
+                  aria-controls={`faq-resposta-${item.id}`}
                   onClick={() => setFaqOpenIndex(faqOpenIndex === index ? null : index)}
-                  className="w-full flex items-center justify-between gap-6 text-left group"
+                  className="w-full flex items-center justify-between gap-6 text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF2E93] rounded-xl p-2 -m-2"
                 >
                   <span className="text-lg sm:text-xl font-black text-[#2C1820] group-hover:text-[#FF2E93] transition-colors">
                     {item.question}
                   </span>
-                  <span className={`p-2 rounded-xl bg-white border border-[#2C1820]/15 text-[#2C1820] transition-transform duration-300 shrink-0 ${faqOpenIndex === index ? "rotate-180 text-[#FF2E93]" : ""}`}>
+                  <span className={`p-2 rounded-xl bg-white border border-[#2C1820]/15 transition-transform duration-300 shrink-0 ${faqOpenIndex === index ? "rotate-180 text-[#FF2E93]" : "text-[#2C1820]"}`}>
                     <BrandChevron className="w-4 h-4" />
                   </span>
                 </button>
@@ -1740,6 +1724,9 @@ export default function PaisDePetBoutiquePortal() {
                 <AnimatePresence>
                   {faqOpenIndex === index && (
                     <motion.div
+                      id={`faq-resposta-${item.id}`}
+                      role="region"
+                      aria-labelledby={`faq-pergunta-${item.id}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -1759,10 +1746,12 @@ export default function PaisDePetBoutiquePortal() {
         </div>
       </section>
 
+      </main>
+
       {/* ========================================================================= */}
       {/* 12. RODAPÉ DE LUXO EM GRADIENTE RADIANTE DA MARCA (ZERO PRETO / ZERO CINZA) */}
       {/* ========================================================================= */}
-      <footer className="bg-white border-t border-[#2C1820]/10 pt-20 pb-16 px-6 sm:px-12 lg:px-16 text-left">
+      <footer id="contato" className="bg-white border-t border-[#2C1820]/10 pt-20 pb-16 px-6 sm:px-12 lg:px-16 text-left">
         <div className="max-w-7xl mx-auto space-y-16">
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-[#2C1820]/10">
@@ -1807,6 +1796,9 @@ export default function PaisDePetBoutiquePortal() {
                 <p className="text-xs font-mono font-bold text-[#84CC16]">
                   Sábados: 08h30 às 13h00
                 </p>
+                <p className="pt-1 text-sm font-mono text-[#2C1820]">
+                  Telefone: <a href="tel:+5531983380139" className="hover:underline font-bold text-[#2C1820]">(31) 98338-0139</a>
+                </p>
               </div>
             </div>
 
@@ -1820,7 +1812,7 @@ export default function PaisDePetBoutiquePortal() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-sm transition-all text-center"
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-sm transition-all text-center min-h-[44px]"
                 >
                   <img src="/foto-perfil-pais-de-pet.jpg" alt="Logo" className="w-5 h-5 rounded-full object-cover" />
                   <span>WhatsApp Oficial</span>
@@ -1829,10 +1821,10 @@ export default function PaisDePetBoutiquePortal() {
                   href={clinicMetadata.contacts.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-[#FAF8F5] hover:bg-white text-[#2C1820] font-bold text-xs uppercase tracking-wider border border-[#2C1820]/15 transition-all text-center"
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-[#FAF8F5] hover:bg-white text-[#2C1820] font-bold text-xs uppercase tracking-wider border border-[#2C1820]/15 transition-all text-center min-h-[44px]"
                 >
                   <BrandCatEar className="w-4 h-4 text-[#FF2E93]" />
-                  <span>Instagram @paisdepet</span>
+                  <span>Instagram @petshoppaisdepet</span>
                 </a>
               </div>
             </div>
@@ -1840,7 +1832,7 @@ export default function PaisDePetBoutiquePortal() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#2C1820]/60">
-            <span>© {new Date().getFullYear()} Pais de Pet • Todos os direitos reservados.</span>
+            <span>© 2026 Pais de Pet • Todos os direitos reservados.</span>
             <span>Belo Horizonte - Minas Gerais</span>
           </div>
 
@@ -1852,9 +1844,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       <aside
         aria-label="Canal oficial WhatsApp"
-        className={`fixed bottom-6 right-6 z-40 transition-all duration-300 ${
-          scrolledPastHero ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-90 pointer-events-none"
-        }`}
+        className="fixed bottom-6 right-6 z-40 transition-all duration-300 opacity-100 scale-100 pointer-events-auto"
       >
         <motion.a
           href={whatsappUrl}
@@ -1862,7 +1852,7 @@ export default function PaisDePetBoutiquePortal() {
           rel="noopener noreferrer"
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.94 }}
-          className="relative p-3.5 sm:p-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white shadow-xl shadow-[#FF2E93]/35 flex items-center justify-center transition-all group"
+          className="relative p-3.5 sm:p-4 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white shadow-xl shadow-[#FF2E93]/35 flex items-center justify-center transition-all group min-w-[48px] min-h-[48px]"
           aria-label="Falar com Dra. Natalia Possas no WhatsApp Oficial"
         >
           <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden p-[2px] bg-white shrink-0 shadow-xs">
