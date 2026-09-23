@@ -581,10 +581,12 @@ export default function PaisDePetBoutiquePortal() {
         <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-6">
           
           <div className="space-y-3 sm:space-y-4 w-full">
-            {/* Headline Principal com Gradiente Master Contínuo em toda a frase */}
+            {/* Headline Principal com Gradiente Fluido Dinâmico e Text-Reveal Progressivo */}
             <h1
-              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-tight leading-[1.18] max-w-4xl mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#FF7A1A] via-[#BEF264] to-[#FFA8D5] inline-block"
-              style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6)) drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.8))" }}
+              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-tight leading-[1.28] sm:leading-[1.22] max-w-4xl mx-auto inline-block pb-3 sm:pb-4 pt-1 px-1 hero-fluid-title"
+              style={{
+                filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.55))",
+              }}
             >
               Medicina veterinária de excelência, com o carinho que seu melhor amigo merece.
             </h1>
@@ -658,8 +660,8 @@ export default function PaisDePetBoutiquePortal() {
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug">
                 <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block"
-                  style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6))" }}
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
+                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
                 >
                   Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz.
                 </span>
@@ -753,8 +755,8 @@ export default function PaisDePetBoutiquePortal() {
               </span>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
                 <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block"
-                  style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6))" }}
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
+                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
                 >
                   Medicina sem contenção forçada. Consultório sem cheiro de medo.
                 </span>
@@ -783,8 +785,8 @@ export default function PaisDePetBoutiquePortal() {
                 <span className="text-xs font-mono uppercase text-[#84CC16] font-bold">Arquitetura Sensorial</span>
                 <h3 className="text-2xl sm:text-4xl font-black leading-tight">
                   <span
-                    className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block"
-                    style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6))" }}
+                    className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
+                    style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
                   >
                     Por que cães e gatos não se cruzam nem sentem o cheiro um do outro aqui?
                   </span>
@@ -863,8 +865,8 @@ export default function PaisDePetBoutiquePortal() {
               </span>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
                 <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block"
-                  style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6))" }}
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
+                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
                 >
                   Uma picadinha que ele nem percebe. Vacinas importadas com cadeia de frio viva.
                 </span>
@@ -920,8 +922,8 @@ export default function PaisDePetBoutiquePortal() {
               </span>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
                 <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block"
-                  style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6))" }}
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
+                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
                 >
                   Você enxugaria o rosto com a toalha usada de outro desconhecido? Nós também não.
                 </span>
@@ -989,8 +991,8 @@ export default function PaisDePetBoutiquePortal() {
             </span>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
               <span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block"
-                style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6))" }}
+                className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
+                style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
               >
                 O consultório no sofá da sua sala. Sem trânsito, sem caixinha de transporte.
               </span>
@@ -1049,8 +1051,8 @@ export default function PaisDePetBoutiquePortal() {
               </span>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
                 <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block"
-                  style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6))" }}
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
+                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
                 >
                   Peças que aquecem sem prender o movimento. Ração de verdade.
                 </span>
@@ -1127,8 +1129,8 @@ export default function PaisDePetBoutiquePortal() {
               </span>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
                 <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block"
-                  style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6))" }}
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
+                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
                 >
                   O acolhimento gravado e vivido por quem confia o seu maior amor.
                 </span>
@@ -1185,8 +1187,8 @@ export default function PaisDePetBoutiquePortal() {
               </span>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
                 <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block"
-                  style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6))" }}
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
+                  style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
                 >
                   Localização oficial & nota 4.9 ★ verificada no Google.
                 </span>
@@ -1233,8 +1235,8 @@ export default function PaisDePetBoutiquePortal() {
                 <div className="space-y-2">
                   <h3 className="text-xl sm:text-2xl font-black leading-snug">
                     <span
-                      className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block"
-                      style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6))" }}
+                      className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-1.5 pt-0.5"
+                      style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
                     >
                       Avaliações 100% autênticas de tutores de Belo Horizonte.
                     </span>
@@ -1300,8 +1302,8 @@ export default function PaisDePetBoutiquePortal() {
             </div>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
               <span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block"
-                style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6))" }}
+                className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
+                style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
               >
                 Facilite o acolhimento do seu pet antes mesmo de chegar à clínica.
               </span>
@@ -1636,8 +1638,8 @@ export default function PaisDePetBoutiquePortal() {
             </span>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
               <span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block"
-                style={{ filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6))" }}
+                className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5"
+                style={{ filter: "drop-shadow(0 2px 6px rgba(44, 24, 32, 0.08)) drop-shadow(0 1px 2px rgba(234, 88, 12, 0.06))" }}
               >
                 Dúvidas que todo pai e mãe de pet tem antes de vir à clínica.
               </span>

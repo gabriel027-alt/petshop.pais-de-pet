@@ -255,3 +255,67 @@
 html.intro-seen #brand-intro-overlay {
   display: none !important;
 }
+
+/* ========================================================================= */
+/* GRADIENTE FLUIDO DINÂMICO & TEXT-REVEAL PROGRESSIVO (HERO PRINCIPAL)      */
+/* ========================================================================= */
+
+@keyframes heroRevealTint {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+    background-position: 100% 50%;
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+    background-position: 96% 50%;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes heroLivingGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 25% 50%;
+  }
+}
+
+.hero-fluid-title {
+  background-image: linear-gradient(
+    115deg,
+    #FF7A1A 0%,
+    #BEF264 16%,
+    #FFA8D5 32%,
+    #FF7A1A 48%,
+    #FFA8D5 60%,
+    #FFF2EA 72%,
+    #FFFFFF 82%,
+    #FFFFFF 100%
+  );
+  background-size: 260% 100%;
+  background-position: 100% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: 
+    heroRevealTint 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    heroLivingGradient 8s ease-in-out 2.2s infinite alternate;
+  will-change: background-position, transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fluid-title {
+    animation: none;
+    background-position: 0% 50%;
+    opacity: 1;
+    transform: none;
+  }
+}
