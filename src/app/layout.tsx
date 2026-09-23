@@ -73,7 +73,7 @@ export default function RootLayout({
     url: "https://paisdepet.com.br",
     sameAs: [
       "https://instagram.com/petshoppaisdepet",
-      "https://www.google.com/maps/search/?api=1&query=Pais+de+Pet+Rua+Silvestre+Ferraz+27+Sagrada+Fam%C3%ADlia+Belo+Horizonte+MG"
+      "https://www.google.com/maps/place/Pais+de+Pet,+Rua+Silvestre+Ferraz,+27+-+Sagrada+Fam%C3%ADlia,+Belo+Horizonte+-+MG"
     ],
     address: {
       "@type": "PostalAddress",

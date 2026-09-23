@@ -184,24 +184,27 @@ function BoutiqueVideoPlayer({
 // =============================================================================
 
 type TestimonialMedia =
-  | { type: "video"; id: string; src: string }
+  | { type: "video"; id: string; src: string; hasAudio?: boolean }
   | { type: "image"; id: string; src: string; alt: string };
 
 const hybridTestimonials: TestimonialMedia[] = [
   {
     type: "video",
     id: "depoimento-destaque-lhasa",
-    src: "/não-tem-com-quem-deixar-paisdepet.mp4"
+    src: "/não-tem-com-quem-deixar-paisdepet.mp4",
+    hasAudio: true
   },
   {
     type: "video",
     id: "depoimento-golden",
-    src: "/depoimento-amigos-paisdepet1.mp4"
+    src: "/depoimento-amigos-paisdepet1.mp4",
+    hasAudio: true
   },
   {
     type: "video",
     id: "depoimento-homecare",
-    src: "/depoimento-paisdepet4.mp4"
+    src: "/depoimento-paisdepet4.mp4",
+    hasAudio: false
   },
   {
     type: "image",
@@ -1172,7 +1175,7 @@ export default function PaisDePetBoutiquePortal() {
                     aspectRatio="aspect-[9/16]"
                     rounded="rounded-[2rem]"
                     objectFit="object-cover"
-                    showAudioButton={true}
+                    showAudioButton={item.hasAudio ?? false}
                     className="shadow-[0_15px_35px_rgba(44,24,32,0.07)]"
                   />
                 ) : (
@@ -1246,7 +1249,7 @@ export default function PaisDePetBoutiquePortal() {
             >
               <iframe
                 title="Localização Pais de Pet no Google Maps"
-                src="https://maps.google.com/maps?q=Rua+Silvestre+Ferraz,+27+-+Sagrada+Fam%C3%ADlia,+Belo+Horizonte+-+MG&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Pais+de+Pet,+Rua+Silvestre+Ferraz,+27+-+Sagrada+Fam%C3%ADlia,+Belo+Horizonte+-+MG&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 className={`w-full h-full border-0 ${mapInteractive ? "pointer-events-auto" : "pointer-events-none"}`}
                 loading="lazy"
                 allowFullScreen
@@ -1317,7 +1320,7 @@ export default function PaisDePetBoutiquePortal() {
                 </a>
 
                 <a
-                  href="https://maps.google.com/?daddr=Rua+Silvestre+Ferraz,+27+-+Sagrada+Família,+Belo+Horizonte+-+MG"
+                  href="https://www.google.com/maps/dir/?api=1&destination=Pais+de+Pet,+Rua+Silvestre+Ferraz,+27+-+Sagrada+Fam%C3%ADlia,+Belo+Horizonte+-+MG"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-[#84CC16] hover:bg-lime-600 text-white font-black text-xs uppercase tracking-wider shadow-md transition-all active:scale-95 text-center min-h-[44px]"
