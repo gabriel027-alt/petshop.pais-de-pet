@@ -104,13 +104,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth scroll-pt-20 sm:scroll-pt-24 lg:scroll-pt-28">
       <head>
-        <meta charSet="utf-8" />
-        <link rel="canonical" href="https://paisdepet.com.br" />
-        <meta name="theme-color" content="#FAF8F5" />
-        <link rel="icon" href="/foto-perfil-pais-de-pet.jpg" type="image/jpeg" />
-        <link rel="apple-touch-icon" href="/foto-perfil-pais-de-pet.jpg" />
-        <meta property="og:image" content="https://paisdepet.com.br/foto-perfil-pais-de-pet.jpg" />
-        <meta property="og:url" content="https://paisdepet.com.br" />
         <link rel="preload" as="image" href="/intro-interativa-poster.jpg" fetchPriority="high" />
 
         <script

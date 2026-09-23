@@ -261,7 +261,7 @@ export default function PaisDePetBoutiquePortal() {
 
   // Estados de Interface
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
-  const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(0);
+  const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(null);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
@@ -364,6 +364,9 @@ export default function PaisDePetBoutiquePortal() {
             <a href="#refugio" className="px-3.5 py-2 rounded-full hover:bg-white hover:text-[#FF2E93] transition-all">
               O Refúgio
             </a>
+            <a href="#filosofia" className="px-3.5 py-2 rounded-full hover:bg-white hover:text-[#FF2E93] transition-all">
+              Filosofia
+            </a>
             <a href="#consultorio" className="px-3.5 py-2 rounded-full hover:bg-white hover:text-[#84CC16] transition-all">
               Prevenção
             </a>
@@ -414,104 +417,98 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* MENU DE NAVEGAÇÃO LATERAL (DRAWER SUMÁRIO EXPANSÍVEL)                     */}
       {/* ========================================================================= */}
-      <AnimatePresence>
-        {sideMenuOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+      <div
+        onClick={() => setSideMenuOpen(false)}
+        className={`fixed inset-0 z-50 bg-[#2C1820]/30 backdrop-blur-xs transition-opacity duration-300 ${
+          sideMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        aria-hidden="true"
+      />
+      <aside
+        id="drawer-sumario"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Sumário da página"
+        aria-hidden={!sideMenuOpen}
+        className={`fixed top-0 right-0 bottom-0 w-full sm:w-[440px] z-50 bg-[#FAF8F5] border-l border-[#2C1820]/10 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.25rem,env(safe-area-inset-bottom))] px-6 sm:px-10 overflow-y-auto flex flex-col justify-between shadow-2xl transition-transform duration-300 ease-out ${
+          sideMenuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"
+        }`}
+      >
+        <div className="space-y-6 sm:space-y-8">
+          <div className="flex items-center justify-between pb-5 border-b border-[#2C1820]/10">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full p-[1.5px] bg-gradient-to-tr from-[#FF2E93] to-[#84CC16] shrink-0">
+                <img src="/foto-perfil-pais-de-pet.jpg" alt="Pais de Pet" className="w-full h-full object-cover rounded-full" />
+              </div>
+              <div className="min-w-0">
+                <span className="font-black text-lg text-[#2C1820] block leading-none truncate">Pais de Pet</span>
+                <span className="text-[10px] font-mono uppercase text-[#FF6B00] font-bold block mt-0.5 truncate">Sagrada Família • BH</span>
+              </div>
+            </div>
+            <button
+              type="button"
               onClick={() => setSideMenuOpen(false)}
-              className="fixed inset-0 z-50 bg-[#2C1820]/30 backdrop-blur-xs"
-            />
-            <motion.aside
-              id="drawer-sumario"
-              role="dialog"
-              aria-modal="true"
-              aria-label="Sumário da página"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed top-0 right-0 bottom-0 w-full sm:w-[440px] z-50 bg-[#FAF8F5] border-l border-[#2C1820]/10 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.25rem,env(safe-area-inset-bottom))] px-6 sm:px-10 overflow-y-auto flex flex-col justify-between shadow-2xl"
+              className="p-2.5 rounded-2xl bg-white border border-[#2C1820]/15 text-[#2C1820] hover:bg-[#FAF8F5] transition-colors active:scale-95 cursor-pointer touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label="Fechar Sumário"
             >
-              <div className="space-y-6 sm:space-y-8">
-                <div className="flex items-center justify-between pb-5 border-b border-[#2C1820]/10">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full p-[1.5px] bg-gradient-to-tr from-[#FF2E93] to-[#84CC16] shrink-0">
-                      <img src="/foto-perfil-pais-de-pet.jpg" alt="Pais de Pet" className="w-full h-full object-cover rounded-full" />
-                    </div>
-                    <div className="min-w-0">
-                      <span className="font-black text-lg text-[#2C1820] block leading-none truncate">Pais de Pet</span>
-                      <span className="text-[10px] font-mono uppercase text-[#FF6B00] font-bold block mt-0.5 truncate">Sagrada Família • BH</span>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setSideMenuOpen(false)}
-                    className="p-2.5 rounded-2xl bg-white border border-[#2C1820]/15 text-[#2C1820] hover:bg-[#FAF8F5] transition-colors active:scale-95 cursor-pointer touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
-                    aria-label="Fechar Sumário"
-                  >
-                    <BrandClose className="w-5 h-5 text-[#FF2E93]" />
-                  </button>
-                </div>
+              <BrandClose className="w-5 h-5 text-[#FF2E93]" />
+            </button>
+          </div>
 
-                <div className="space-y-1 text-left">
-                  <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93] block">
-                    Sumário Completo
-                  </span>
-                  <nav className="divide-y divide-[#2C1820]/8 text-base font-black text-[#2C1820]" aria-label="Links do Sumário">
-                    {[
-                      { href: "#refugio", label: "O Refúgio Fear-Free", desc: "Isolamento de ruídos e acolhimento sensorial" },
-                      { href: "#consultorio", label: "Medicina & Vacinação Ética", desc: "Aplicação suave e rastreabilidade total" },
-                      { href: "#banho", label: "Estética com Toalha Descartável", desc: "Zero gaiolas e toalhas individuais esterilizadas" },
-                      { href: "#homecare", label: "Atendimento no Sofá da sua Casa", desc: "Home care veterinário nos bairros de BH" },
-                      { href: "#boutique", label: "Boutique & Nutrição Clínica", desc: "Rações selecionadas e peças anatômicas" },
-                      { href: "#galeria-videos", label: "Depoimentos Reais em Vídeo", desc: "Depoimentos autênticos de tutores em vídeo puro" },
-                      { href: "#localizacao", label: "Localização & Google 4.9", desc: "Mapa interativo e perfil verificado com nota 4.9" },
-                      { href: "#triagem", label: "Triagem Pré-Clínica Inteligente", desc: "Prepare a consulta da Dra. Natalia antes de chegar" },
-                      { href: "#faq", label: "Dúvidas Frequentes", desc: "Convênios, toalhas e endereço no Sagrada Família" }
-                    ].map((item) => (
-                      <a
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setSideMenuOpen(false)}
-                        className="py-3.5 block group hover:translate-x-1.5 transition-transform"
-                      >
-                        <span className="block text-sm sm:text-base font-black group-hover:text-[#FF2E93] transition-colors">
-                          {item.label}
-                        </span>
-                        <span className="text-xs text-[#2C1820]/65 font-normal block mt-0.5">
-                          {item.desc}
-                        </span>
-                      </a>
-                    ))}
-                  </nav>
-                </div>
-              </div>
-
-              <div className="pt-8 border-t border-[#2C1820]/10 text-left space-y-3">
-                <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#84CC16] uppercase">
-                  <BrandCross className="w-4 h-4" />
-                  <span>Dra. Natalia Possas • CRMV-MG 20572</span>
-                </div>
-                <p className="text-xs text-[#2C1820]/75">
-                  Rua Silvestre Ferraz, 27 • Sagrada Família, Belo Horizonte - MG
-                </p>
+          <div className="space-y-1 text-left">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93] block">
+              Sumário Completo
+            </span>
+            <nav className="divide-y divide-[#2C1820]/8 text-base font-black text-[#2C1820]" aria-label="Links do Sumário">
+              {[
+                { href: "#refugio", label: "O Refúgio e Boas-Vindas", desc: "História, dedicação e acolhimento familiar" },
+                { href: "#filosofia", label: "Filosofia Fear-Free", desc: "Isolamento de ruídos e arquitetura sensorial" },
+                { href: "#consultorio", label: "Medicina & Vacinação Ética", desc: "Aplicação suave e rastreabilidade total" },
+                { href: "#banho", label: "Estética com Toalha Descartável", desc: "Zero gaiolas e toalhas individuais esterilizadas" },
+                { href: "#homecare", label: "Atendimento no Sofá da sua Casa", desc: "Home care veterinário nos bairros de BH" },
+                { href: "#boutique", label: "Boutique & Nutrição Clínica", desc: "Rações selecionadas e peças anatômicas" },
+                { href: "#galeria-videos", label: "Depoimentos Reais em Vídeo", desc: "Depoimentos autênticos de tutores em vídeo puro" },
+                { href: "#localizacao", label: "Localização & Google 4.9", desc: "Mapa interativo e perfil verificado com nota 4.9" },
+                { href: "#triagem", label: "Triagem Pré-Clínica Inteligente", desc: "Prepare a consulta da Dra. Natalia antes de chegar" },
+                { href: "#faq", label: "Dúvidas Frequentes", desc: "Convênios, toalhas e endereço no Sagrada Família" }
+              ].map((item) => (
                 <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-3 py-3.5 rounded-full bg-[#FF2E93] text-white font-black text-xs uppercase tracking-wider"
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setSideMenuOpen(false)}
+                  className="py-3.5 block group hover:translate-x-1.5 transition-transform"
                 >
-                  <img src="/foto-perfil-pais-de-pet.jpg" alt="Logo" className="w-5 h-5 rounded-full object-cover" />
-                  <span>Falar no WhatsApp Oficial</span>
+                  <span className="block text-sm sm:text-base font-black group-hover:text-[#FF2E93] transition-colors">
+                    {item.label}
+                  </span>
+                  <span className="text-xs text-[#2C1820]/65 font-normal block mt-0.5">
+                    {item.desc}
+                  </span>
                 </a>
-              </div>
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
+              ))}
+            </nav>
+          </div>
+        </div>
+
+        <div className="pt-8 border-t border-[#2C1820]/10 text-left space-y-3">
+          <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#84CC16] uppercase">
+            <BrandCross className="w-4 h-4" />
+            <span>Dra. Natalia Possas • CRMV-MG 20572</span>
+          </div>
+          <p className="text-xs text-[#2C1820]/75">
+            Rua Silvestre Ferraz, 27 • Sagrada Família, Belo Horizonte - MG
+          </p>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full inline-flex items-center justify-center gap-3 py-3.5 rounded-full bg-[#FF2E93] text-white font-black text-xs uppercase tracking-wider"
+          >
+            <img src="/foto-perfil-pais-de-pet.jpg" alt="Logo" className="w-5 h-5 rounded-full object-cover" />
+            <span>Falar no WhatsApp Oficial</span>
+          </a>
+        </div>
+      </aside>
 
       {/* ========================================================================= */}
       {/* LANDMARK SEMÂNTICO PRINCIPAL (<main>)                                      */}
@@ -638,10 +635,8 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93] block">
                 Filosofia Fear-Free • Pais de Pet
               </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
-                  Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz.
-                </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#2C1820] tracking-tight leading-snug">
+                Criamos uma clínica onde o seu pet entra sem medo e você sai com o <span className="text-[#FF2E93]">coração em paz.</span>
               </h2>
               <p className="text-sm sm:text-base text-[#2C1820]/80 leading-relaxed">
                 A gente sabe o que passa no seu coração quando ele treme antes de entrar no veterinário. Aqui, nenhuma porta bate, nenhum cão late na orelha do seu gato, e nenhuma consulta dura 15 minutos.
@@ -722,7 +717,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 3. SEÇÃO: O REFÚGIO FEAR-FREE (SILÊNCIO, TEMPO & ACOLHIMENTO)              */}
       {/* ========================================================================= */}
-      <section id="refugio" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FAF8F5] border-t border-[#FF2E93]/15 overflow-hidden">
+      <section id="filosofia" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FAF8F5] border-t border-[#FF2E93]/15 overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-16">
           
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 text-left">
@@ -730,10 +725,8 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93]">
                 Filosofia Fear-Free
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
-                  Medicina sem contenção forçada. Consultório sem cheiro de medo.
-                </span>
+              <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
+                Medicina sem contenção forçada. <span className="text-[#FF2E93]">Consultório sem cheiro de medo.</span>
               </h2>
             </motion.div>
             <motion.div {...fadeInRight} className="max-w-md text-sm sm:text-base text-[#2C1820]/80 leading-relaxed">
@@ -757,10 +750,8 @@ export default function PaisDePetBoutiquePortal() {
             <motion.div {...fadeInRight} className="lg:col-span-7 rounded-[2rem] bg-white border border-[#2C1820]/10 p-8 sm:p-12 space-y-8 text-left shadow-xs flex flex-col justify-between">
               <div className="space-y-6">
                 <span className="text-xs font-mono uppercase text-[#84CC16] font-bold">Arquitetura Sensorial</span>
-                <h3 className="text-2xl sm:text-4xl font-black leading-tight">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
-                    Por que cães e gatos não se cruzam nem sentem o cheiro um do outro aqui?
-                  </span>
+                <h3 className="text-2xl sm:text-4xl font-black text-[#2C1820] leading-tight">
+                  Por que cães e gatos <span className="text-[#FF2E93]">não se cruzam</span> nem sentem o cheiro um do outro aqui?
                 </h3>
                 <p className="text-sm sm:text-base text-[#2C1820]/85 leading-relaxed">
                   Gatos são territorialistas e se estressam com odores caninos. Nós desenvolvemos fluxos separados, desinfecção enzimática sem cloro e difusores contínuos de Feliway e Adaptil.
@@ -834,10 +825,8 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#84CC16]">
                 Imunização Ética & Prevenção
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
-                  Uma picadinha que ele nem percebe. Vacinas importadas com cadeia de frio viva.
-                </span>
+              <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
+                Uma picadinha que ele nem percebe. <span className="text-[#65A30D]">Vacinas importadas com cadeia de frio viva.</span>
               </h2>
               <p className="text-base sm:text-lg text-[#2C1820]/80 leading-relaxed">
                 Vacina não é apenas aplicar uma dose. É garantir que o lote nunca tenha sofrido variação de temperatura, usar agulhas ultra-finas e associar o momento a um reforço positivo delicioso para criar memórias boas.
@@ -888,10 +877,8 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93]">
                 Estética Consciente
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
-                  Você enxugaria o rosto com a toalha usada de outro desconhecido? Nós também não.
-                </span>
+              <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
+                Você enxugaria o rosto com a toalha usada de outro desconhecido? <span className="text-[#FF2E93]">Nós também não.</span>
               </h2>
             </motion.div>
             <motion.div {...fadeInRight} className="max-w-md text-sm sm:text-base text-[#2C1820]/80 leading-relaxed">
@@ -954,10 +941,8 @@ export default function PaisDePetBoutiquePortal() {
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF6B00]">
               Home Care em Belo Horizonte
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
-                O consultório no sofá da sua sala. Sem trânsito, sem caixinha de transporte.
-              </span>
+            <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
+              O consultório no sofá da sua sala. <span className="text-[#EA580C]">Sem trânsito, sem caixinha de transporte.</span>
             </h2>
             <p className="text-base sm:text-lg text-[#2C1820]/85 leading-relaxed">
               Para gatos que entram em pânico com o carro, cães idosos com dor articular ou tutores com rotina apertada. A Dra. Natalia vai até a sua residência com kit clínico esterilizado completo.
@@ -1011,10 +996,8 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF6B00]">
                 Boutique Farmácia & Nutrição
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
-                  Peças que aquecem sem prender o movimento. Ração de verdade.
-                </span>
+              <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
+                Peças que aquecem sem prender o movimento. <span className="text-[#EA580C]">Ração de verdade.</span>
               </h2>
             </motion.div>
             <motion.div {...fadeInRight} className="max-w-md text-sm sm:text-base text-[#2C1820]/80 leading-relaxed">
@@ -1134,10 +1117,8 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93]">
                 Casos Reais & Depoimentos
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
-                  O acolhimento gravado e vivido por quem confia o seu maior amor.
-                </span>
+              <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
+                O acolhimento gravado e vivido por quem confia o seu <span className="text-[#FF2E93]">maior amor.</span>
               </h2>
             </motion.div>
 
@@ -1243,10 +1224,8 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#84CC16]">
                 Transparência & Proximidade
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
-                  Localização oficial & nota 4.9 ★ verificada no Google.
-                </span>
+              <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
+                Localização oficial & nota <span className="text-[#EA580C]">4.9 ★</span> verificada no Google.
               </h2>
             </motion.div>
             <motion.div {...fadeInRight} className="text-xs font-mono uppercase tracking-wider text-[#2C1820]/65 font-bold">
@@ -1260,7 +1239,7 @@ export default function PaisDePetBoutiquePortal() {
             <motion.div {...fadeInLeft} className="lg:col-span-7 rounded-[2rem] overflow-hidden border border-[#2C1820]/15 shadow-md h-[400px] lg:h-auto min-h-[380px] bg-white relative">
               <iframe
                 title="Localização Pais de Pet no Google Maps"
-                src="https://maps.google.com/maps?q=Rua+Silvestre+Ferraz,+27+-+Sagrada+Fam%C3%ADlia,+Belo+Horizonte+-+MG&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Pais+de+Pet+Rua+Silvestre+Ferraz+27+Belo+Horizonte&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 className="w-full h-full border-0"
                 loading="lazy"
                 allowFullScreen
@@ -1288,10 +1267,8 @@ export default function PaisDePetBoutiquePortal() {
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-xl sm:text-2xl font-black leading-snug">
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-1.5 pt-0.5">
-                      Avaliações 100% autênticas de tutores de Belo Horizonte.
-                    </span>
+                  <h3 className="text-xl sm:text-2xl font-black text-[#2C1820] leading-snug">
+                    Avaliações <span className="text-[#FF2E93]">100% autênticas</span> de tutores de Belo Horizonte.
                   </h3>
                   <p className="text-sm text-[#2C1820]/80 leading-relaxed">
                     Mais de uma centena de avaliações públicas no Google destacando a dedicação e paciência da Dra. Natalia Possas, o banho sem estresse com toalhas descartáveis e o atendimento acolhedor.
@@ -1315,7 +1292,7 @@ export default function PaisDePetBoutiquePortal() {
               {/* Botões de Ação Direta */}
               <div className="space-y-3 pt-2">
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=Pais+de+Pet+Rua+Silvestre+Ferraz+27+Sagrada+Fam%C3%ADlia+Belo+Horizonte+MG"
+                  href="https://www.google.com/maps/search/?api=1&query=Pais+de+Pet+Rua+Silvestre+Ferraz+27+Belo+Horizonte"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-white hover:bg-[#FFF0F6] text-[#2C1820] font-black text-xs uppercase tracking-wider border border-[#FF2E93]/40 hover:border-[#FF2E93] transition-all shadow-xs group text-center min-h-[44px]"
@@ -1326,7 +1303,7 @@ export default function PaisDePetBoutiquePortal() {
                 </a>
 
                 <a
-                  href="https://www.google.com/maps/dir/?api=1&destination=Rua+Silvestre+Ferraz+27+Belo+Horizonte"
+                  href="https://www.google.com/maps/dir/?api=1&destination=Rua+Silvestre+Ferraz,+27+-+Sagrada+Família,+Belo+Horizonte+-+MG"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-[#84CC16] hover:bg-lime-600 text-white font-black text-xs uppercase tracking-wider shadow-md transition-all active:scale-95 text-center min-h-[44px]"
@@ -1355,10 +1332,8 @@ export default function PaisDePetBoutiquePortal() {
               <BrandCross className="w-3.5 h-3.5" />
               <span>Triagem Pré-Clínica Inteligente</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
-                Facilite o acolhimento do seu pet antes mesmo de chegar à clínica.
-              </span>
+            <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
+              Facilite o acolhimento do seu pet <span className="text-[#65A30D]">antes mesmo de chegar à clínica.</span>
             </h2>
             <p className="text-base sm:text-lg text-[#2C1820]/80">
               Responda em 3 etapas rápidas. A Dra. Natalia e nossa recepção preparam a sala sensorial, os feromônios e o protocolo ideal para o temperamento do seu filho.
@@ -1695,10 +1670,8 @@ export default function PaisDePetBoutiquePortal() {
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93]">
               Transparência Sem Enrolação
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] inline-block pb-2 pt-0.5">
-                Dúvidas que todo pai e mãe de pet tem antes de vir à clínica.
-              </span>
+            <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
+              Dúvidas que todo pai e mãe de pet tem <span className="text-[#FF2E93]">antes de vir à clínica.</span>
             </h2>
           </motion.div>
 
