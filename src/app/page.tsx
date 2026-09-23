@@ -242,17 +242,24 @@ export default function PaisDePetBoutiquePortal() {
   const whatsappUrl = clinicMetadata.contacts.whatsappUrl;
   const containerRef = useRef<HTMLDivElement>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const heroVideoMobileRef = useRef<HTMLVideoElement>(null);
   const [heroMuted, setHeroMuted] = useState(true);
 
   const toggleHeroAudio = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    const nextMuted = !heroMuted;
+    setHeroMuted(nextMuted);
     if (heroVideoRef.current) {
-      const nextMuted = !heroVideoRef.current.muted;
       heroVideoRef.current.muted = nextMuted;
-      setHeroMuted(nextMuted);
       if (heroVideoRef.current.paused) {
         heroVideoRef.current.play().catch(() => {});
+      }
+    }
+    if (heroVideoMobileRef.current) {
+      heroVideoMobileRef.current.muted = nextMuted;
+      if (heroVideoMobileRef.current.paused) {
+        heroVideoMobileRef.current.play().catch(() => {});
       }
     }
   };
@@ -540,9 +547,23 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       <section className="relative w-full sm:w-[100vw] h-[100dvh] min-h-[100dvh] overflow-hidden flex flex-col justify-end items-center pb-12 sm:pb-16 select-none bg-black">
         
-        {/* VÍDEO DE FUNDO FULL-BLEED REAL EDGE-TO-EDGE NO DESKTOP E MOBILE (100VW x 100VH) */}
+        {/* VÍDEO NO DESKTOP (PC): WIDESCREEN 16:9 FULL-BLEED REAL (100VW x 100VH) COM ENQUADRAMENTO COMPLETO DO CÃO */}
         <video
           ref={heroVideoRef}
+          src="/hero-desktop.mp4"
+          poster="/hero-desktop-poster.jpg"
+          autoPlay
+          muted={heroMuted}
+          loop
+          playsInline
+          preload="auto"
+          className="hidden sm:block absolute inset-0 w-[100vw] h-[100vh] max-w-none m-0 p-0 object-cover z-0 pointer-events-none"
+          style={{ objectFit: "cover", objectPosition: "center 35%" }}
+        />
+
+        {/* VÍDEO NO MOBILE: 9:16 VERTICAL ORIGINAL 100% INTOCADO */}
+        <video
+          ref={heroVideoMobileRef}
           src="/intro-interativa-4k.mp4"
           poster="/intro-interativa-poster.jpg"
           autoPlay
@@ -550,8 +571,7 @@ export default function PaisDePetBoutiquePortal() {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full sm:w-[100vw] sm:h-[100vh] sm:max-w-none sm:m-0 sm:p-0 object-cover object-center z-0 pointer-events-none"
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          className="block sm:hidden absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none"
         />
 
         {/* OVERLAY ESCURO SUTIL DE FUNDO PARA CONTRASTE E LEGIBILIDADE PERFEITA */}
