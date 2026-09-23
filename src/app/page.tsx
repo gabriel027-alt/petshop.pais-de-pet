@@ -538,21 +538,9 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 2. INTRO 2: HERO PRINCIPAL COM BACKGROUND VIDEO REAL FULL-BLEED (EDGE-TO-EDGE) */}
       {/* ========================================================================= */}
-      <section className="relative w-full h-[100dvh] min-h-[100dvh] overflow-hidden flex flex-col justify-end items-center pb-12 sm:pb-16 select-none bg-black">
+      <section className="relative w-full sm:w-[100vw] h-[100dvh] min-h-[100dvh] overflow-hidden flex flex-col justify-end items-center pb-12 sm:pb-16 select-none bg-black">
         
-        {/* 1. VÍDEO DE BACKDROP AMBIENTE PANORÂMICO NO DESKTOP (EDGE-TO-EDGE COM ILUMINAÇÃO DINÂMICA) */}
-        <video
-          src="/intro-interativa-4k.mp4"
-          poster="/intro-interativa-poster.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center blur-2xl scale-110 opacity-35 z-0 pointer-events-none"
-        />
-
-        {/* 2. VÍDEO PRINCIPAL NÍTIDO: ENQUADRAMENTO HARMONIOSO E AMPLO NO PC (ZERO CORTE NO FOCINHO) E FULL-BLEED NO MOBILE */}
+        {/* VÍDEO DE FUNDO FULL-BLEED REAL EDGE-TO-EDGE NO DESKTOP E MOBILE (100VW x 100VH) */}
         <video
           ref={heroVideoRef}
           src="/intro-interativa-4k.mp4"
@@ -562,19 +550,12 @@ export default function PaisDePetBoutiquePortal() {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 m-auto w-full h-full object-cover sm:object-contain object-center z-0 pointer-events-none sm:max-w-[calc(100dvh*9/16)] sm:aspect-[9/16]"
+          className="absolute inset-0 w-full h-full sm:w-[100vw] sm:h-[100vh] sm:max-w-none sm:m-0 sm:p-0 object-cover object-center z-0 pointer-events-none"
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
 
-        {/* MÁSCARAS DE TRANSIÇÃO SUAVE NAS LATERAIS NO DESKTOP */}
-        <div className="hidden sm:block absolute inset-y-0 left-0 w-28 lg:w-40 bg-gradient-to-r from-black via-black/40 to-transparent pointer-events-none z-10" />
-        <div className="hidden sm:block absolute inset-y-0 right-0 w-28 lg:w-40 bg-gradient-to-l from-black via-black/40 to-transparent pointer-events-none z-10" />
-
         {/* OVERLAY ESCURO SUTIL DE FUNDO PARA CONTRASTE E LEGIBILIDADE PERFEITA */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/25 pointer-events-none z-10" />
-
-        {/* OVERLAYS SUTIS DE MALHA/GRADIENTE NO FUNDO COM CORES DA MARCA NO DESKTOP */}
-        <div className="hidden sm:block absolute inset-0 bg-gradient-to-tr from-[#84CC16]/10 via-transparent to-[#FF6B00]/10 pointer-events-none z-10" />
-        <div className="hidden sm:block absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#FF2E93]/15 via-transparent to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20 pointer-events-none z-10" />
 
         {/* BOTÃO DISCRETO DE ÁUDIO NO HERO */}
         <button
