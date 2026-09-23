@@ -540,7 +540,19 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       <section className="relative w-full h-[100dvh] min-h-[100dvh] overflow-hidden flex flex-col justify-end items-center pb-12 sm:pb-16 select-none bg-black">
         
-        {/* VÍDEO DE FUNDO IMERSIVO REAL FULL-BLEED (100% LARGURA E ALTURA NO DESKTOP E MOBILE) */}
+        {/* 1. VÍDEO DE BACKDROP AMBIENTE PANORÂMICO NO DESKTOP (EDGE-TO-EDGE COM ILUMINAÇÃO DINÂMICA) */}
+        <video
+          src="/intro-interativa-4k.mp4"
+          poster="/intro-interativa-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center blur-2xl scale-110 opacity-35 z-0 pointer-events-none"
+        />
+
+        {/* 2. VÍDEO PRINCIPAL NÍTIDO: ENQUADRAMENTO HARMONIOSO E AMPLO NO PC (ZERO CORTE NO FOCINHO) E FULL-BLEED NO MOBILE */}
         <video
           ref={heroVideoRef}
           src="/intro-interativa-4k.mp4"
@@ -550,11 +562,15 @@ export default function PaisDePetBoutiquePortal() {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none"
+          className="absolute inset-0 m-auto w-full h-full object-cover sm:object-contain object-center z-0 pointer-events-none sm:max-w-[calc(100dvh*9/16)] sm:aspect-[9/16]"
         />
 
+        {/* MÁSCARAS DE TRANSIÇÃO SUAVE NAS LATERAIS NO DESKTOP */}
+        <div className="hidden sm:block absolute inset-y-0 left-0 w-28 lg:w-40 bg-gradient-to-r from-black via-black/40 to-transparent pointer-events-none z-10" />
+        <div className="hidden sm:block absolute inset-y-0 right-0 w-28 lg:w-40 bg-gradient-to-l from-black via-black/40 to-transparent pointer-events-none z-10" />
+
         {/* OVERLAY ESCURO SUTIL DE FUNDO PARA CONTRASTE E LEGIBILIDADE PERFEITA */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20 pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/25 pointer-events-none z-10" />
 
         {/* OVERLAYS SUTIS DE MALHA/GRADIENTE NO FUNDO COM CORES DA MARCA NO DESKTOP */}
         <div className="hidden sm:block absolute inset-0 bg-gradient-to-tr from-[#84CC16]/10 via-transparent to-[#FF6B00]/10 pointer-events-none z-10" />
@@ -584,14 +600,19 @@ export default function PaisDePetBoutiquePortal() {
         <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-6">
           
           <div className="space-y-3 sm:space-y-4 w-full">
-            {/* Headline Principal: Proposta de Valor / Serviço */}
-            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-white tracking-tight leading-[1.15] [text-shadow:_0_3px_20px_rgba(0,0,0,0.95),_0_6px_40px_rgba(0,0,0,0.85)] max-w-3xl sm:max-w-4xl mx-auto">
-              Medicina veterinária{" "}
-              <span className="text-white sm:text-transparent sm:bg-clip-text sm:bg-gradient-to-r sm:from-[#D4FC79] sm:via-[#FFD099] sm:to-[#FFA8D5] sm:filter sm:drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] sm:inline">
-                humanizada e de ponta a ponta
-              </span>{" "}
-              para o seu pet.
+            {/* Headline Principal com Gradiente Master Contínuo em toda a frase */}
+            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-tight leading-[1.18] max-w-4xl mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#FF7A1A] via-[#BEF264] to-[#FFA8D5] filter drop-shadow-[0_4px_24px_rgba(0,0,0,0.92)] inline-block">
+              Medicina veterinária de excelência, com o carinho que seu melhor amigo merece.
             </h1>
+
+            {/* Assinatura Médica da Dra. Natália e CRMV com alto contraste e legibilidade impecável */}
+            <div className="flex items-center justify-center gap-2.5 pt-1">
+              <div className="h-px w-6 sm:w-10 bg-gradient-to-r from-transparent to-[#FF7A1A]" />
+              <p className="text-xs sm:text-sm font-mono font-bold uppercase tracking-widest text-white/95 [text-shadow:_0_2px_12px_rgba(0,0,0,0.95)]">
+                DRA. NATALIA POSSAS • CRMV-MG 20572
+              </p>
+              <div className="h-px w-6 sm:w-10 bg-gradient-to-l from-transparent to-[#FFA8D5]" />
+            </div>
 
             {/* Subtítulo Complementar: Introduz o que vem a seguir */}
             <p className="text-xs sm:text-base md:text-lg font-medium text-white/90 max-w-2xl mx-auto leading-relaxed [text-shadow:_0_2px_12px_rgba(0,0,0,0.95)]">
@@ -651,8 +672,10 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93] block">
                 Filosofia Fear-Free • Pais de Pet
               </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#2C1820] tracking-tight">
-                Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz.
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] drop-shadow-[0_1px_2px_rgba(234,88,12,0.12)] inline-block">
+                  Criamos uma clínica onde o seu pet entra sem medo e você sai com o coração em paz.
+                </span>
               </h2>
               <p className="text-sm sm:text-base text-[#2C1820]/80 leading-relaxed">
                 A gente sabe o que passa no seu coração quando ele treme antes de entrar no veterinário. Aqui, nenhuma porta bate, nenhum cão late na orelha do seu gato, e nenhuma consulta dura 15 minutos.
@@ -741,8 +764,10 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93]">
                 Filosofia Fear-Free
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
-                Medicina sem contenção forçada. Consultório sem cheiro de medo.
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] drop-shadow-[0_1px_2px_rgba(234,88,12,0.12)] inline-block">
+                  Medicina sem contenção forçada. Consultório sem cheiro de medo.
+                </span>
               </h2>
             </motion.div>
             <motion.div {...fadeInRight} className="max-w-md text-sm sm:text-base text-[#2C1820]/80 leading-relaxed">
@@ -766,8 +791,10 @@ export default function PaisDePetBoutiquePortal() {
             <motion.div {...fadeInRight} className="lg:col-span-7 rounded-[2.5rem] bg-[#F4FBEA] border border-[#84CC16]/30 p-8 sm:p-12 space-y-8 text-left shadow-xs flex flex-col justify-between">
               <div className="space-y-6">
                 <span className="text-xs font-mono uppercase text-[#84CC16] font-bold">Arquitetura Sensorial</span>
-                <h3 className="text-2xl sm:text-4xl font-black text-[#2C1820] leading-tight">
-                  Por que cães e gatos não se cruzam nem sentem o cheiro um do outro aqui?
+                <h3 className="text-2xl sm:text-4xl font-black leading-tight">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] drop-shadow-[0_1px_2px_rgba(234,88,12,0.12)] inline-block">
+                    Por que cães e gatos não se cruzam nem sentem o cheiro um do outro aqui?
+                  </span>
                 </h3>
                 <p className="text-base text-[#2C1820]/85 leading-relaxed">
                   Gatos são territorialistas e se estressam com odores caninos. Nós desenvolvemos fluxos separados, desinfecção enzimática sem cloro e difusores contínuos de Feliway e Adaptil.
@@ -841,8 +868,10 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#84CC16]">
                 Imunização Ética & Prevenção
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
-                Uma picadinha que ele nem percebe. Vacinas importadas com cadeia de frio viva.
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] drop-shadow-[0_1px_2px_rgba(234,88,12,0.12)] inline-block">
+                  Uma picadinha que ele nem percebe. Vacinas importadas com cadeia de frio viva.
+                </span>
               </h2>
               <p className="text-base sm:text-lg text-[#2C1820]/80 leading-relaxed">
                 Vacina não é apenas aplicar uma dose. É garantir que o lote nunca tenha sofrido variação de temperatura, usar agulhas ultra-finas e associar o momento a um reforço positivo delicioso para criar memórias boas.
@@ -893,8 +922,10 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93]">
                 Estética Consciente
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
-                Você enxugaria o rosto com a toalha usada de outro desconhecido? Nós também não.
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] drop-shadow-[0_1px_2px_rgba(234,88,12,0.12)] inline-block">
+                  Você enxugaria o rosto com a toalha usada de outro desconhecido? Nós também não.
+                </span>
               </h2>
             </motion.div>
             <motion.div {...fadeInRight} className="max-w-md text-sm sm:text-base text-[#2C1820]/80 leading-relaxed">
@@ -957,8 +988,10 @@ export default function PaisDePetBoutiquePortal() {
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF6B00]">
               Home Care em Belo Horizonte
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
-              O consultório no sofá da sua sala. Sem trânsito, sem caixinha de transporte.
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] drop-shadow-[0_1px_2px_rgba(234,88,12,0.12)] inline-block">
+                O consultório no sofá da sua sala. Sem trânsito, sem caixinha de transporte.
+              </span>
             </h2>
             <p className="text-base sm:text-lg text-[#2C1820]/85 leading-relaxed">
               Para gatos que entram em pânico com o carro, cães idosos com dor articular ou tutores com rotina apertada. A Dra. Natalia vai até a sua residência com kit clínico esterilizado completo.
@@ -1012,8 +1045,10 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF6B00]">
                 Boutique Farmácia & Nutrição
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
-                Peças que aquecem sem prender o movimento. Ração de verdade.
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] drop-shadow-[0_1px_2px_rgba(234,88,12,0.12)] inline-block">
+                  Peças que aquecem sem prender o movimento. Ração de verdade.
+                </span>
               </h2>
             </motion.div>
             <motion.div {...fadeInRight} className="max-w-md text-sm sm:text-base text-[#2C1820]/80 leading-relaxed">
@@ -1097,8 +1132,10 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93]">
                 Casos Reais & Depoimentos
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
-                O acolhimento gravado e vivido por quem confia o seu maior amor.
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] drop-shadow-[0_1px_2px_rgba(234,88,12,0.12)] inline-block">
+                  O acolhimento gravado e vivido por quem confia o seu maior amor.
+                </span>
               </h2>
             </motion.div>
           </div>
@@ -1150,8 +1187,10 @@ export default function PaisDePetBoutiquePortal() {
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#84CC16]">
                 Transparência & Proximidade
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
-                Localização oficial & nota 4.9 ★ verificada no Google.
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] drop-shadow-[0_1px_2px_rgba(234,88,12,0.12)] inline-block">
+                  Localização oficial & nota 4.9 ★ verificada no Google.
+                </span>
               </h2>
             </motion.div>
             <motion.div {...fadeInRight} className="text-xs font-mono uppercase tracking-wider text-[#2C1820]/65 font-bold">
@@ -1193,8 +1232,10 @@ export default function PaisDePetBoutiquePortal() {
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-xl sm:text-2xl font-black text-[#2C1820] leading-snug">
-                    Avaliações 100% autênticas de tutores de Belo Horizonte.
+                  <h3 className="text-xl sm:text-2xl font-black leading-snug">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] drop-shadow-[0_1px_2px_rgba(234,88,12,0.12)] inline-block">
+                      Avaliações 100% autênticas de tutores de Belo Horizonte.
+                    </span>
                   </h3>
                   <p className="text-xs sm:text-sm text-[#2C1820]/80 leading-relaxed">
                     Mais de uma centena de avaliações públicas no Google destacando a dedicação e paciência da Dra. Natalia Possas, o banho sem estresse com toalhas descartáveis e o atendimento acolhedor.
@@ -1255,8 +1296,10 @@ export default function PaisDePetBoutiquePortal() {
               <BrandCross className="w-3.5 h-3.5" />
               <span>Triagem Pré-Clínica Inteligente</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
-              Facilite o acolhimento do seu pet antes mesmo de chegar à clínica.
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] drop-shadow-[0_1px_2px_rgba(234,88,12,0.12)] inline-block">
+                Facilite o acolhimento do seu pet antes mesmo de chegar à clínica.
+              </span>
             </h2>
             <p className="text-base sm:text-lg text-[#2C1820]/80">
               Responda em 3 etapas rápidas. A Dra. Natalia e nossa recepção preparam a sala sensorial, os feromônios e o protocolo ideal para o temperamento do seu filho.
@@ -1586,8 +1629,10 @@ export default function PaisDePetBoutiquePortal() {
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF2E93]">
               Transparência Sem Enrolação
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black text-[#2C1820] tracking-tight leading-tight">
-              Dúvidas que todo pai e mãe de pet tem antes de vir à clínica.
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EA580C] via-[#65A30D] to-[#BE185D] drop-shadow-[0_1px_2px_rgba(234,88,12,0.12)] inline-block">
+                Dúvidas que todo pai e mãe de pet tem antes de vir à clínica.
+              </span>
             </h2>
           </motion.div>
 
