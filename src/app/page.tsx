@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { clinicMetadata } from "@/data/clinicMetadata";
 import { faqData } from "@/data/faqData";
 
@@ -419,17 +419,19 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       <div
         onClick={() => setSideMenuOpen(false)}
+        hidden={!sideMenuOpen}
+        inert={!sideMenuOpen}
         className={`fixed inset-0 z-50 bg-[#2C1820]/30 backdrop-blur-xs transition-opacity duration-300 ${
           sideMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
-        aria-hidden="true"
       />
       <aside
         id="drawer-sumario"
         role="dialog"
         aria-modal="true"
         aria-label="Sumário da página"
-        aria-hidden={!sideMenuOpen}
+        hidden={!sideMenuOpen}
+        inert={!sideMenuOpen}
         className={`fixed top-0 right-0 bottom-0 w-full sm:w-[440px] z-50 bg-[#FAF8F5] border-l border-[#2C1820]/10 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.25rem,env(safe-area-inset-bottom))] px-6 sm:px-10 overflow-y-auto flex flex-col justify-between shadow-2xl transition-transform duration-300 ease-out ${
           sideMenuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"
         }`}
@@ -499,7 +501,13 @@ export default function PaisDePetBoutiquePortal() {
             Rua Silvestre Ferraz, 27 • Sagrada Família, Belo Horizonte - MG
           </p>
           <a
-            href={whatsappUrl}
+            href="tel:+5531983380139"
+            className="text-xs font-mono font-bold text-[#2C1820] hover:underline block pt-1"
+          >
+            Ligar: (31) 98338-0139
+          </a>
+          <a
+            href="https://wa.link/2ooc5p?text=Ol%C3%A1%2C%20Dra.%20Natalia!%20Vim%20pelo%20menu%20do%20site%20e%20gostaria%20de%20informa%C3%A7%C3%B5es."
             target="_blank"
             rel="noopener noreferrer"
             className="w-full inline-flex items-center justify-center gap-3 py-3.5 rounded-full bg-[#FF2E93] text-white font-black text-xs uppercase tracking-wider"
@@ -566,9 +574,9 @@ export default function PaisDePetBoutiquePortal() {
         <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-6 before:absolute before:-inset-8 before:rounded-[3rem] before:bg-radial before:from-black/80 before:via-black/40 before:to-transparent before:-z-10 before:blur-2xl before:pointer-events-none">
           
           <div className="space-y-3 sm:space-y-4 w-full">
-            {/* Headline Principal com Gradiente Fluido Dinâmico e Text-Reveal Progressivo */}
-            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-tight leading-[1.28] sm:leading-[1.22] max-w-4xl mx-auto inline-block pb-4 pt-1 px-1 hero-fluid-title">
-              Medicina veterinária de excelência, com o carinho que seu melhor amigo merece.
+            {/* Headline Principal: Tipografia editorial de alto contraste e destaque emocional */}
+            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-tight leading-[1.28] sm:leading-[1.22] text-white max-w-4xl mx-auto inline-block pb-4 pt-1 px-1 drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
+              Medicina veterinária de excelência, com o <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7A1A] via-[#FF2E93] to-[#FFA8D5]">carinho que seu melhor amigo merece.</span>
             </h1>
 
             {/* Assinatura Médica da Dra. Natália e CRMV com alto contraste e legibilidade impecável */}
@@ -1239,7 +1247,7 @@ export default function PaisDePetBoutiquePortal() {
             <motion.div {...fadeInLeft} className="lg:col-span-7 rounded-[2rem] overflow-hidden border border-[#2C1820]/15 shadow-md h-[400px] lg:h-auto min-h-[380px] bg-white relative">
               <iframe
                 title="Localização Pais de Pet no Google Maps"
-                src="https://maps.google.com/maps?q=Pais+de+Pet+Rua+Silvestre+Ferraz+27+Belo+Horizonte&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Rua+Silvestre+Ferraz,+27+-+Sagrada+Fam%C3%ADlia,+Belo+Horizonte+-+MG&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 className="w-full h-full border-0"
                 loading="lazy"
                 allowFullScreen
@@ -1292,7 +1300,7 @@ export default function PaisDePetBoutiquePortal() {
               {/* Botões de Ação Direta */}
               <div className="space-y-3 pt-2">
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=Pais+de+Pet+Rua+Silvestre+Ferraz+27+Belo+Horizonte"
+                  href="https://www.google.com/maps/search/?api=1&query=Pais+de+Pet+Rua+Silvestre+Ferraz+27+Sagrada+Fam%C3%ADlia+Belo+Horizonte+MG"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-white hover:bg-[#FFF0F6] text-[#2C1820] font-black text-xs uppercase tracking-wider border border-[#FF2E93]/40 hover:border-[#FF2E93] transition-all shadow-xs group text-center min-h-[44px]"
@@ -1303,7 +1311,7 @@ export default function PaisDePetBoutiquePortal() {
                 </a>
 
                 <a
-                  href="https://www.google.com/maps/dir/?api=1&destination=Rua+Silvestre+Ferraz,+27+-+Sagrada+Família,+Belo+Horizonte+-+MG"
+                  href="https://maps.google.com/?daddr=Rua+Silvestre+Ferraz,+27+-+Sagrada+Família,+Belo+Horizonte+-+MG"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-[#84CC16] hover:bg-lime-600 text-white font-black text-xs uppercase tracking-wider shadow-md transition-all active:scale-95 text-center min-h-[44px]"
@@ -1694,24 +1702,22 @@ export default function PaisDePetBoutiquePortal() {
                   </span>
                 </button>
 
-                <AnimatePresence>
-                  {faqOpenIndex === index && (
-                    <motion.div
-                      id={`faq-resposta-${item.id}`}
-                      role="region"
-                      aria-labelledby={`faq-pergunta-${item.id}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <p className="pt-4 text-sm sm:text-base text-[#2C1820]/80 leading-relaxed max-w-3xl">
-                        {item.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <div
+                  id={`faq-resposta-${item.id}`}
+                  role="region"
+                  aria-labelledby={`faq-pergunta-${item.id}`}
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    faqOpenIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                  style={{
+                    height: faqOpenIndex === index ? "auto" : "0px",
+                    opacity: faqOpenIndex === index ? 1 : 0,
+                  }}
+                >
+                  <p className="pt-4 text-sm sm:text-base text-[#2C1820]/80 leading-relaxed max-w-3xl">
+                    {item.answer}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

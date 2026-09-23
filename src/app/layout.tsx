@@ -69,8 +69,12 @@ export default function RootLayout({
     description:
       "Consultório veterinário com Dra. Natalia Possas (CRMV-MG 20572), atendimento cat-friendly, banho com toalhas 100% descartáveis e atendimento domiciliar no Sagrada Família, Belo Horizonte - MG.",
     telephone: "+5531983380139",
+    priceRange: "$$",
     url: "https://paisdepet.com.br",
-    sameAs: ["https://instagram.com/petshoppaisdepet"],
+    sameAs: [
+      "https://instagram.com/petshoppaisdepet",
+      "https://www.google.com/maps/search/?api=1&query=Pais+de+Pet+Rua+Silvestre+Ferraz+27+Sagrada+Fam%C3%ADlia+Belo+Horizonte+MG"
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: "Rua Silvestre Ferraz, 27",
