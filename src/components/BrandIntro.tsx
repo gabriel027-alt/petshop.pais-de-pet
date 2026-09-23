@@ -161,18 +161,22 @@ export default function BrandIntro({ onComplete }: BrandIntroProps) {
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
           className="sm:hidden fixed inset-0 z-[100] w-full h-[100dvh] min-h-[100dvh] bg-[#FAF8F5] flex items-center justify-center overflow-hidden select-none"
         >
-          {/* BOTÃO DISCRETO 'PULAR' NO CANTO SUPERIOR DIREITO */}
+          {/* BOTÃO 'PULAR' REDESENHADO (WCAG 2.2 TARGET SIZE MINIMUM >= 44x44px & ALTO CONTRASTE) */}
           <motion.button
             type="button"
             onClick={handleClose}
-            initial={{ opacity: 0, x: 8 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="absolute top-[max(1rem,env(safe-area-inset-top))] right-[max(1rem,env(safe-area-inset-right))] z-40 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 hover:bg-black/60 text-white/90 border border-white/20 backdrop-blur-md text-[11px] font-mono tracking-wider uppercase transition-all shadow-md active:scale-95 cursor-pointer touch-manipulation pointer-events-auto"
-            aria-label="Pular Introdução"
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              handleClose();
+            }}
+            initial={{ opacity: 0, scale: 0.9, y: -4 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            className="absolute top-[max(1.25rem,env(safe-area-inset-top))] right-[max(1.25rem,env(safe-area-inset-right))] z-50 inline-flex items-center justify-center gap-2 px-4 py-2.5 min-h-[44px] min-w-[90px] rounded-full bg-black/75 hover:bg-black/90 active:bg-black text-white font-bold text-sm tracking-wider uppercase border border-white/50 backdrop-blur-lg shadow-2xl transition-all active:scale-95 cursor-pointer touch-manipulation pointer-events-auto"
+            aria-label="Pular introdução e ir direto para o site"
           >
             <span>Pular</span>
-            <span className="text-white/60 text-[10px]">✕</span>
+            <span className="text-white/80 text-xs font-mono">✕</span>
           </motion.button>
 
           {/* FASE 1: PALCO DO VÍDEO (EXECUTA UMA VEZ E FAZ FADE-OUT SUAVE PARA O FUNDO #FAF8F5) */}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { clinicMetadata } from "@/data/clinicMetadata";
 import { faqData } from "@/data/faqData";
@@ -158,8 +158,9 @@ function BoutiqueVideoPlayer({
         <button
           type="button"
           onClick={toggleAudio}
+          aria-pressed={!isMuted}
           className={`absolute ${audioPosition === "bottom-right" ? "bottom-4 right-4" : "top-4 right-4"} z-20 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 hover:bg-black/60 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 text-xs font-mono font-medium tracking-wide shadow-sm`}
-          aria-label={isMuted ? "Ativar som do vídeo" : "Silenciar áudio do vídeo"}
+          aria-label={isMuted ? "Ativar som deste vídeo" : "Silenciar som deste vídeo"}
         >
           {isMuted ? (
             <>
@@ -261,9 +262,6 @@ export default function PaisDePetBoutiquePortal() {
   const { scrollY, scrollYProgress } = useScroll();
   const heroVideoY = useTransform(scrollY, [0, 800], [0, 100]);
   const heroScale = useTransform(scrollY, [0, 800], [1.0, 1.05]);
-  const floatingBtnOpacity = useTransform(scrollY, [250, 450], [0, 1]);
-  const floatingBtnScale = useTransform(scrollY, [250, 450], [0.7, 1]);
-  const floatingBtnPointerEvents = useTransform(scrollY, (val) => (val > 250 ? "auto" : "none"));
 
   // Sistema de Patinhas Flutuantes em SVG com Paralaxe e Fade
   const pawLeft1Y = useTransform(scrollYProgress, [0, 1], [0, 480]);
@@ -279,6 +277,35 @@ export default function PaisDePetBoutiquePortal() {
   // Estados de Interface
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(0);
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  // Monitoramento Resiliente de Scroll para o Botão Flutuante
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolledPastHero(window.scrollY > 250);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollCarousel = (direction: "left" | "right") => {
+    if (carouselRef.current) {
+      const scrollAmount = direction === "left" ? -330 : 330;
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
+  const handleCarouselScroll = () => {
+    if (carouselRef.current) {
+      const scrollLeft = carouselRef.current.scrollLeft;
+      const cardWidth = 330;
+      const index = Math.round(scrollLeft / cardWidth);
+      setCarouselIndex(Math.min(Math.max(index, 0), hybridTestimonials.length - 1));
+    }
+  };
 
   // Estados da Triagem Pré-Clínica Inteligente
   const [triageStep, setTriageStep] = useState<1 | 2 | 3 | 4>(1);
@@ -554,15 +581,16 @@ export default function PaisDePetBoutiquePortal() {
           style={{ objectFit: "cover" }}
         />
 
-        {/* OVERLAY ESCURO SUTIL DE FUNDO PARA CONTRASTE E LEGIBILIDADE PERFEITA */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/25 pointer-events-none z-10" />
+        {/* OVERLAY ESCURO DENSO DE FUNDO PARA CONTRASTE E LEGIBILIDADE WCAG 2.2 */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/30 pointer-events-none z-10" />
 
-        {/* BOTÃO DISCRETO DE ÁUDIO NO HERO */}
+        {/* BOTÃO DISCRETO DE ÁUDIO NO HERO COM ARIA-PRESSED E LABEL DINÂMICO */}
         <button
           type="button"
           onClick={toggleHeroAudio}
+          aria-pressed={!heroMuted}
           className="absolute top-20 sm:top-24 right-4 sm:right-8 z-30 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 hover:bg-black/70 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 text-xs font-mono font-medium tracking-wide shadow-md cursor-pointer touch-manipulation"
-          aria-label={heroMuted ? "Ativar som do vídeo" : "Silenciar áudio do vídeo"}
+          aria-label={heroMuted ? "Ativar áudio do vídeo da apresentação clínica" : "Silenciar áudio do vídeo da apresentação clínica"}
         >
           {heroMuted ? (
             <>
@@ -577,8 +605,8 @@ export default function PaisDePetBoutiquePortal() {
           )}
         </button>
 
-        {/* COMPOSIÇÃO CINEMATOGRÁFICA COM TIPOGRAFIA EM TEXT-REVEAL SEQUENCIAL */}
-        <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-6">
+        {/* COMPOSIÇÃO CINEMATOGRÁFICA COM TIPOGRAFIA EM TEXT-REVEAL SEQUENCIAL & VINHETA PROTETORA */}
+        <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-6 before:absolute before:-inset-8 before:rounded-[3rem] before:bg-radial before:from-black/60 before:via-black/25 before:to-transparent before:-z-10 before:blur-2xl before:pointer-events-none">
           
           <div className="space-y-3 sm:space-y-4 w-full">
             {/* Headline Principal com Gradiente Fluido Dinâmico e Text-Reveal Progressivo */}
@@ -606,18 +634,18 @@ export default function PaisDePetBoutiquePortal() {
             </p>
           </div>
 
-          {/* GRUPO DE CTAS DE ALTA CONVERSÃO: WHATSAPP PRINCIPAL & AGENDAR TRIAGEM */}
+          {/* GRUPO DE CTAS DE ALTA CONVERSÃO: WHATSAPP PRIMÁRIO SÓLIDO & AGENDAR TRIAGEM GHOST */}
           <div className="pt-2 sm:pt-3 w-full flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-            {/* 1. BOTÃO PRIMÁRIO DE DESTAQUE ABSOLUTO: WHATSAPP DA DRA. NATALIA */}
+            {/* 1. BOTÃO PRIMÁRIO DE DESTAQUE ABSOLUTO (CRO / LEI DE FITTS): WHATSAPP DA DRA. NATALIA */}
             <div className="relative group/btn">
               {/* Halo sutil com gradiente tricolor da marca no Desktop */}
-              <div className="hidden sm:block absolute -inset-1 rounded-full bg-gradient-to-r from-[#84CC16]/50 via-[#FF6B00]/60 to-[#FF2E93]/70 blur-md opacity-75 group-hover/btn:opacity-100 transition-opacity pointer-events-none" />
+              <div className="hidden sm:block absolute -inset-1 rounded-full bg-gradient-to-r from-[#84CC16]/60 via-[#FF6B00]/70 to-[#FF2E93]/80 blur-md opacity-80 group-hover/btn:opacity-100 transition-opacity pointer-events-none" />
               <a
                 href={`${whatsappUrl}?text=${encodeURIComponent("Olá, Dra. Natalia! Gostaria de tirar dúvidas e agendar uma consulta para o meu pet na Pais de Pet.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-gradient-to-r from-[#FF2E93] via-[#FF3B9B] to-[#FF2E93] hover:scale-105 active:scale-95 text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/35 backdrop-blur-md cursor-pointer touch-manipulation group ring-4 ring-[#FF2E93]/20 sm:ring-2 sm:ring-white/40 shadow-xl transition-transform"
-                aria-label="Conversar com a Dra. Natalia no WhatsApp"
+                className="relative inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-4.5 rounded-full bg-gradient-to-r from-[#FF2E93] via-[#FF3B9B] to-[#FF2E93] hover:scale-105 active:scale-95 text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/40 backdrop-blur-md cursor-pointer touch-manipulation group ring-4 ring-[#FF2E93]/20 sm:ring-2 sm:ring-white/40 shadow-xl transition-all"
+                aria-label="Conversar com a Dra. Natalia no WhatsApp Oficial (Canal Primário de Agendamento)"
               >
                 <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
                   <img src="/foto-perfil-pais-de-pet.jpg" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
@@ -627,16 +655,14 @@ export default function PaisDePetBoutiquePortal() {
               </a>
             </div>
 
-            {/* 2. BOTÃO SECUNDÁRIO DE ALTA CONVERSÃO NO DESKTOP: AGENDAR TRIAGEM */}
+            {/* 2. BOTÃO SECUNDÁRIO ELEGANTE (CRO / LEI DE HICK / GHOST OUTLINE): AGENDAR TRIAGEM */}
             <div className="relative group/triagem hidden sm:inline-flex">
-              {/* Halo sutil com gradiente verde/laranja da marca no Desktop */}
-              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#BEF264]/60 via-[#84CC16]/70 to-[#FF6B00]/40 blur-md opacity-70 group-hover/triagem:opacity-100 transition-opacity pointer-events-none" />
               <a
                 href="#triagem"
-                className="relative inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 sm:py-4.5 rounded-full bg-gradient-to-r from-[#84CC16] via-[#93DD19] to-[#84CC16] hover:brightness-105 hover:scale-105 active:scale-95 text-white font-black text-xs sm:text-sm uppercase tracking-wider text-center border border-white/40 backdrop-blur-md shadow-lg shadow-[#84CC16]/40 ring-2 ring-[#BEF264]/40 cursor-pointer touch-manipulation transition-all"
-                aria-label="Agendar Triagem Pré-Clínica"
+                className="relative inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 sm:py-4.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white font-bold text-xs sm:text-sm uppercase tracking-wider text-center border border-white/40 hover:border-white/70 backdrop-blur-md shadow-md hover:shadow-lg hover:shadow-white/10 cursor-pointer touch-manipulation transition-all"
+                aria-label="Agendar Triagem Pré-Clínica (Opção Secundária)"
               >
-                <BrandPaw className="w-4 h-4 text-white shrink-0" />
+                <BrandPaw className="w-4 h-4 text-[#BEF264] shrink-0" />
                 <span>Agendar Triagem</span>
               </a>
             </div>
@@ -827,7 +853,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 4. SEÇÃO: VACINAÇÃO ÉTICA & MEDICINA PREVENTIVA                            */}
       {/* ========================================================================= */}
-      <section id="consultorio" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#F4FBEA] border-t border-[#84CC16]/20 overflow-hidden">
+      <section id="consultorio" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-white border-t border-[#2C1820]/10 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* VÍDEOS VERTICAIS 9:16 INSTAGRAM REELS (CONSULTÓRIO & VACINAÇÃO • SEM BORDAS) */}
@@ -882,7 +908,7 @@ export default function PaisDePetBoutiquePortal() {
                 { title: "Avaliação Clínica Completa Inclusa", desc: "Nenhum pet é vacinado sem checagem de temperatura, linfonodos, ausculta cardíaca e pulmão." },
                 { title: "Odontologia Preventiva sem Trauma", desc: "Detecção precoce de tártaro, gengivite e reabsorção dentária felina sem procedimentos desnecessários." }
               ].map((item) => (
-                <div key={item.title} className="p-4 rounded-2xl bg-white border border-[#84CC16]/30 flex items-start gap-3.5">
+                <div key={item.title} className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#84CC16]/25 flex items-start gap-3.5">
                   <span className="p-1 rounded-lg bg-[#84CC16]/20 text-[#84CC16] mt-0.5 shrink-0">
                     <BrandCheck className="w-3.5 h-3.5" />
                   </span>
@@ -912,7 +938,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 5. SEÇÃO: BANHO & ESTÉTICA COM TOALHA DESCARTÁVEL                         */}
       {/* ========================================================================= */}
-      <section id="banho" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FFF0F6] border-t border-[#FF2E93]/20 overflow-hidden">
+      <section id="banho" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FAF8F5] border-t border-[#2C1820]/10 overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-16">
           
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 text-left">
@@ -982,7 +1008,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 6. SEÇÃO: ATENDIMENTO EM DOMICÍLIO (HOME CARE BH)                         */}
       {/* ========================================================================= */}
-      <section id="homecare" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FFF7ED] border-t border-[#FF6B00]/20 overflow-hidden">
+      <section id="homecare" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-white border-t border-[#2C1820]/10 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <motion.div {...fadeInLeft} className="lg:col-span-7 space-y-6 text-left order-2 lg:order-1">
@@ -1002,11 +1028,11 @@ export default function PaisDePetBoutiquePortal() {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div className="p-4 rounded-2xl bg-white border border-[#FF6B00]/30">
+              <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#FF6B00]/25">
                 <span className="text-xs font-mono uppercase text-[#FF6B00] font-bold block">Bairros de Atendimento</span>
                 <span className="text-sm font-black text-[#2C1820] block mt-1">Sagrada Família, Floresta, Santa Tereza, Cidade Nova, Horto e Silveira.</span>
               </div>
-              <div className="p-4 rounded-2xl bg-white border border-[#FF6B00]/30">
+              <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#FF6B00]/25">
                 <span className="text-xs font-mono uppercase text-[#FF6B00] font-bold block">Procedimentos em Casa</span>
                 <span className="text-sm font-black text-[#2C1820] block mt-1">Exames de sangue, vacinas importadas, curativos e avaliação geriátrica.</span>
               </div>
@@ -1041,7 +1067,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 7. SEÇÃO: BOUTIQUE & NUTRIÇÃO PREVENTIVA                                  */}
       {/* ========================================================================= */}
-      <section id="boutique" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FAF8F5] border-t border-[#FF6B00]/20 overflow-hidden">
+      <section id="boutique" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FAF8F5] border-t border-[#2C1820]/10 overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-16">
           
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 text-left">
@@ -1119,8 +1145,8 @@ export default function PaisDePetBoutiquePortal() {
       {/* 8. SEÇÃO: DEPOIMENTOS REAIS (VÍDEOS 9:16 REELS • ZERO BORDAS • ZERO DUPLICATAS) */}
       {/* O VÍDEO DO GOLDEN RETRIEVER APARECE ESTREITAMENTE UMA ÚNICA VEZ AQUI     */}
       {/* ========================================================================= */}
-      <section id="galeria-videos" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FAF8F5] border-t border-[#FF2E93]/20 overflow-hidden">
-        <div className="max-w-7xl mx-auto space-y-12 text-left">
+      <section id="galeria-videos" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-white border-t border-[#2C1820]/10 overflow-hidden">
+        <div className="max-w-7xl mx-auto space-y-10 text-left">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <motion.div {...fadeInLeft} className="space-y-3 max-w-2xl">
@@ -1136,10 +1162,38 @@ export default function PaisDePetBoutiquePortal() {
                 </span>
               </h2>
             </motion.div>
+
+            {/* CONTROLES DE NAVEGAÇÃO LATERAL DO CARROSSEL (WCAG 2.2 / LEI DE FITTS) */}
+            <div className="hidden sm:flex items-center gap-3 shrink-0">
+              <button
+                type="button"
+                onClick={() => scrollCarousel("left")}
+                aria-label="Ver depoimento anterior à esquerda"
+                className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#2C1820]/15 hover:border-[#FF2E93] text-[#2C1820] hover:text-[#FF2E93] flex items-center justify-center shadow-xs transition-all active:scale-95 cursor-pointer touch-manipulation focus:outline-none focus:ring-2 focus:ring-[#FF2E93]/40"
+              >
+                <BrandChevron className="w-5 h-5 rotate-90" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollCarousel("right")}
+                aria-label="Ver próximo depoimento à direita"
+                className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#2C1820]/15 hover:border-[#FF2E93] text-[#2C1820] hover:text-[#FF2E93] flex items-center justify-center shadow-xs transition-all active:scale-95 cursor-pointer touch-manipulation focus:outline-none focus:ring-2 focus:ring-[#FF2E93]/40"
+              >
+                <BrandChevron className="w-5 h-5 -rotate-90" />
+              </button>
+            </div>
           </div>
 
-          {/* GALERIA HÍBRIDA (VÍDEOS 9:16 EM AUTOPLAY & FOTOS 9:16 COM ZOOM SUAVE NO HOVER) */}
-          <div className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory no-scrollbar cursor-grab active:cursor-grabbing">
+          {/* GALERIA HÍBRIDA ACESSÍVEL (CARROSSEL COM ARIA, SUPORTE A SWIPE E FOCO DE TECLADO) */}
+          <div
+            ref={carouselRef}
+            onScroll={handleCarouselScroll}
+            role="region"
+            aria-label="Carrossel de Casos Reais e Depoimentos"
+            aria-roledescription="carousel"
+            tabIndex={0}
+            className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar cursor-grab active:cursor-grabbing focus:outline-none focus:ring-2 focus:ring-[#FF2E93]/25 rounded-3xl"
+          >
             {hybridTestimonials.map((item, idx) => (
               <motion.div
                 key={item.id}
@@ -1171,13 +1225,34 @@ export default function PaisDePetBoutiquePortal() {
             ))}
           </div>
 
+          {/* INDICADOR VISUAL DISCRETO DE NAVEGAÇÃO LATERAL (PAGINAÇÃO SUTIL WCAG 2.2) */}
+          <div className="flex items-center justify-center gap-2 pt-2" aria-hidden="true">
+            {hybridTestimonials.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => {
+                  if (carouselRef.current) {
+                    carouselRef.current.scrollTo({ left: idx * 330, behavior: "smooth" });
+                  }
+                }}
+                className={`transition-all duration-300 rounded-full ${
+                  carouselIndex === idx
+                    ? "w-8 h-2 bg-[#FF2E93]"
+                    : "w-2 h-2 bg-[#2C1820]/20 hover:bg-[#2C1820]/40"
+                }`}
+                aria-label={`Ir para depoimento ${idx + 1}`}
+              />
+            ))}
+          </div>
+
         </div>
       </section>
 
       {/* ========================================================================= */}
       {/* 9. SEÇÃO: GOOGLE MAPS INTERATIVO & AVALIAÇÃO OFICIAL 4.9 GOOGLE MEU NEGÓCIO */}
       {/* ========================================================================= */}
-      <section id="localizacao" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-white border-t border-[#84CC16]/20 text-left overflow-hidden">
+      <section id="localizacao" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FAF8F5] border-t border-[#2C1820]/10 text-left overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-12">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -1202,7 +1277,7 @@ export default function PaisDePetBoutiquePortal() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
             {/* GOOGLE MAPS INTERATIVO EMBED */}
-            <motion.div {...fadeInLeft} className="lg:col-span-7 rounded-[2.5rem] overflow-hidden border border-[#84CC16]/30 shadow-md h-[400px] lg:h-auto min-h-[380px] bg-[#FAF8F5] relative">
+            <motion.div {...fadeInLeft} className="lg:col-span-7 rounded-[2.5rem] overflow-hidden border border-[#2C1820]/15 shadow-md h-[400px] lg:h-auto min-h-[380px] bg-white relative">
               <iframe
                 title="Localização Pais de Pet no Google Maps"
                 src="https://maps.google.com/maps?q=Rua+Silvestre+Ferraz,+27+-+Sagrada+Fam%C3%ADlia,+Belo+Horizonte+-+MG&t=&z=16&ie=UTF8&iwloc=&output=embed"
@@ -1213,7 +1288,7 @@ export default function PaisDePetBoutiquePortal() {
             </motion.div>
 
             {/* CARD DE AVALIAÇÕES E NOTA OFICIAL 4.9 GOOGLE */}
-            <motion.div {...fadeInRight} className="lg:col-span-5 rounded-[2.5rem] bg-[#FAF8F5] border border-[#FF2E93]/20 p-8 sm:p-10 flex flex-col justify-between space-y-8 text-left shadow-sm">
+            <motion.div {...fadeInRight} className="lg:col-span-5 rounded-[2.5rem] bg-white border border-[#2C1820]/10 p-8 sm:p-10 flex flex-col justify-between space-y-8 text-left shadow-sm">
               
               <div className="space-y-6">
                 
@@ -1292,11 +1367,11 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 10. SEÇÃO: SISTEMA DE TRIAGEM PRÉ-CLÍNICA INTELIGENTE                     */}
       {/* ========================================================================= */}
-      <section id="triagem" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#F4FBEA]/60 border-t border-[#84CC16]/25 text-left overflow-hidden">
+      <section id="triagem" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-white border-t border-[#2C1820]/10 text-left overflow-hidden">
         <div className="max-w-4xl mx-auto space-y-10">
           
           <motion.div {...fadeInUp} className="space-y-3 text-center sm:text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#84CC16]/40 text-[#84CC16] font-mono text-xs font-bold uppercase tracking-wider shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#84CC16]/40 text-[#84CC16] font-mono text-xs font-bold uppercase tracking-wider shadow-2xs">
               <BrandCross className="w-3.5 h-3.5" />
               <span>Triagem Pré-Clínica Inteligente</span>
             </div>
@@ -1314,7 +1389,7 @@ export default function PaisDePetBoutiquePortal() {
           </motion.div>
 
           {/* PAINEL INTERATIVO DE TRIAGEM */}
-          <motion.div {...fadeInUp} className="bg-white rounded-[2.5rem] p-6 sm:p-10 border border-[#84CC16]/30 shadow-[0_20px_50px_rgba(44,24,32,0.06)] space-y-8">
+          <motion.div {...fadeInUp} className="bg-[#FAF8F5] rounded-[2.5rem] p-6 sm:p-10 border border-[#2C1820]/10 shadow-[0_20px_50px_rgba(44,24,32,0.04)] space-y-8">
             
             {/* BARRA DE PROGRESSO EM GRADIENTE DA MARCA */}
             <div className="space-y-2">
@@ -1629,7 +1704,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 11. SEÇÃO: PERGUNTAS SINCERAS (FAQ EDITORIAL)                             */}
       {/* ========================================================================= */}
-      <section id="faq" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FAF8F5] border-t border-[#FF2E93]/20 overflow-hidden">
+      <section id="faq" className="py-24 sm:py-32 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#FAF8F5] border-t border-[#2C1820]/10 overflow-hidden">
         <div className="max-w-4xl mx-auto space-y-12 text-left">
           
           <motion.div {...fadeInUp} className="space-y-3">
@@ -1687,7 +1762,7 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 12. RODAPÉ DE LUXO EM GRADIENTE RADIANTE DA MARCA (ZERO PRETO / ZERO CINZA) */}
       {/* ========================================================================= */}
-      <footer className="bg-gradient-to-br from-[#FFF0F6] via-[#FAF8F5] to-[#F4FBEA] border-t-2 border-[#FF2E93]/20 pt-20 pb-16 px-6 sm:px-12 lg:px-16 text-left">
+      <footer className="bg-white border-t border-[#2C1820]/10 pt-20 pb-16 px-6 sm:px-12 lg:px-16 text-left">
         <div className="max-w-7xl mx-auto space-y-16">
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-[#2C1820]/10">
@@ -1708,7 +1783,7 @@ export default function PaisDePetBoutiquePortal() {
                 Criamos a Pais de Pet porque não aceitávamos mais ver animais tremendo de medo em consultórios frios ou enxugados com toalhas usadas em banhos coletivos. Aqui, seu filho é acolhido como membro da família.
               </p>
 
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-[#84CC16]/40 text-xs font-mono font-bold text-[#2C1820]">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#FAF8F5] border border-[#84CC16]/40 text-xs font-mono font-bold text-[#2C1820]">
                 <BrandCross className="w-3.5 h-3.5 text-[#84CC16]" />
                 <span>Responsabilidade Técnica: Dra. Natalia Possas • CRMV-MG 20572</span>
               </div>
@@ -1754,7 +1829,7 @@ export default function PaisDePetBoutiquePortal() {
                   href={clinicMetadata.contacts.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-white hover:bg-[#FAF8F5] text-[#2C1820] font-bold text-xs uppercase tracking-wider border border-[#2C1820]/15 transition-all text-center"
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-[#FAF8F5] hover:bg-white text-[#2C1820] font-bold text-xs uppercase tracking-wider border border-[#2C1820]/15 transition-all text-center"
                 >
                   <BrandCatEar className="w-4 h-4 text-[#FF2E93]" />
                   <span>Instagram @paisdepet</span>
@@ -1775,14 +1850,11 @@ export default function PaisDePetBoutiquePortal() {
       {/* ========================================================================= */}
       {/* 13. BOTÃO FLUTUANTE EXCLUSIVO COM LOGOMARCA OFICIAL DA PAIS DE PET         */}
       {/* ========================================================================= */}
-      <motion.aside
+      <aside
         aria-label="Canal oficial WhatsApp"
-        style={{
-          opacity: floatingBtnOpacity,
-          scale: floatingBtnScale,
-          pointerEvents: floatingBtnPointerEvents as any,
-        }}
-        className="fixed bottom-6 right-6 z-40"
+        className={`fixed bottom-6 right-6 z-40 transition-all duration-300 ${
+          scrolledPastHero ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-90 pointer-events-none"
+        }`}
       >
         <motion.a
           href={whatsappUrl}
@@ -1797,7 +1869,7 @@ export default function PaisDePetBoutiquePortal() {
             <img src="/foto-perfil-pais-de-pet.jpg" alt="Dra. Natalia Possas" className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform" />
           </div>
         </motion.a>
-      </motion.aside>
+      </aside>
 
     </div>
   );
