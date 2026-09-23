@@ -239,20 +239,6 @@ export default function PaisDePetBoutiquePortal() {
   const whatsappUrl = clinicMetadata.contacts.whatsappUrl;
   const containerRef = useRef<HTMLDivElement>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
-  const [heroMuted, setHeroMuted] = useState(true);
-
-  const toggleHeroAudio = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (heroVideoRef.current) {
-      const nextMuted = !heroVideoRef.current.muted;
-      heroVideoRef.current.muted = nextMuted;
-      setHeroMuted(nextMuted);
-      if (heroVideoRef.current.paused) {
-        heroVideoRef.current.play().catch(() => {});
-      }
-    }
-  };
 
   // Animação de Scroll e Paralaxe Profissional
   const { scrollY } = useScroll();
@@ -359,7 +345,7 @@ export default function PaisDePetBoutiquePortal() {
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 h-16 sm:h-20 lg:h-24 flex items-center justify-between gap-4">
           
           {/* Assinatura Oficial da Clínica (Logotipo Nítido e Título Bem Dimensionado) */}
-          <a href="/" className="flex items-center gap-3 group text-left shrink-0 max-w-[65%] sm:max-w-none" aria-current="page" aria-label="Pais de Pet - Página Inicial">
+          <a href="/" className="flex items-center gap-3 group text-left shrink-0 max-w-[55%] sm:max-w-none" aria-current="page" aria-label="Pais de Pet - Página Inicial">
             <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full p-[2px] bg-gradient-to-tr from-[#FF2E93] via-[#FF6B00] to-[#84CC16] shadow-xs group-hover:scale-105 transition-transform shrink-0">
               <img
                 src="/foto-perfil-pais-de-pet.jpg"
@@ -400,18 +386,18 @@ export default function PaisDePetBoutiquePortal() {
           </nav>
 
           {/* Grupo de Ação Rápida: Botão WhatsApp Elegante + Botão Sumário/Menu */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95 group touch-manipulation min-h-[44px]"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 py-2 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 rounded-full bg-[#FF2E93] hover:bg-pink-600 text-white font-black text-[11px] sm:text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95 group touch-manipulation min-h-[44px] shrink-0"
               aria-label="Falar com a Dra. Natalia no WhatsApp"
             >
               <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden p-[1px] bg-white shrink-0 shadow-2xs">
                 <img src="/foto-perfil-pais-de-pet.jpg" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
               </div>
-              <span className="inline">WhatsApp</span>
+              <span className="hidden xs:inline sm:inline">WhatsApp</span>
               <BrandArrow className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
 
@@ -421,7 +407,7 @@ export default function PaisDePetBoutiquePortal() {
               aria-haspopup="dialog"
               aria-expanded={sideMenuOpen}
               aria-controls="drawer-sumario"
-              className="p-2.5 sm:p-3 rounded-2xl bg-white text-[#2C1820] border border-[#2C1820]/15 hover:border-[#FF2E93] transition-all shadow-2xs active:scale-95 cursor-pointer touch-manipulation flex items-center gap-1.5 min-h-[44px]"
+              className="p-2.5 sm:p-3 rounded-2xl bg-white text-[#2C1820] border border-[#2C1820]/15 hover:border-[#FF2E93] transition-all shadow-2xs active:scale-95 cursor-pointer touch-manipulation flex items-center gap-1.5 min-h-[44px] shrink-0"
               aria-label="Abrir Menu de Navegação e Sumário"
             >
               {sideMenuOpen ? <BrandClose className="w-5 h-5 text-[#FF2E93]" /> : <BrandMenu className="w-5 h-5 text-[#2C1820]" />}
@@ -557,7 +543,7 @@ export default function PaisDePetBoutiquePortal() {
           src="/intro-interativa-4k.mp4#t=1.8"
           poster="/intro-interativa-poster.jpg"
           autoPlay
-          muted={heroMuted}
+          muted
           loop
           playsInline
           preload="metadata"
@@ -577,27 +563,6 @@ export default function PaisDePetBoutiquePortal() {
 
         {/* OVERLAY ESCURO DENSO DE FUNDO PARA CONTRASTE E LEGIBILIDADE WCAG 2.2 */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/65 to-black/40 pointer-events-none z-10" />
-
-        {/* BOTÃO DISCRETO DE ÁUDIO NO HERO COM ARIA-PRESSED E LABEL DINÂMICO */}
-        <button
-          type="button"
-          onClick={toggleHeroAudio}
-          aria-pressed={!heroMuted}
-          className="absolute top-[max(5rem,calc(env(safe-area-inset-top)+4.25rem))] sm:top-24 right-4 sm:right-8 z-30 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 hover:bg-black/70 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 text-xs font-mono font-medium tracking-wide shadow-md cursor-pointer touch-manipulation"
-          aria-label={heroMuted ? "Ativar som deste vídeo" : "Silenciar som deste vídeo"}
-        >
-          {heroMuted ? (
-            <>
-              <BrandSoundOff className="w-3.5 h-3.5 text-white/80" />
-              <span className="text-[10px] uppercase font-bold text-white/90">Ativar Som</span>
-            </>
-          ) : (
-            <>
-              <BrandSoundOn className="w-3.5 h-3.5 text-[#84CC16]" />
-              <span className="text-[10px] uppercase font-bold text-[#84CC16]">Áudio Ativo</span>
-            </>
-          )}
-        </button>
 
         {/* COMPOSIÇÃO CINEMATOGRÁFICA COM TIPOGRAFIA EM TEXT-REVEAL SEQUENCIAL & VINHETA PROTETORA */}
         <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-6 before:absolute before:-inset-8 before:rounded-[3rem] before:bg-radial before:from-black/80 before:via-black/40 before:to-transparent before:-z-10 before:blur-2xl before:pointer-events-none">
