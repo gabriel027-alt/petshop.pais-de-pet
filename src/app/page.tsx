@@ -676,7 +676,7 @@ export default function PaisDePetBoutiquePortal() {
                 <span className="text-sm text-[#2C1820]/75 block">Zero estresse e isolamento total de ruídos caninos</span>
               </div>
               <div className="flex flex-col items-start p-4 sm:p-5 rounded-2xl bg-white border border-[#2C1820]/10 shadow-2xs space-y-2">
-                <span className="p-2.5 rounded-xl bg-[#FF6B00]/15 text-[#FF6B00]">
+                <span className="p-2.5 rounded-xl bg-[#0EA5E9]/15 text-[#0EA5E9]">
                   <BrandCross className="w-5 h-5" />
                 </span>
                 <span className="font-bold text-[#2C1820] text-sm block">Credenciada Petlove</span>
@@ -860,8 +860,8 @@ export default function PaisDePetBoutiquePortal() {
                   title: "Odontologia Preventiva sem Trauma",
                   desc: "Detecção precoce de tártaro, gengivite e reabsorção dentária felina sem procedimentos desnecessários.",
                   badge: "Prevenção",
-                  badgeClass: "bg-[#FF6B00]/10 text-[#EA580C] border-[#FF6B00]/25",
-                  iconClass: "bg-[#FF6B00]/15 text-[#FF6B00]"
+                  badgeClass: "bg-[#0EA5E9]/10 text-[#0284c7] border-[#0EA5E9]/25",
+                  iconClass: "bg-[#0EA5E9]/15 text-[#0284c7]"
                 }
               ].map((item) => (
                 <div key={item.title} className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#2C1820]/10 flex items-start gap-3.5">
@@ -1370,7 +1370,7 @@ export default function PaisDePetBoutiquePortal() {
         <div className="max-w-4xl mx-auto space-y-10">
           
           <motion.div {...fadeInUp} className="space-y-3 text-center sm:text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#84CC16]/40 text-[#84CC16] font-mono text-xs font-bold uppercase tracking-wider shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#0EA5E9]/40 text-[#0284c7] bg-[#0EA5E9]/5 font-mono text-xs font-bold uppercase tracking-wider shadow-2xs">
               <BrandCross className="w-3.5 h-3.5" />
               <span>Triagem Pré-Clínica Inteligente</span>
             </div>
@@ -1405,7 +1405,7 @@ export default function PaisDePetBoutiquePortal() {
                 className="h-2.5 w-full bg-white rounded-full overflow-hidden border border-[#84CC16]/25"
               >
                 <div
-                  className="h-full bg-gradient-to-r from-[#FF2E93] via-[#FF6B00] to-[#84CC16] transition-all duration-500 rounded-full"
+                  className="h-full bg-gradient-to-r from-[#FF2E93] via-[#FF6B00] via-[#84CC16] to-[#0EA5E9] transition-all duration-500 rounded-full"
                   style={{ width: `${(triageStep / 4) * 100}%` }}
                 />
               </div>
