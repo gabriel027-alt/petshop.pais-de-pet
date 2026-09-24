@@ -545,7 +545,6 @@ export default function PaisDePetBoutiquePortal() {
         {/* VÍDEO DO GOLDEN RETRIEVER: LOOP LIMPO, FLUIDO E FULL-BLEED REAL (100VW x 100VH) */}
         <video
           ref={heroVideoRef}
-          src="/intro-interativa-4k.mp4#t=1.8"
           poster="/intro-interativa-poster.jpg"
           autoPlay
           muted
@@ -564,7 +563,10 @@ export default function PaisDePetBoutiquePortal() {
           }}
           className="absolute inset-0 w-full h-full sm:w-[100vw] sm:h-[100vh] sm:max-w-none sm:m-0 sm:p-0 object-cover object-center sm:object-[center_28%] z-0 pointer-events-none bg-black will-change-transform"
           style={{ objectFit: "cover" }}
-        />
+        >
+          <source media="(max-width: 768px)" src="/intro-interativa-720p.mp4#t=1.8" type="video/mp4" />
+          <source media="(min-width: 769px)" src="/intro-interativa-1080p.mp4#t=1.8" type="video/mp4" />
+        </video>
 
         {/* OVERLAY ESCURO DENSO DE FUNDO PARA CONTRASTE E LEGIBILIDADE WCAG 2.2 */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/65 to-black/40 pointer-events-none z-10" />
